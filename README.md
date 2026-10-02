@@ -46,7 +46,7 @@ Più sedi in una sola console, ognuna con i suoi varchi e gruppi di accesso; gli
 Terminali e controller via HTTP/ISAPI oppure con l'SDK Hikvision sulla porta 8000, anche multi-porta (per esempio i
 DS-K2604). Apertura, chiusura, sblocco e blocco permanente, orologio, diagnostica.
 
-**🪪 Utenti, tessere e PIN**<br>
+**💳 Utenti, tessere e PIN**<br>
 Anagrafica completa, più tessere per persona, validità e gruppi. Il badge si legge dal lettore del varco, e
 *Identifica badge* dà un nome alle tessere sconosciute. Le tessere tolte vengono revocate subito su tutti i varchi.
 
@@ -106,11 +106,11 @@ il runtime .NET: non serve installare altro.
 
 ## 💻 Requisiti
 
-| | |
-|---|---|
-| **Server** | Windows 10 o 11, oppure Windows Server 2016, 2019, 2022 o 2025, a 64 bit, sempre acceso e in rete con i varchi |
-| **Varchi** | Terminali e controller di controllo accessi Hikvision raggiungibili via HTTP/ISAPI (porta 80) oppure SDK (porta 8000) |
-| **Postazioni** | Un browser recente (Edge, Chrome, Firefox, Safari) su PC, tablet o telefono |
+- **Server**: Windows 10 o 11, oppure Windows Server 2016, 2019, 2022 o 2025, a 64 bit, sempre acceso e in rete con i
+  varchi.
+- **Varchi**: terminali e controller di controllo accessi Hikvision raggiungibili via HTTP/ISAPI (porta 80) oppure SDK
+  (porta 8000).
+- **Postazioni**: un browser recente (Edge, Chrome, Firefox, Safari) su PC, tablet o telefono.
 
 ## 🚀 Installazione in quattro passi
 
