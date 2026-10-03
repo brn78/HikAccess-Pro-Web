@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.3.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -434,7 +434,7 @@ Alla scadenza la console torna da sola ai limiti della versione gratuita, senza 
 - **Browser di fiducia dopo la verifica in due passaggi**: per quanti giorni (da 1 a 90, oppure "Mai") un browser segnato come di fiducia non richiede il codice OTP, e se la fiducia decade quando cambia l'indirizzo IP del browser. Vedi [Browser di fiducia](#profilo-2fa-fiducia).
 - **Accesso remoto**: i **proxy attendibili** e la verifica **Questa connessione**. Vedi [Accesso remoto e proxy](#sistema-accesso-remoto).
 - **Informazioni di sistema**: versione, licenza, nome del server, avvio e tempo di attività, modalità (servizio di Windows o finestra), disponibilità dell'SDK Hikvision, cartella dati, conteggi della configurazione, ultima scansione e ultima pulizia.
-- **Aggiornamento del programma**: versione installata, esito dell'ultimo aggiornamento e installazione di una nuova versione caricando il setup. Vedi [Aggiornare e disinstallare](#server-aggiornamento).
+- **Aggiornamento del programma**: versione installata, avviso delle nuove versioni con le novità e il collegamento per scaricare il setup, esito dell'ultimo aggiornamento e installazione di una nuova versione caricando il setup. L'interruttore **Avvisa quando esce una nuova versione** si salva con le altre impostazioni. Vedi [Aggiornare e disinstallare](#server-aggiornamento) e [Avviso delle nuove versioni](#server-avviso-versioni).
 
 ### <a id="sistema-accesso-remoto"></a>Accesso remoto e proxy
 
@@ -451,7 +451,7 @@ Quando la console è pubblicata su Internet tramite un **reverse proxy** (il rou
 
 ### <a id="sistema-registro"></a>Registro attività
 
-**Registro attività**: chi ha fatto cosa, quando, da quale indirizzo e con quale esito: accessi alla console (riusciti e falliti), comandi porta, modifiche a utenti, gruppi, varchi e siti, ripristini, deploy, cambi di impostazioni e operatori. Si filtra per periodo, categoria e testo libero e si esporta in CSV. La conservazione si imposta in Impostazioni.
+**Registro attività**: chi ha fatto cosa, quando, da quale indirizzo e con quale esito: accessi alla console (riusciti e falliti), comandi porta, modifiche a utenti, gruppi, varchi e siti, ripristini, deploy, cambi di impostazioni e operatori, aggiornamenti del programma e nuove versioni disponibili. Si filtra per periodo, categoria e testo libero e si esporta in CSV. La conservazione si imposta in Impostazioni.
 
 I comandi arrivati con una [chiave API](#sistema-chiavi-api) hanno al posto dell'operatore il nome della chiave («API · Home Assistant»): cercandolo si vedono tutti i comandi di quell'integrazione. La categoria **Chiavi API** raccoglie creazioni, modifiche ed eliminazioni delle chiavi e le richieste con chiavi errate, scadute o disattivate. La categoria **Licenza** raccoglie attivazioni, chiavi di attivazione rifiutate (con il motivo) e rimozioni della licenza.
 
@@ -531,6 +531,8 @@ Dagli altri PC della rete la console risponde su `http://<nome-del-server>:5080`
 
 Per aggiornare esegui il nuovo setup sopra l'installazione esistente: il servizio viene fermato, i file sostituiti e il servizio riavviato; dati, account e impostazioni restano. La disinstallazione (Impostazioni di Windows → App) rimuove servizio, regola del firewall e programma, e chiede se eliminare anche i dati.
 
+Il setup di ogni versione si scarica dalla [pagina delle versioni](https://github.com/brn78/HikAccess-Pro-Web/releases) su GitHub; la console avvisa gli amministratori quando ne esce una nuova (vedi [Avviso delle nuove versioni](#server-avviso-versioni)).
+
 **Dalla console**: **Impostazioni → Aggiornamento del programma**, scegli il nuovo setup (`HikAccessWeb-<versione>-Setup.exe`) e conferma con la tua password. Il server controlla che sia il setup di HikAccess Pro Web e che la versione non sia precedente a quella installata, poi lo installa. Il servizio resta fermo per circa un minuto e la console si ricarica da sola con la nuova versione. Per sicurezza, dato che il setup gira con i privilegi di sistema:
 
 - solo gli **amministratori**, con la conferma della password;
@@ -538,6 +540,21 @@ Per aggiornare esegui il nuovo setup sopra l'installazione esistente: il servizi
 - solo con il **servizio di Windows installato dal setup**; il pacchetto portabile si aggiorna sostituendo i file.
 
 L'esito dell'ultimo aggiornamento resta in Impostazioni; il log del setup è nella cartella dati, sottocartella `updates`.
+
+### <a id="server-avviso-versioni"></a>Avviso delle nuove versioni
+
+Una volta al giorno il server chiede a GitHub qual è l'ultima versione pubblicata di HikAccess Pro Web e la confronta con quella installata. Quando ne esce una nuova, gli **amministratori** vedono:
+
+- un **pallino** sulla voce **Impostazioni** del menu, finché la versione nuova non viene installata;
+- un avviso al primo accesso, una volta per versione e per browser, con il collegamento **Vedi le novità**;
+- nel riquadro **Aggiornamento del programma**, la versione nuova con la data di pubblicazione, le **novità** e i pulsanti **Scarica il setup** e **Pagina della versione**, che aprono GitHub in un'altra scheda.
+
+Nulla si installa da solo: scarichi il setup sul tuo PC e lo carichi nello stesso riquadro, come descritto sopra. Sotto il pulsante trovi l'impronta **SHA-256** del file pubblicato, per chi vuole confrontarla con quella del file scaricato (in PowerShell: `Get-FileHash HikAccessWeb-<versione>-Setup.exe`).
+
+Il riquadro mostra anche quando è stato fatto l'ultimo controllo; **Controlla ora** lo ripete subito. Operatori e account in sola lettura non vedono l'avviso. La prima segnalazione di ogni versione finisce nel [registro attività](#sistema-registro) (categoria **Sistema**, «Nuova versione disponibile»).
+
+> [!NOTE]
+> **Riservatezza**: la richiesta va a `api.github.com` e non contiene alcun dato dell'impianto (né nome, né licenza, né versione installata). Per spegnere il controllo automatico disattiva **Avvisa quando esce una nuova versione** nel riquadro e salva le impostazioni: il server non interroga più GitHub e pallino e avviso non compaiono; **Controlla ora** resta disponibile. Se il server non raggiunge Internet il controllo non riesce e il riquadro ne indica il motivo, senza altre conseguenze: il server riprova dopo qualche ora.
 
 ### <a id="server-reset-password"></a>Recupero dell'accesso amministratore
 
@@ -708,6 +725,13 @@ Il messaggio indica il motivo. **Incompleta o non valida**: copiala per intero, 
 <summary><b>La porta 5080 è occupata da un altro programma</b></summary>
 
 Il setup lo segnala alla fine dell'installazione ("la console non risponde"). Esegui di nuovo il setup e scegli un'altra porta (oppure, per il pacchetto portabile, modifica `Urls` in `appsettings.json`); il setup aggiorna collegamenti e regola del firewall.
+
+</details>
+
+<details>
+<summary><b>Il controllo delle nuove versioni non riesce</b></summary>
+
+In **Impostazioni → Aggiornamento del programma** il riquadro giallo indica il motivo. "Il server non raggiunge GitHub" o "non ha risposto": il server non esce su Internet, oppure un firewall o un proxy blocca `api.github.com` (HTTPS, porta 443); il servizio gira con l'account di sistema, che usa il proxy di sistema di Windows e non quello del tuo utente. "Troppe richieste": dalla stessa connessione a Internet sono partite molte richieste a GitHub, riprova dopo un'ora. Se il server deve restare senza Internet, disattiva l'avviso e controlla ogni tanto la [pagina delle versioni](https://github.com/brn78/HikAccess-Pro-Web/releases) da un altro PC.
 
 </details>
 
