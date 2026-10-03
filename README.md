@@ -71,7 +71,7 @@ attendibili.
 
 **⚙️ Pensato per il server**<br>
 Servizio di Windows con avvio automatico e icona di stato, backup e ripristino, invio di tutti gli utenti a tutti i
-varchi, aggiornamento dalla console.
+varchi, aggiornamento dalla console con l'avviso quando esce una nuova versione.
 
 </td>
 </tr>
@@ -122,6 +122,7 @@ il runtime .NET: non serve installare altro.
 4. **Carica gli utenti**: riceverli dai varchi o inserirli a mano; tessere e permessi arrivano da soli ai dispositivi.
 
 Per aggiornare basta caricare il nuovo setup da *Impostazioni → Aggiornamento del programma*: dati e account restano.
+Quando esce una nuova versione la console avvisa gli amministratori, con le novità e il collegamento per scaricarla.
 Tutti i dettagli sono nella [guida utente](docs/guida-utente.md#server).
 
 ## 🔑 Versione gratuita e licenza
@@ -211,6 +212,15 @@ richiesta indicando nelle note che si tratta di un trasferimento.
 Da <b>Impostazioni → Aggiornamento del programma</b> carichi il nuovo setup e confermi con la tua password: il
 servizio si ferma per circa un minuto e la console si ricarica da sola. In alternativa si esegue il nuovo setup sul
 server. Dati, account e licenza restano.
+</details>
+
+<details>
+<summary><b>Come faccio a sapere che è uscita una nuova versione?</b></summary>
+<br>
+Dalla versione 1.4.0 lo dice la console: una volta al giorno il server chiede a GitHub qual è l'ultima versione
+pubblicata e, se è più recente di quella installata, gli amministratori vedono un pallino sulla voce
+<b>Impostazioni</b> e, nel riquadro dell'aggiornamento, le novità e il pulsante per scaricare il setup. Nulla si
+installa da solo e non viene inviato alcun dato dell'impianto; l'avviso si può disattivare dalle impostazioni.
 </details>
 
 ## 📬 Contatti

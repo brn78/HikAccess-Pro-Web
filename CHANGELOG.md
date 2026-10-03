@@ -3,6 +3,15 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.4.0 · 3 ottobre 2026
+
+- **Avviso delle nuove versioni**. Una volta al giorno il server chiede a GitHub qual è l'ultima versione pubblicata:
+  quando ne esce una nuova gli amministratori vedono un pallino sulla voce *Impostazioni*, un avviso al primo accesso
+  e, nel riquadro *Aggiornamento del programma*, le novità con i pulsanti per scaricare il setup e aprire la pagina
+  della versione.
+- *Controlla ora* ripete subito il controllo; l'interruttore *Avvisa quando esce una nuova versione* lo disattiva.
+- Nulla si installa da solo e non viene inviato alcun dato dell'impianto: il setup si scarica e si carica come prima.
+
 ## 1.3.1 · 2 ottobre 2026
 
 - Esempi di indirizzi generici nella guida e nei suggerimenti della console.
