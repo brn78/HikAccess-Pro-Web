@@ -3,6 +3,13 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.4.2 · 6 ottobre 2026
+
+- Controller DS-K2602T/K2604T: l'invio di utenti e tessere e la lettura degli eventi non restano più in attesa fino
+  al timeout. Questi controller non rispondono a una seconda richiesta sulla stessa connessione: ora ogni richiesta usa
+  una connessione nuova. La lettura degli eventi, che su questi controller arriva 5 alla volta, è limitata a 30 secondi
+  per ciclo: gli eventi più vecchi restano sul dispositivo e la console non resta indietro.
+
 ## 1.4.1 · 6 ottobre 2026
 
 - **Ricevi da tutti i varchi**: nella finestra *Ricevi da varco* si possono interrogare tutti i varchi del sito uno dopo
