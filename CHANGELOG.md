@@ -3,6 +3,12 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.5.0 · 6 ottobre 2026
+
+- **Giorni e fasce orarie nei gruppi di accesso**: per ogni gruppo "sempre" oppure fino a 8 fasce al giorno, da lunedì
+  a domenica. Fuori fascia la tessera dei membri viene rifiutata. Le fasce si scrivono subito sui controller; cambiandole
+  si aggiorna solo l'orario, senza reinviare le persone. Nuova voce *Reinvia le fasce orarie ai varchi* nel menu del gruppo.
+
 ## 1.4.4 · 6 ottobre 2026
 
 - Revoca su un controller "a persone": se la persona non è presente sul controller non si scrive nulla (prima il

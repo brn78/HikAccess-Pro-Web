@@ -40,7 +40,8 @@ Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: config
 <td width="50%" valign="top">
 
 **🏢 Multisito**<br>
-Più sedi in una sola console, ognuna con i suoi varchi e gruppi di accesso; gli utenti sono unici per tutto l'impianto.
+Più sedi in una sola console, ognuna con i suoi varchi e gruppi di accesso, anche con giorni e fasce orarie; gli
+utenti sono unici per tutto l'impianto.
 
 **🚪 Varchi Hikvision**<br>
 Terminali e controller via HTTP/ISAPI oppure con l'SDK Hikvision sulla porta 8000, anche multi-porta (per esempio i

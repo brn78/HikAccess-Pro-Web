@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.4**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.5.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -214,7 +214,24 @@ Pagina **Gruppi di accesso**. Un gruppo è un **modello** di varchi autorizzati 
    - **Salva solo il gruppo**: il modello cambia per i prossimi utenti, i membri attuali restano com'erano.
 - **Sincronizza utenti del gruppo**: invia tutti i membri ai varchi del sito, usando i varchi autorizzati di ciascuno.
 - **Mostra utenti di questo gruppo**: apre l'anagrafica filtrata.
-- **Elimina gruppo**: i membri restano senza gruppo ma conservano i loro varchi autorizzati.
+- **Elimina gruppo**: i membri restano senza gruppo ma conservano i loro varchi autorizzati. Se il gruppo aveva delle fasce orarie, sui varchi restano con quelle fasce finché non li reinvii (da quel momento entrano sempre).
+
+### <a id="gruppi-fasce"></a>Giorni e fasce orarie
+
+Nella scheda del gruppo la sezione **Giorni e fasce orarie dei membri** stabilisce **quando** i membri possono entrare:
+
+- **Sempre**: a qualsiasi ora, tutti i giorni (è l'impostazione dei gruppi esistenti);
+- **Giorni e fasce orarie**: per ogni giorno da lunedì a domenica fino a **8 fasce** (es. 08:00–12:30 e 14:00–18:00). Un giorno senza fasce è chiuso. La fine **00:00** vale fino a mezzanotte; un turno che la attraversa va diviso su due giorni (es. lunedì 22:00–00:00 e martedì 00:00–06:00). I pulsanti **Lun–Ven 08:00–18:00** e **Copia il lunedì** velocizzano la compilazione.
+
+Fuori fascia la tessera viene rifiutata dal varco e l'evento compare tra gli accessi negati. Le fasce valgono per **tutti i membri** del gruppo, anche per chi ha varchi personalizzati, e su tutti i varchi dove sono autorizzati.
+
+- Al salvataggio le fasce vengono **scritte subito sui controller**. La prima volta che un gruppo riceve delle fasce vengono reinviati anche i membri, perché le loro porte usino il nuovo orario; le modifiche successive aggiornano solo l'orario sui controller, senza riscrivere le persone.
+- Un utente **senza gruppo** entra sempre (entro la validità della sua scheda).
+- Dal menu del gruppo, **Reinvia le fasce orarie ai varchi** riscrive l'orario su tutti i controller interessati, ad esempio dopo la sostituzione o il ripristino di un controller.
+- Sui controller l'orario di ogni gruppo occupa un **modello orario** numerato (dal 2 in su; il modello 1 è quello "sempre" di fabbrica): se l'impianto aveva modelli creati con iVMS-4200, quelli con lo stesso numero vengono sostituiti.
+
+> [!NOTE]
+> Le fasce seguono l'orologio del controller: se l'ora è sbagliata usa **Sincronizza orologio con il server** dal menu del varco. Le festività non sono gestite: nei giorni festivi valgono le fasce del giorno della settimana.
 
 ## <a id="utenti"></a>Utenti, tessere e PIN
 
