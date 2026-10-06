@@ -3,6 +3,13 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.4.3 · 6 ottobre 2026
+
+- Invio di un utente mentre la console legge gli eventi dallo stesso controller: la lettura cede il passo alla
+  scrittura invece di farla andare in timeout.
+- Se la lettura delle porte già autorizzate della persona non riesce, l'invio si ferma con errore invece di scrivere
+  solo la porta in corso (che toglieva le altre porte del controller).
+
 ## 1.4.2 · 6 ottobre 2026
 
 - Controller DS-K2602T/K2604T: l'invio di utenti e tessere e la lettura degli eventi non restano più in attesa fino
