@@ -3,6 +3,12 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.5.1 · 6 ottobre 2026
+
+- Fasce orarie sui controller collegati con l'SDK Hikvision (porta 8000, es. Totem DS-K2602): corretta la scrittura
+  del modello orario, che la 1.5.0 non riusciva a completare; se il firmware non supporta i comandi classici si usano
+  quelli più recenti.
+
 ## 1.5.0 · 6 ottobre 2026
 
 - **Giorni e fasce orarie nei gruppi di accesso**: per ogni gruppo "sempre" oppure fino a 8 fasce al giorno, da lunedì
