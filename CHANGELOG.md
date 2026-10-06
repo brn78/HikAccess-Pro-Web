@@ -3,6 +3,15 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.4.1 · 6 ottobre 2026
+
+- **Ricevi da tutti i varchi**: nella finestra *Ricevi da varco* si possono interrogare tutti i varchi del sito uno dopo
+  l'altro; i varchi non raggiungibili vengono saltati e segnalati.
+- Controller a più porte (DS-K2602T, DS-K2604T): gli eventi si leggono una volta per controller invece che una per
+  porta, e le scritture di utenti e tessere verso lo stesso controller vanno in fila con più tempo di attesa. Prima
+  l'invio di un utente poteva fallire con "Nessuna risposta entro 6 s".
+- Guida: come configurare i controller con firmware "a persone" (porta 80, HTTP / ISAPI).
+
 ## 1.4.0 · 3 ottobre 2026
 
 - **Avviso delle nuove versioni**. Una volta al giorno il server chiede a GitHub qual è l'ultima versione pubblicata:

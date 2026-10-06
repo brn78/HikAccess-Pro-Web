@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -142,6 +142,7 @@ Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, 
 3. **Protocollo di comunicazione**:
    - **HTTP / ISAPI**: terminali e controller con interfaccia web e gestione "a persone" (nome, tessere, PIN e validità per ogni utente). È il canale consigliato.
    - **SDK Hikvision**: controller senza HTTP, raggiungibili solo sulla porta di servizio 8000 (es. DS-K2604 di prima generazione), come fa iVMS-4200. Su questi controller "a tessere" il dispositivo conosce solo i numeri di tessera, non i nomi.
+   - I controller di generazione successiva (es. DS-K2602T, DS-K2604T) hanno il firmware "a persone" e rispondono anche sulla porta 8000, ma utenti e tessere si scrivono solo via HTTP: usa la porta **80** e il protocollo HTTP / ISAPI, con le stesse credenziali (via SDK la console li legge e li comanda, e all'invio di un utente segnala di passare a HTTP).
    - **Automatico**: decide la porta (8000 = SDK, altrimenti HTTP).
 4. **Utente e password del dispositivo** (di solito l'account admin del terminale). La password non viene mai mostrata; in modifica, lasciandola vuota resta invariata.
 5. **Porta del controller**: numero della porta (1 per i terminali), nome e **tempo relè**, cioè i secondi di sblocco della serratura. Con **Scrivi nome porta e tempo relè sul dispositivo** i valori vengono scritti sul dispositivo; altrimenti vengono riletti da lì a ogni scansione.
@@ -260,7 +261,7 @@ Se disattivi l'interruttore, la modifica resta solo nella console. Per inviarla 
 
 ### <a id="utenti-ricevere"></a>Ricevere gli utenti da un varco
 
-**Ricevi da varco** scarica le persone e le tessere presenti su un dispositivo e le unisce all'anagrafica: chi esiste già viene aggiornato, chi è nuovo viene creato con l'autorizzazione sul varco interrogato. Le autorizzazioni sugli altri varchi non cambiano. È il modo più rapido per adottare la console su un impianto già in funzione: ricevi da ogni varco, poi controlla gruppi e autorizzazioni.
+**Ricevi da varco** scarica le persone e le tessere presenti su un dispositivo e le unisce all'anagrafica: chi esiste già viene aggiornato, chi è nuovo viene creato con l'autorizzazione sul varco interrogato. Le autorizzazioni sugli altri varchi non cambiano. È il modo più rapido per adottare la console su un impianto già in funzione: scegli **Tutti i varchi del sito** (vengono interrogati uno dopo l'altro; i varchi non raggiungibili sono saltati e segnalati nel log) oppure un varco alla volta, poi controlla gruppi e autorizzazioni. Sui controller a più porte ogni porta è un varco: con un solo varco si riceve il permesso di quella porta soltanto.
 
 Dai controller "a tessere" (senza anagrafica) arrivano solo i numeri: la console crea record **solo tessera**, che puoi completare con il nome aprendo la scheda (la matricola resta il numero della tessera), anche passando le tessere una dopo l'altra con [Identifica badge](#utenti-identifica). Per una matricola diversa crea un nuovo utente con quella tessera: il record solo tessera viene unito. Se la stessa tessera è già di una persona nota, i record vengono uniti.
 
@@ -606,6 +607,13 @@ La console è stata aperta con Internet Explorer, per esempio sul server con Win
 <summary><b>Dagli altri PC la console non si apre</b></summary>
 
 Controlla indirizzo e porta (`http://nome-server:5080`), che il servizio sia attivo e che la rete del server sia **Privata** o di Dominio: la regola del firewall creata dal setup vale per le reti Pubbliche solo se hai scelto l'opzione (per cambiarla esegui di nuovo il setup). Con un firewall di terze parti apri la porta TCP scelta.
+
+</details>
+
+<details>
+<summary><b>All'invio di un utente: «firmware "a persone": utenti e tessere si modificano via HTTP»</b></summary>
+
+Il controller (es. DS-K2602T) è configurato sulla porta 8000 ma tiene l'anagrafica delle persone: nella scheda del varco imposta porta **80** e protocollo **HTTP / ISAPI** per tutte le sue porte, con le stesse credenziali, e ripeti l'invio. Questi controller rispondono con qualche secondo di ritardo: la console mette in fila le scritture verso lo stesso controller e legge il registro eventi una volta sola per controller.
 
 </details>
 
