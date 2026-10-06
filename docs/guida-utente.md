@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.3**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.4.4**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 

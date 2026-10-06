@@ -3,6 +3,12 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.4.4 · 6 ottobre 2026
+
+- Revoca su un controller "a persone": se la persona non è presente sul controller non si scrive nulla (prima il
+  controller rispondeva `badJsonContent`); se c'è e resta senza porte autorizzate viene tolta dal controller con le sue
+  tessere.
+
 ## 1.4.3 · 6 ottobre 2026
 
 - Invio di un utente mentre la console legge gli eventi dallo stesso controller: la lettura cede il passo alla
