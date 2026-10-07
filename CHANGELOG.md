@@ -3,6 +3,36 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.0 · 7 ottobre 2026
+
+- **Eventi in tempo reale**: i controller inviano ogni passaggio appena avviene (HTTP: flusso di notifiche; SDK:
+  armamento, come iVMS-4200). Archivio, dashboard e *Cattura da varco* si aggiornano in un secondo, anche sui
+  DS-K2602T/K2604T. La colonna *Eventi* della pagina Varchi mostra lo stato del collegamento; si disattiva in
+  *Impostazioni*.
+- **Nessun evento perso**: la lettura del registro di ogni controller riparte dall'ultimo evento letto, in ordine, anche
+  sui controller che danno 5 eventi per pagina. Gli eventi registrati con un orario precedente (orologio corretto, fine
+  dell'ora legale) vengono riconosciuti dal numero progressivo e recuperati. Corretti i casi in cui alcuni passaggi non
+  comparivano nello storico.
+- **Cattura badge immediata**: con il tempo reale il numero compare appena la tessera tocca il lettore; vale solo un
+  passaggio fatto dopo l'apertura della finestra.
+- **Porta rimasta aperta**: nuova voce *Stato porta* (modalità, serratura, sensore, lettori) con *Ripristina
+  funzionamento normale*; la *Diagnostica* indica se è attiva la funzione "prima tessera" del controller, che lascia la
+  porta aperta dopo il primo badge.
+- **Orologio dei varchi**: *Sincronizza orario* imposta anche il fuso orario con le regole dell'ora legale (prima, d'estate,
+  i dispositivi restavano indietro di un'ora).
+- **Operazioni su più utenti e varchi**: con le caselle nelle tabelle si inviano più utenti ai varchi (tutti quelli
+  interessati o solo alcuni), si assegna un gruppo, si abilitano, disabilitano o eliminano; sui varchi selezionati si
+  inviano o ricevono gli utenti e si sincronizza l'orologio.
+- **Una scrittura per controller**: ogni persona viene scritta una volta sola con tutte le porte del controller; le porte
+  non gestite dalla console restano come sono.
+- **Revoche in sospeso**: tessere tolte o persone eliminate mentre un controller non rispondeva vengono ritentate da sole;
+  avviso in dashboard e nella pagina Utenti con dettagli e *Riprova ora*.
+- Messaggi di errore dell'SDK Hikvision e dei dispositivi in italiano.
+- La scheda di un utente si apre sempre con i dati attuali e non sovrascrive le modifiche fatte da altri nel frattempo;
+  chiudendo una scheda con modifiche non salvate la console chiede conferma.
+- Aggiornamento dalla console: il setup caricato deve coincidere con quello pubblicato su GitHub (impronta SHA-256).
+- Salvataggi della configurazione più sicuri, con copia di riserva.
+
 ## 1.5.1 · 6 ottobre 2026
 
 - Fasce orarie sui controller collegati con l'SDK Hikvision (porta 8000, es. Totem DS-K2602): corretta la scrittura

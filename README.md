@@ -45,15 +45,17 @@ utenti sono unici per tutto l'impianto.
 
 **🚪 Varchi Hikvision**<br>
 Terminali e controller via HTTP/ISAPI oppure con l'SDK Hikvision sulla porta 8000, anche multi-porta (per esempio i
-DS-K2604). Apertura, chiusura, sblocco e blocco permanente, orologio, diagnostica.
+DS-K2604). Apertura, chiusura, sblocco e blocco permanente, stato della porta, orologio con ora legale, diagnostica,
+operazioni su più varchi insieme.
 
 **💳 Utenti, tessere e PIN**<br>
 Anagrafica completa, più tessere per persona, validità e gruppi. Il badge si legge dal lettore del varco, e
-*Identifica badge* dà un nome alle tessere sconosciute. Le tessere tolte vengono revocate subito su tutti i varchi.
+*Identifica badge* dà un nome alle tessere sconosciute. Le tessere tolte vengono revocate subito su tutti i varchi (e
+ritentate da sole sui controller spenti). Invio, gruppo, abilitazione ed eliminazione di più utenti in una volta.
 
 **📊 Monitoraggio in tempo reale**<br>
-Il server controlla i varchi di continuo, anche con la console chiusa: dashboard, accessi negati, storico degli eventi
-con ricerca ed esportazione CSV.
+I controller inviano ogni passaggio appena avviene e il server legge comunque i loro registri senza saltare eventi,
+anche con la console chiusa: dashboard, accessi negati, storico degli eventi con ricerca ed esportazione CSV.
 
 </td>
 <td width="50%" valign="top">
