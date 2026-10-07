@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.3**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.4**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -525,7 +525,7 @@ Alla scadenza la console torna da sola ai limiti della versione gratuita, senza 
 - **Chiusura della sessione per inattività**: da 15 minuti a 7 giorni. Per un monitor sempre acceso usa un account in sola lettura e una durata lunga.
 - **Browser di fiducia dopo la verifica in due passaggi**: per quanti giorni (da 1 a 90, oppure "Mai") un browser segnato come di fiducia non richiede il codice OTP, e se la fiducia decade quando cambia l'indirizzo IP del browser. Vedi [Browser di fiducia](#profilo-2fa-fiducia).
 - **Accesso remoto**: i **proxy attendibili** e la verifica **Questa connessione**. Vedi [Accesso remoto e proxy](#sistema-accesso-remoto).
-- **Informazioni di sistema**: versione, licenza, nome del server, avvio e tempo di attività, modalità (servizio di Windows o finestra), disponibilità dell'SDK Hikvision, cartella dati, conteggi della configurazione, ultima scansione e ultima pulizia.
+- **Informazioni di sistema**: versione, licenza, nome del server, avvio e tempo di attività, modalità (servizio di Windows o finestra), disponibilità dell'SDK Hikvision, cartella dati, conteggi della configurazione, ultima scansione e ultima pulizia. Sotto, il **grafico a ciambella del disco** della cartella dati: archivio eventi (passaggi e registro attività), altri dati della console (configurazione, backup, aggiornamenti caricati), altri file e programmi e, al centro, la percentuale di spazio libero; il collegamento porta all'archivio in Eventi e storico.
 - **Aggiornamento del programma**: versione installata, avviso delle nuove versioni con le novità e il collegamento per scaricare il setup, esito dell'ultimo aggiornamento e installazione di una nuova versione caricando il setup. L'interruttore **Avvisa quando esce una nuova versione** si salva con le altre impostazioni. Vedi [Aggiornare e disinstallare](#server-aggiornamento) e [Avviso delle nuove versioni](#server-avviso-versioni).
 
 ### <a id="sistema-accesso-remoto"></a>Accesso remoto e proxy
