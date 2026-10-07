@@ -3,6 +3,13 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.2 · 7 ottobre 2026
+
+- **Nome e matricola negli eventi** dei controller che registrano solo la tessera, come il Totem DS-K2602 collegato
+  con l'SDK: la console li prende dall'anagrafica, anche per gli eventi già archiviati. Vale anche per una tessera non
+  ancora inviata al varco ("accesso negato") e per una tessera assegnata a un utente dopo il passaggio.
+- *Diagnostica*: allarme porta aperta "disattivato" invece di "dopo mai"; riga degli eventi in tempo reale più chiara.
+
 ## 1.6.1 · 7 ottobre 2026
 
 - Gli invii ai varchi (utenti, gruppi, deploy, ricezione, revoche) proseguono **in background** senza aprire la finestra:
