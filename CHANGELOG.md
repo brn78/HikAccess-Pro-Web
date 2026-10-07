@@ -3,6 +3,12 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.4 · 7 ottobre 2026
+
+- *Impostazioni → Informazioni di sistema*: **grafico a ciambella del disco** della cartella dati, con archivio eventi
+  (passaggi e registro attività), altri dati della console, altri file e programmi e la percentuale di spazio libero.
+- *Operatori*: la descrizione dei tre ruoli torna su tre colonne.
+
 ## 1.6.3 · 7 ottobre 2026
 
 - In alto a sinistra, accanto a «Console web», la **versione in uso** in verde fluo (al posto dell'icona).
