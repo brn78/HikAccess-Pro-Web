@@ -3,6 +3,15 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.3 · 7 ottobre 2026
+
+- In alto a sinistra, accanto a «Console web», la **versione in uso** in verde fluo (al posto dell'icona).
+- **Indicatori della dashboard cliccabili**: varchi totali e online portano alla pagina Varchi (ai soli varchi offline
+  se qualcuno non risponde), utenti registrati alla pagina Utenti, transiti e accessi negati agli eventi di oggi.
+- **Riquadri a tutta larghezza** in tutte le pagine, uno sotto l'altro invece che affiancati su due o tre colonne.
+- Menu **Sistema** chiuso: si apre con un clic sul titolo e da solo quando sei su una delle sue pagine; il pallino della
+  nuova versione compare sul titolo.
+
 ## 1.6.2 · 7 ottobre 2026
 
 - **Nome e matricola negli eventi** dei controller che registrano solo la tessera, come il Totem DS-K2602 collegato

@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.2**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.3**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -74,7 +74,7 @@ Un amministratore può reimpostarla da **Operatori**. Se a non ricordare la pass
 
 ### <a id="interfaccia-menu"></a>Menu laterale e barra superiore
 
-- Il **menu laterale** è diviso in Monitoraggio, Gestione, Sistema (solo amministratori) e Aiuto. Il pulsante **Comprimi menu** in basso lo riduce alle sole icone; su telefono si apre con ☰. In fondo, il riquadro **Monitoraggio varchi** mostra se la scansione automatica è attiva e quando è avvenuta l'ultima. Agli amministratori, sopra, un riquadro segnala la [licenza](#sistema-licenza) quando serve attenzione: versione gratuita, varchi sospesi, licenza non valida o in scadenza.
+- Il **menu laterale** è diviso in Monitoraggio, Gestione, Sistema (solo amministratori) e Aiuto. In alto, accanto a «Console web», c'è la **versione in uso**. Il gruppo **Sistema** resta chiuso: si apre con un clic sul titolo (⌄ nel menu compresso) e da solo quando sei su una delle sue pagine; un pallino sul titolo segnala una nuova versione. Il pulsante **Comprimi menu** in basso lo riduce alle sole icone; su telefono si apre con ☰. In fondo, il riquadro **Monitoraggio varchi** mostra se la scansione automatica è attiva e quando è avvenuta l'ultima. Agli amministratori, sopra, un riquadro segnala la [licenza](#sistema-licenza) quando serve attenzione: versione gratuita, varchi sospesi, licenza non valida o in scadenza.
 - Nella **barra superiore** trovi il nome dell'impianto e della pagina, il contatore delle [operazioni in corso](#operazioni), il **selettore del sito attivo**, il pulsante del **tema** (chiaro, scuro o automatico come il sistema) e il menu con il tuo nome (profilo, impostazioni, guida, uscita).
 
 ### <a id="interfaccia-sito"></a>Il sito attivo
@@ -363,7 +363,7 @@ Dal menu del tasto destro sulla riga:
 
 La **Dashboard** è il quadro d'insieme del sito attivo:
 
-- **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati.
+- **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati. Un clic su un indicatore apre il dettaglio: **Varchi** (i soli varchi offline, se qualcuno non risponde), **Utenti e tessere**, gli **eventi di oggi** oppure i soli **accessi negati di oggi**.
 - **Stato varchi**: un riquadro per varco con stato, indirizzo, canale (con se gli eventi arrivano in tempo reale), tempo di risposta ed eventuale errore; clic sul riquadro per la scheda del varco, pulsante **Apri** e menu ⋯ con tutti i comandi, compreso **Stato porta**.
 - **Attività in tempo reale**: gli ultimi 20 eventi del sito; i nuovi vengono evidenziati. Clic per aprire la persona, tasto destro o ⋯ per il menu dell'evento.
 - **Transiti di oggi per ora**: accessi concessi e negati ora per ora; passa il mouse sulle colonne per i valori, **Tabella** mostra i numeri.
