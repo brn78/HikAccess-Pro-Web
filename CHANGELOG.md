@@ -3,6 +3,20 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.1 · 7 ottobre 2026
+
+- Gli invii ai varchi (utenti, gruppi, deploy, ricezione, revoche) proseguono **in background** senza aprire la finestra:
+  in alto il contatore delle operazioni in corso, al termine una notifica con l'esito e **Vedi log** per il dettaglio.
+- Pulsante per **copiare il log** delle operazioni e i testi di esito e diagnostica (per esempio l'esito di
+  *Sincronizza orario* varco per varco, ora in una notifica con *Dettagli*).
+- Controller DS-K2602T/K2604T: orologio, comandi porta, stato porta e diagnostica si mettono in fila con la lettura degli
+  eventi invece di andare in timeout ("Nessuna risposta entro 5 s").
+- Con gli eventi in tempo reale il registro dei controller si rilegge ogni 5 minuti e subito dopo una riconnessione,
+  invece che a ogni scansione: i controller lenti restano liberi per invii e comandi.
+- Se un controller con il collegamento in tempo reale aperto smette di rispondere alle altre richieste, il collegamento
+  viene sospeso per 6 ore e gli eventi arrivano con la scansione periodica.
+- Firmware senza filtro per orario: un invio durante la lettura degli eventi non fa più saltare gli eventi più vecchi.
+
 ## 1.6.0 · 7 ottobre 2026
 
 - **Eventi in tempo reale**: i controller inviano ogni passaggio appena avviene (HTTP: flusso di notifiche; SDK:

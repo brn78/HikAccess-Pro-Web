@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -87,7 +87,8 @@ Dashboard, Varchi, Gruppi ed Eventi mostrano solo il sito attivo. La pagina Uten
 - Regola unica in tutta la console: **un clic** su una riga, su un riquadro della dashboard o su un passaggio apre la scheda corrispondente (in sola consultazione per chi non può modificare); il **tasto destro** o il pulsante ⋯ aprono il menu delle azioni. Il piè di pagina di ogni tabella lo ricorda.
 - Le schede di modifica si aprono in un **pannello laterale**; <kbd>Esc</kbd>, **Annulla** o un clic fuori le chiudono senza salvare. Se hai cambiato qualcosa, la console chiede prima conferma (**Chiudi senza salvare** oppure **Continua a modificare**), anche quando cambi pagina con il menu, con <kbd>F1</kbd> o con il tasto Indietro del browser.
 - **Selezione multipla** (pagine Utenti e Varchi, per amministratori e operatori): la casella all'inizio della riga la seleziona, quella nell'intestazione seleziona tutte le righe visualizzate; tenendo premuto <kbd>Maiusc</kbd> si seleziona l'intervallo dall'ultima casella toccata. Con almeno una riga scelta compare sopra la tabella la barra delle **operazioni sulle righe selezionate**, con il loro numero e **Deseleziona**. La selezione vale per le righe visualizzate: quelle tolte da un filtro o dalla ricerca escono dalla selezione, così un'operazione non tocca mai righe che non vedi.
-- Le conferme e gli esiti compaiono come **notifiche** in alto a destra; gli errori restano più a lungo.
+- Le conferme e gli esiti compaiono come **notifiche** in alto a destra; gli errori restano più a lungo. Alcune notifiche hanno un pulsante (**Vedi log**, **Dettagli**) per aprire il resoconto completo.
+- I testi di esito, dettaglio e diagnostica (per esempio l'esito di **Sincronizza orario** varco per varco) hanno in alto a destra il pulsante per copiarli negli appunti.
 - I campi contrassegnati da \* sono obbligatori.
 
 ### <a id="interfaccia-scorciatoie"></a>Scorciatoie da tastiera
@@ -183,7 +184,9 @@ Oltre alla scansione, il server tiene aperto con ogni controller un **collegamen
 | **Solo scansione** | Il firmware non offre il tempo reale, oppure il controller ha già occupati tutti i collegamenti (altri programmi in ascolto, es. iVMS-4200): gli eventi arrivano con la scansione periodica. Il server riprova ogni 30 minuti. |
 | **Scansione** | Tempo reale disattivato nelle [Impostazioni](#sistema-impostazioni) o varco sospeso. |
 
-La scansione periodica resta comunque attiva: legge il registro di ogni controller dal punto in cui si era fermata e recupera ciò che il collegamento avesse perso (riconnessioni, riavvii del server), senza doppioni.
+La scansione periodica resta comunque attiva: legge il registro di ogni controller dal punto in cui si era fermata e recupera ciò che il collegamento avesse perso (riconnessioni, riavvii del server), senza doppioni. Per i controller collegati in tempo reale il registro si rilegge ogni 5 minuti, e subito dopo una riconnessione, così i controller lenti restano liberi per invii e comandi; **Scansiona tutti** e **Sincronizza dai varchi** lo rileggono subito.
+
+Se un controller, con il collegamento aperto, smette di rispondere alle altre richieste (tre richieste di fila senza risposta), la console chiude il collegamento per 6 ore: la colonna Eventi indica **Solo scansione** con il motivo e gli eventi arrivano con la scansione periodica.
 
 ### <a id="varchi-comandi"></a>Comandi porta
 
@@ -207,7 +210,8 @@ Ogni comando viene registrato nel [registro attività](#sistema-registro) con l'
 
 - **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo: parametri della porta (tempo relè, funzione **prima tessera**), stato della porta, tessere registrate e stato degli [eventi in tempo reale](#varchi-tempo-reale); se il varco non risponde, il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
 - **Messaggi di errore dei dispositivi**: i codici di errore dell'SDK Hikvision e delle risposte ISAPI sono tradotti in italiano (es. «memoria utenti del dispositivo piena», «numero tessera già presente sul dispositivo»), con il codice originale tra parentesi quando serve all'assistenza.
-- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta, con l'esito per ciascuno.
+- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta: una notifica riassume l'esito e **Dettagli** mostra il risultato di ogni varco, da copiare con .
+- Orologio, comandi porta, stato porta e diagnostica si mettono **in fila** con le altre richieste allo stesso controller (i DS-K2602T/K2604T ne servono una alla volta e una ricerca nel registro eventi può durare diversi secondi): la lettura degli eventi cede il passo e la richiesta aspetta il proprio turno invece di andare in timeout.
 - **Copia indirizzo IP** copia l'IP negli appunti, per aprire l'interfaccia web del terminale.
 
 ### <a id="varchi-interfaccia-web"></a>Interfaccia web del dispositivo
@@ -310,7 +314,7 @@ Nella sezione **Varchi autorizzati · sito ...** spunti i varchi del sito attivo
 
 ### <a id="utenti-sincronizzazione"></a>Salvare e inviare ai varchi
 
-Il pulsante **Salva utente** registra la scheda nella console. Con l'interruttore **Invia subito ai varchi** attivo (impostazione predefinita) parte anche l'invio: sui varchi del sito attivo l'accesso viene **concesso** dove spuntato e **revocato** sugli altri; nome, PIN, validità e abilitazione vengono aggiornati anche sui varchi degli altri siti dove la persona è autorizzata. Ogni controller riceve **una scrittura** con tutte le sue porte. Una finestra mostra l'avanzamento e l'esito per ogni controller (vedi [Operazioni in background](#operazioni)). Se i varchi del sito sono tutti sospesi per la licenza, la console lo segnala: la scheda è salvata ma non inviata.
+Il pulsante **Salva utente** registra la scheda nella console. Con l'interruttore **Invia subito ai varchi** attivo (impostazione predefinita) parte anche l'invio: sui varchi del sito attivo l'accesso viene **concesso** dove spuntato e **revocato** sugli altri; nome, PIN, validità e abilitazione vengono aggiornati anche sui varchi degli altri siti dove la persona è autorizzata. Ogni controller riceve **una scrittura** con tutte le sue porte. L'invio prosegue in background e al termine una notifica ne indica l'esito, con **Vedi log** per il dettaglio per controller (vedi [Operazioni in background](#operazioni)). Se i varchi del sito sono tutti sospesi per la licenza, la console lo segnala: la scheda è salvata ma non inviata.
 
 Se disattivi l'interruttore, la modifica resta solo nella console. Per inviarla in seguito usa **Sincronizza su tutti i varchi del sito** dal menu dell'utente, oppure il [deploy atomico](#backup-deploy) per riallineare tutto l'impianto in una volta. I varchi offline al momento dell'invio vengono segnalati nel log: ripeti l'invio quando tornano raggiungibili.
 
@@ -404,11 +408,13 @@ La scheda **Archivio e manutenzione** mostra quanti eventi sono archiviati, lo s
 
 ## <a id="operazioni"></a>Operazioni in background
 
-Gli invii ai varchi (utente, più utenti, gruppo, deploy, invio a varchi scelti), le eliminazioni, le revoche in sospeso e la ricezione dell'anagrafica sono eseguiti dal server e mostrati in una finestra con barra di avanzamento, contatori di riusciti ed errori e **log in tempo reale**, una riga per persona e controller. Al termine un riepilogo indica l'esito complessivo e le pagine aperte (anche se nel frattempo hai cambiato pagina) si aggiornano da sole.
+Gli invii ai varchi (utente, più utenti, gruppo, deploy, invio a varchi scelti), le eliminazioni, le revoche in sospeso e la ricezione dell'anagrafica sono eseguiti dal server **in background**: puoi continuare a lavorare, e in alto compare il contatore **operazioni in corso**. Al termine arriva una **notifica con l'esito** (verde se tutto è riuscito, gialla o rossa con gli errori, che resta visibile più a lungo) e le pagine aperte si aggiornano da sole.
+
+La **finestra dell'operazione** si apre solo quando la chiedi: con **Vedi log** nella notifica finale, con **Mostra** nell'avviso di avvio, dal contatore in alto mentre è in corso oppure dalle operazioni recenti. Mostra barra di avanzamento, contatori di riusciti ed errori e il **log**, una riga per persona e controller; il pulsante in alto a destra del log lo copia negli appunti, per esempio per inviarlo all'assistenza.
 
 Le operazioni verso controller diversi procedono in parallelo; quelle verso lo stesso controller si mettono in fila, e la lettura degli eventi cede il passo alle scritture. Ogni persona viene riletta dall'anagrafica al momento di scriverla: una modifica fatta mentre l'operazione è in corso non viene sovrascritta con dati vecchi, e una persona eliminata nel frattempo non viene riscritta.
 
-- **Continua in background** chiude la finestra senza fermare l'operazione: in alto compare il contatore **operazioni in corso**, da cui puoi riaprirla; al termine ricevi una notifica.
+- **Continua in background** chiude la finestra senza fermare l'operazione: resta il contatore **operazioni in corso**, da cui puoi riaprirla; al termine ricevi la notifica.
 - **Annulla operazione** (dove disponibile: invio di più utenti, sincronizzazione di gruppo, deploy, invio a varchi scelti, ricezione) ferma il lavoro al termine del passo in corso. I varchi già scritti restano aggiornati.
 - Le operazioni concluse restano consultabili, con il loro log, in **Backup e deploy → Operazioni recenti** (le ultime 40 dall'avvio del server). Gli operatori vedono le proprie, gli amministratori tutte.
 
