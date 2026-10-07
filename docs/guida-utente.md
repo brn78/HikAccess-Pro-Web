@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.5.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -85,7 +85,8 @@ Dashboard, Varchi, Gruppi ed Eventi mostrano solo il sito attivo. La pagina Uten
 
 - Clic sull'intestazione di una colonna per **ordinare**; le caselle e i pulsanti sopra la tabella **filtrano**.
 - Regola unica in tutta la console: **un clic** su una riga, su un riquadro della dashboard o su un passaggio apre la scheda corrispondente (in sola consultazione per chi non può modificare); il **tasto destro** o il pulsante ⋯ aprono il menu delle azioni. Il piè di pagina di ogni tabella lo ricorda.
-- Le schede di modifica si aprono in un **pannello laterale**; <kbd>Esc</kbd> le chiude senza salvare.
+- Le schede di modifica si aprono in un **pannello laterale**; <kbd>Esc</kbd>, **Annulla** o un clic fuori le chiudono senza salvare. Se hai cambiato qualcosa, la console chiede prima conferma (**Chiudi senza salvare** oppure **Continua a modificare**), anche quando cambi pagina con il menu, con <kbd>F1</kbd> o con il tasto Indietro del browser.
+- **Selezione multipla** (pagine Utenti e Varchi, per amministratori e operatori): la casella all'inizio della riga la seleziona, quella nell'intestazione seleziona tutte le righe visualizzate; tenendo premuto <kbd>Maiusc</kbd> si seleziona l'intervallo dall'ultima casella toccata. Con almeno una riga scelta compare sopra la tabella la barra delle **operazioni sulle righe selezionate**, con il loro numero e **Deseleziona**. La selezione vale per le righe visualizzate: quelle tolte da un filtro o dalla ricerca escono dalla selezione, così un'operazione non tocca mai righe che non vedi.
 - Le conferme e gli esiti compaiono come **notifiche** in alto a destra; gli errori restano più a lungo.
 - I campi contrassegnati da \* sono obbligatori.
 
@@ -97,6 +98,9 @@ Dashboard, Varchi, Gruppi ed Eventi mostrano solo il sito attivo. La pagina Uten
 | <kbd>Esc</kbd> | Chiude menu, finestre, pannelli e spiegazioni ⓘ. |
 | <kbd>Invio</kbd> | Conferma la finestra o il campo attivo (accesso, ricerche, tessere aggiuntive). |
 | <kbd>↑</kbd> <kbd>↓</kbd> | Si spostano tra le voci di un menu aperto. |
+| <kbd>Tab</kbd> | Passa al comando successivo; con una finestra o una scheda aperta resta al suo interno. |
+| <kbd>Invio</kbd> o <kbd>Spazio</kbd> su un'intestazione | Ordina la tabella per quella colonna (le intestazioni si raggiungono con <kbd>Tab</kbd>). |
+| <kbd>Maiusc</kbd> + clic su una casella | Seleziona o deseleziona tutte le righe tra l'ultima casella toccata e questa. |
 
 ## <a id="ruoli"></a>Ruoli e permessi
 
@@ -131,7 +135,7 @@ Pagina **Siti** (modifiche riservate agli amministratori). Un sito è una sede c
 
 ## <a id="varchi"></a>Varchi
 
-Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, seriale, firmware, tempo di risposta e ultimo contatto. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito.
+Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, arrivo degli eventi, seriale, firmware, tempo di risposta e ultimo contatto. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito. Con le caselle all'inizio delle righe si eseguono alcune operazioni su più varchi insieme (vedi [Operazioni su più varchi](#varchi-multipli)).
 
 ### <a id="varchi-aggiungere"></a>Aggiungere un varco
 
@@ -154,7 +158,9 @@ Al salvataggio la console verifica subito la connessione e legge modello, serial
 
 ### <a id="varchi-multiporta"></a>Controller multi-porta
 
-Un controller a 2 o 4 porte (es. DS-K2604) si gestisce creando **un varco per ogni porta usata**, tutti con lo stesso indirizzo IP e il numero di porta corrispondente. Il modo più rapido è **Aggiungi un'altra porta di questo controller** dal menu del primo: propone gli stessi parametri di connessione e la prima porta libera, riusando la password. La console coordina le scritture sulle porte dello stesso controller, così i permessi di una porta non cancellano quelli delle altre.
+Un controller a 2 o 4 porte (es. DS-K2604) si gestisce creando **un varco per ogni porta usata**, tutti con lo stesso indirizzo IP e il numero di porta corrispondente. Il modo più rapido è **Aggiungi un'altra porta di questo controller** dal menu del primo: propone gli stessi parametri di connessione e la prima porta libera, riusando la password.
+
+La console tratta le porte dello stesso controller come un unico dispositivo: ogni persona viene scritta **una volta sola** con tutte le porte gestite (concesse dove autorizzata, tolte dove non lo è), le porte che la console non gestisce restano come le hai impostate sul controller, il registro eventi si legge una volta per controller e le operazioni verso lo stesso controller si mettono in fila, senza sovrapporsi.
 
 ### <a id="varchi-stato"></a>Stato e scansione
 
@@ -165,6 +171,20 @@ Un controller a 2 o 4 porte (es. DS-K2604) si gestisce creando **un varco per og
 
 Lo stato viene aggiornato dalla **scansione automatica** del server (intervallo impostabile in [Impostazioni](#sistema-impostazioni), predefinito ogni 10 secondi) e a richiesta con **Scansiona tutti** o con **Aggiorna adesso** nella dashboard. La scansione legge anche i nuovi eventi.
 
+### <a id="varchi-tempo-reale"></a>Eventi in tempo reale
+
+Oltre alla scansione, il server tiene aperto con ogni controller un **collegamento in tempo reale** (HTTP: flusso di notifiche del dispositivo; SDK: armamento, come in iVMS-4200): il controller vi invia ogni passaggio appena avviene, che arriva in archivio, nella dashboard e nella **Cattura da varco** entro un secondo. La colonna **Eventi** della pagina Varchi ne mostra lo stato e nei riquadri della dashboard il simbolo indica i varchi collegati:
+
+| Stato | Significato |
+| --- | --- |
+| **Tempo reale** | Collegamento attivo: gli eventi arrivano subito. |
+| **Collegamento…** | Il collegamento si sta aprendo (avvio del server, varco appena tornato online). |
+| **Riconnessione** | Il collegamento è caduto (rete, riavvio del controller): si riapre da solo; passa il mouse per il motivo. |
+| **Solo scansione** | Il firmware non offre il tempo reale, oppure il controller ha già occupati tutti i collegamenti (altri programmi in ascolto, es. iVMS-4200): gli eventi arrivano con la scansione periodica. Il server riprova ogni 30 minuti. |
+| **Scansione** | Tempo reale disattivato nelle [Impostazioni](#sistema-impostazioni) o varco sospeso. |
+
+La scansione periodica resta comunque attiva: legge il registro di ogni controller dal punto in cui si era fermata e recupera ciò che il collegamento avesse perso (riconnessioni, riavvii del server), senza doppioni.
+
 ### <a id="varchi-comandi"></a>Comandi porta
 
 Disponibili ad amministratori e operatori dal menu del varco (pagina Varchi, dashboard ed eventi):
@@ -172,16 +192,22 @@ Disponibili ad amministratori e operatori dal menu del varco (pagina Varchi, das
 | Comando | Effetto |
 | --- | --- |
 | **Apri porta (impulso)** | Sblocca la serratura per il tempo relè, poi la porta torna chiusa. È anche il pulsante **Apri** nelle righe e nei riquadri. |
-| **Chiudi porta** | Richiude subito la serratura (interrompe un impulso o ripristina lo stato normale). |
+| **Chiudi porta** | Richiude subito la serratura e riporta la porta al **funzionamento normale**: interrompe un impulso e annulla uno sblocco o un blocco permanente. |
 | **Sblocco permanente** | La porta resta **aperta** finché non invii un altro comando. Per eventi o emergenze; richiede conferma. |
 | **Blocco permanente** | La porta resta **chiusa** e nemmeno le tessere autorizzate la aprono, finché non la ripristini con **Chiudi porta** o **Apri porta**. Richiede conferma. |
 
 Ogni comando viene registrato nel [registro attività](#sistema-registro) con l'operatore che lo ha inviato.
 
+**Stato porta**, nel menu del varco (per tutti i ruoli), legge dal dispositivo la situazione attuale: modalità della porta (normale, **sempre aperta**, **sempre chiusa**), relè della serratura, sensore porta, lettori collegati e numero di tessere registrate. Se la porta è rimasta sempre aperta o sempre chiusa, la finestra lo segnala e propone **Ripristina funzionamento normale** (lo stesso comando Chiudi porta).
+
+> [!WARNING]
+> **Porta rimasta aperta dopo un passaggio.** Se dopo una tessera la serratura resta attiva e si richiude solo con un altro passaggio, sul controller è attiva la funzione **prima tessera** (in iVMS-4200: "First Card"), in modalità "sempre aperta": la prima tessera abilitata del giorno lascia la porta aperta. La **Diagnostica** del varco lo indica nella riga «Prima tessera». Per eliminarla disattiva la funzione o togli la tessera dall'elenco "prima tessera" nell'interfaccia web del dispositivo o in iVMS-4200; nel frattempo **Chiudi porta** riporta la porta al funzionamento normale. Controlla anche il **tempo relè** del varco.
+
 ### <a id="varchi-diagnostica"></a>Diagnostica e orologio
 
-- **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo oppure il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
-- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date: controllalo periodicamente, in particolare dopo un'interruzione di corrente e ai cambi dell'ora legale. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta, con l'esito per ciascuno.
+- **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo: parametri della porta (tempo relè, funzione **prima tessera**), stato della porta, tessere registrate e stato degli [eventi in tempo reale](#varchi-tempo-reale); se il varco non risponde, il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
+- **Messaggi di errore dei dispositivi**: i codici di errore dell'SDK Hikvision e delle risposte ISAPI sono tradotti in italiano (es. «memoria utenti del dispositivo piena», «numero tessera già presente sul dispositivo»), con il codice originale tra parentesi quando serve all'assistenza.
+- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta, con l'esito per ciascuno.
 - **Copia indirizzo IP** copia l'IP negli appunti, per aprire l'interfaccia web del terminale.
 
 ### <a id="varchi-interfaccia-web"></a>Interfaccia web del dispositivo
@@ -198,6 +224,16 @@ I dispositivi Hikvision bloccano per un certo tempo (di solito 30 minuti) un acc
 1. Apri la scheda del varco, inserisci la password corretta e salva: i tentativi riprendono.
 2. Se la password era giusta ma il dispositivo era già bloccato, attendi lo sblocco (il messaggio indica il tempo, quando il dispositivo lo comunica) e poi usa **Diagnostica e test connessione**.
 
+### <a id="varchi-multipli"></a>Operazioni su più varchi
+
+Seleziona i varchi con le caselle all'inizio delle righe (amministratori e operatori); nella barra sopra la tabella:
+
+- **Invia utenti**: scrive **tutti gli utenti** dell'anagrafica sui controller selezionati, ciascuno con i suoi permessi attuali (concesso dove autorizzato, tolto dove no). Prima completa le [revoche in sospeso](#utenti-revoche) di quei controller. È il modo giusto dopo la **sostituzione o il ripristino** di un controller, senza riscrivere tutto l'impianto come il deploy atomico.
+- **Ricevi utenti**: legge persone e tessere dai controller selezionati e le unisce all'anagrafica (vedi [Ricevere gli utenti](#utenti-ricevere)); un controller con più porte selezionate viene letto una volta sola.
+- **Sincronizza orario**: allinea l'orologio dei varchi selezionati a quello del server, con l'esito per ciascuno.
+
+Invio e ricezione sono [operazioni in background](#operazioni) annullabili, con il log controller per controller. I varchi sospesi per la licenza vengono esclusi.
+
 ### <a id="varchi-eliminare"></a>Modificare, duplicare, eliminare
 
 Dal menu del varco (amministratori): **Modifica parametri varco**, **Nuovo varco con le stesse credenziali**, **Aggiungi un'altra porta di questo controller**, **Elimina varco**. L'eliminazione toglie il varco dalla console e dai permessi di gruppi e utenti, ma **non modifica il dispositivo**: le persone caricate sul terminale continuano a esistere lì. Prima di dismettere un terminale rimuovi gli utenti (deploy dopo aver tolto le autorizzazioni) oppure reinizializzalo.
@@ -207,14 +243,14 @@ Dal menu del varco (amministratori): **Modifica parametri varco**, **Nuovo varco
 Pagina **Gruppi di accesso**. Un gruppo è un **modello** di varchi autorizzati del sito attivo, ad esempio "Tutti i varchi", "Solo uffici", "Magazzino e carico". Serve a non dover spuntare i varchi uno per uno per ogni persona.
 
 - **Creare un gruppo**: nome, descrizione e spunta dei varchi del sito.
-- **Assegnarlo a un utente**: nella scheda utente il campo **Gruppo** precompila i varchi; puoi poi aggiungere o togliere varchi per quella persona. Il pulsante **Da gruppo** ricarica in qualsiasi momento i varchi del modello.
+- **Assegnarlo a un utente**: nella scheda utente, scegliendo un gruppo nel campo **Gruppo** i varchi spuntati diventano quelli del gruppo (l'avviso che compare ha il pulsante **Annulla** per tornare alle spunte di prima); puoi poi aggiungere o togliere varchi per quella persona. Scegliendo **Nessun gruppo** le spunte restano come sono. Il pulsante **Da gruppo** ricarica in qualsiasi momento i varchi del modello. Per assegnare un gruppo a molte persone insieme usa la [selezione multipla](#utenti-multipli) nella pagina Utenti.
 - **Modificare un gruppo che ha già membri**: al salvataggio la console chiede cosa fare con le persone del gruppo: Le personalizzazioni dei membri su questo sito vengono sovrascritte dal riallineamento; gli altri siti non vengono toccati.
    - **Riallinea e invia ai varchi** (consigliato): aggiorna i varchi dei membri su questo sito e li sincronizza subito;
    - **Riallinea senza inviare**: aggiorna solo l'archivio della console; l'invio ai varchi si farà in seguito;
    - **Salva solo il gruppo**: il modello cambia per i prossimi utenti, i membri attuali restano com'erano.
 - **Sincronizza utenti del gruppo**: invia tutti i membri ai varchi del sito, usando i varchi autorizzati di ciascuno.
 - **Mostra utenti di questo gruppo**: apre l'anagrafica filtrata.
-- **Elimina gruppo**: i membri restano senza gruppo ma conservano i loro varchi autorizzati. Se il gruppo aveva delle fasce orarie, sui varchi restano con quelle fasce finché non li reinvii (da quel momento entrano sempre).
+- **Elimina gruppo**: i membri restano senza gruppo ma conservano i loro varchi autorizzati. Se il gruppo aveva delle fasce orarie, i membri vengono **reinviati subito** ai varchi senza quelle fasce: da quel momento entrano a qualsiasi ora, entro la validità della loro scheda.
 
 ### <a id="gruppi-fasce"></a>Giorni e fasce orarie
 
@@ -235,7 +271,9 @@ Fuori fascia la tessera viene rifiutata dal varco e l'evento compare tra gli acc
 
 ## <a id="utenti"></a>Utenti, tessere e PIN
 
-Pagina **Utenti e tessere**: l'anagrafica di tutto l'impianto. La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica).
+Pagina **Utenti e tessere**: l'anagrafica di tutto l'impianto. La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica). Con le caselle all'inizio delle righe si opera su più persone insieme (vedi [Operazioni su più utenti](#utenti-multipli)).
+
+La scheda di una persona si apre sempre con i dati attuali del server, anche se l'elenco è stato caricato da un po'. Se nel frattempo un altro operatore (o una ricezione dai varchi) modifica la stessa persona, al salvataggio la console avvisa che la scheda «è stata modificata dopo che l'hai aperta» e propone **Riapri con i dati attuali**: così una scheda vecchia non toglie tessere o varchi aggiunti da altri. Annota prima le modifiche che vuoi rifare.
 
 ### <a id="utenti-anagrafica"></a>Anagrafica
 
@@ -251,7 +289,7 @@ Pagina **Utenti e tessere**: l'anagrafica di tutto l'impianto. La colonna **Varc
 - Una tessera può appartenere a **una sola persona**: la console rifiuta i duplicati e, quando riceve dai varchi un record "solo tessera" che corrisponde a una persona già in anagrafica, li unisce.
 
 > [!WARNING]
-> **Tessera smarrita o restituita.** Toglila dalla scheda e salva: la console la **revoca su tutti i varchi di tutti i siti**, non solo su quelli del sito attivo, così smette subito di aprire. Se la persona resta in servizio con una nuova tessera, inseriscila nella stessa operazione.
+> **Tessera smarrita o restituita.** Toglila dalla scheda e salva: la console la **revoca su tutti i varchi di tutti i siti**, non solo su quelli del sito attivo, così smette subito di aprire. Se la persona resta in servizio con una nuova tessera, inseriscila nella stessa operazione. Se un controller non risponde in quel momento, la revoca resta [in sospeso](#utenti-revoche) e viene ritentata da sola.
 
 ### <a id="utenti-pin"></a>PIN
 
@@ -268,17 +306,17 @@ Il **PIN tastiera** è un codice da 4 a 8 cifre usato sui terminali con tastieri
 
 ### <a id="utenti-varchi"></a>Varchi autorizzati
 
-Nella sezione **Varchi autorizzati · sito ...** spunti i varchi del sito attivo su cui la persona può passare. La casella di ricerca filtra l'elenco; **Da gruppo** ricarica i varchi del gruppo scelto; **Tutti** e **Nessuno** agiscono sull'intero elenco. Le autorizzazioni sugli **altri siti** restano invariate: per modificarle cambia sito attivo dal selettore in alto e riapri la scheda della persona (la nota sotto l'elenco ricorda su quanti varchi di altri siti è autorizzata).
+Nella sezione **Varchi autorizzati · sito ...** spunti i varchi del sito attivo su cui la persona può passare. La casella di ricerca filtra l'elenco; **Da gruppo** ricarica i varchi del gruppo scelto (con **Annulla** nell'avviso); **Tutti** e **Nessuno** agiscono sull'intero elenco. Le autorizzazioni sugli **altri siti** restano invariate: per modificarle cambia sito attivo dal selettore in alto e riapri la scheda della persona (la nota sotto l'elenco ricorda su quanti varchi di altri siti è autorizzata).
 
 ### <a id="utenti-sincronizzazione"></a>Salvare e inviare ai varchi
 
-Il pulsante **Salva utente** registra la scheda nella console. Con l'interruttore **Invia subito ai varchi** attivo (impostazione predefinita) parte anche l'invio a tutti i varchi del sito attivo: l'accesso viene **concesso** dove spuntato e **revocato** sugli altri varchi del sito. Una finestra mostra l'avanzamento e l'esito per ogni varco (vedi [Operazioni in background](#operazioni)).
+Il pulsante **Salva utente** registra la scheda nella console. Con l'interruttore **Invia subito ai varchi** attivo (impostazione predefinita) parte anche l'invio: sui varchi del sito attivo l'accesso viene **concesso** dove spuntato e **revocato** sugli altri; nome, PIN, validità e abilitazione vengono aggiornati anche sui varchi degli altri siti dove la persona è autorizzata. Ogni controller riceve **una scrittura** con tutte le sue porte. Una finestra mostra l'avanzamento e l'esito per ogni controller (vedi [Operazioni in background](#operazioni)). Se i varchi del sito sono tutti sospesi per la licenza, la console lo segnala: la scheda è salvata ma non inviata.
 
 Se disattivi l'interruttore, la modifica resta solo nella console. Per inviarla in seguito usa **Sincronizza su tutti i varchi del sito** dal menu dell'utente, oppure il [deploy atomico](#backup-deploy) per riallineare tutto l'impianto in una volta. I varchi offline al momento dell'invio vengono segnalati nel log: ripeti l'invio quando tornano raggiungibili.
 
 ### <a id="utenti-ricevere"></a>Ricevere gli utenti da un varco
 
-**Ricevi da varco** scarica le persone e le tessere presenti su un dispositivo e le unisce all'anagrafica: chi esiste già viene aggiornato, chi è nuovo viene creato con l'autorizzazione sul varco interrogato. Le autorizzazioni sugli altri varchi non cambiano. È il modo più rapido per adottare la console su un impianto già in funzione: scegli **Tutti i varchi del sito** (vengono interrogati uno dopo l'altro; i varchi non raggiungibili sono saltati e segnalati nel log) oppure un varco alla volta, poi controlla gruppi e autorizzazioni. Sui controller a più porte ogni porta è un varco: con un solo varco si riceve il permesso di quella porta soltanto.
+**Ricevi da varco** scarica le persone e le tessere presenti su un dispositivo e le unisce all'anagrafica: chi esiste già viene aggiornato, chi è nuovo viene creato con l'autorizzazione sul varco interrogato. Le autorizzazioni sugli altri varchi non cambiano. È il modo più rapido per adottare la console su un impianto già in funzione: scegli **Tutti i varchi del sito** (vengono interrogati uno dopo l'altro; i varchi non raggiungibili sono saltati e segnalati nel log) oppure un varco alla volta, poi controlla gruppi e autorizzazioni. Sui controller a più porte ogni porta è un varco: con un solo varco si riceve il permesso di quella porta soltanto, mentre scegliendo più porte dello stesso controller (anche dalla [pagina Varchi](#varchi-multipli)) il controller viene letto una volta sola. Le tessere di una stessa persona vengono raggruppate e il PIN viene aggiornato solo se il dispositivo lo comunica. Se un varco non risponde o la lettura si interrompe, il log lo segnala come errore: l'anagrafica non viene toccata per quel varco.
 
 Dai controller "a tessere" (senza anagrafica) arrivano solo i numeri: la console crea record **solo tessera**, che puoi completare con il nome aprendo la scheda (la matricola resta il numero della tessera), anche passando le tessere una dopo l'altra con [Identifica badge](#utenti-identifica). Per una matricola diversa crea un nuovo utente con quella tessera: il record solo tessera viene unito. Se la stessa tessera è già di una persona nota, i record vengono uniti.
 
@@ -287,6 +325,26 @@ Dai controller "a tessere" (senza anagrafica) arrivano solo i numeri: la console
 **Identifica badge**, in alto nella pagina, trova la persona a cui appartiene una tessera passandola sul lettore di un varco: è il modo più rapido per dare nome e cognome ai record **solo tessera**. Scegli il varco e avvicina la tessera entro 30 secondi, oppure digita il numero. La console mostra di chi è e apre da sola la sua scheda, con **Nome e cognome** già selezionato: scrivi il nome e premi <kbd>Invio</kbd> (o **Salva utente**). Se la tessera non è registrata si apre la scheda di un **nuovo utente** con quella tessera e, come matricola proposta, il suo numero.
 
 Funziona **a raffica**: chiusa la scheda, salvata o no, la finestra di lettura si riapre per il badge successivo. L'invio ai varchi di ogni scheda salvata prosegue in background e un avviso ne indica l'esito. Per smettere premi **Annulla** nella finestra di lettura.
+
+Con gli [eventi in tempo reale](#varchi-tempo-reale) attivi il numero compare non appena la tessera tocca il lettore; senza, entro qualche secondo (sui DS-K2602T/K2604T, che rispondono lentamente, anche 5-10 secondi). Vale solo un passaggio fatto **dopo** l'apertura della finestra: un badge passato prima non viene preso per errore.
+
+### <a id="utenti-multipli"></a>Operazioni su più utenti
+
+Seleziona le persone con le caselle all'inizio delle righe (con i filtri e la ricerca puoi prima restringere l'elenco, poi usare la casella nell'intestazione per prenderle tutte). Nella barra sopra la tabella:
+
+- **Invia ai varchi**: **Tutti i varchi interessati** scrive ogni persona dove è autorizzata, in tutti i siti, e la toglie dagli altri varchi del sito attivo; **Solo alcuni varchi** la scrive soltanto sui controller dei varchi che spunti (per esempio un controller appena sostituito). Una sola operazione, annullabile, con il log per persona e controller.
+- **Assegna gruppo**: assegna un gruppo del sito (o **Nessun gruppo**); con **Applica i varchi del gruppo** i varchi del gruppo sostituiscono quelli del sito di ciascuna persona, con **Invia subito ai varchi** le persone vengono inviate con le fasce orarie del gruppo.
+- **Abilita** / **Disabilita**: cambia lo stato delle persone e le invia subito ai varchi; una persona disabilitata non apre più nessuna porta gestita dalla console.
+- **Elimina**: toglie le persone dall'anagrafica e da tutti i varchi di tutti i siti, come l'eliminazione singola.
+
+### <a id="utenti-revoche"></a>Revoche in sospeso
+
+Quando togli una tessera, disabiliti o elimini una persona mentre un controller non risponde (spento, rete interrotta), quel controller continuerebbe ad accettare le tessere. La console annota la revoca **in sospeso** e la ritenta da sola ogni minuto e prima di ogni invio di utenti a quel controller, finché non riesce. Finché ce ne sono, in cima alla dashboard e alla pagina Utenti compare l'avviso **Revoche in sospeso**:
+
+- **Dettagli**: persona, tessere da togliere, controller, da quando e quanti tentativi, con l'ultimo errore;
+- **Riprova ora** (amministratori e operatori): ritenta subito, con il log dell'esito.
+
+Se un controller è stato dismesso, eliminalo dalla pagina Varchi: al tentativo successivo le sue revoche escono dall'elenco e restano annotate nel [registro attività](#sistema-registro), con le tessere da togliere a mano se il dispositivo venisse riutilizzato.
 
 ### <a id="utenti-azioni"></a>Altre azioni sull'utente
 
@@ -302,9 +360,12 @@ Dal menu del tasto destro sulla riga:
 La **Dashboard** è il quadro d'insieme del sito attivo:
 
 - **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati.
-- **Stato varchi**: un riquadro per varco con stato, indirizzo, canale, tempo di risposta ed eventuale errore; clic sul riquadro per la scheda del varco, pulsante **Apri** e menu ⋯ con tutti i comandi.
+- **Stato varchi**: un riquadro per varco con stato, indirizzo, canale (con se gli eventi arrivano in tempo reale), tempo di risposta ed eventuale errore; clic sul riquadro per la scheda del varco, pulsante **Apri** e menu ⋯ con tutti i comandi, compreso **Stato porta**.
 - **Attività in tempo reale**: gli ultimi 20 eventi del sito; i nuovi vengono evidenziati. Clic per aprire la persona, tasto destro o ⋯ per il menu dell'evento.
 - **Transiti di oggi per ora**: accessi concessi e negati ora per ora; passa il mouse sulle colonne per i valori, **Tabella** mostra i numeri.
+- **Revoche in sospeso**: se ce ne sono, un avviso in cima con **Dettagli** e **Riprova ora** (vedi [Revoche in sospeso](#utenti-revoche)).
+
+"Oggi", i periodi degli eventi e le scadenze seguono sempre l'orologio del **server**, non quello del PC da cui apri la console: un PC con l'ora o il fuso sbagliati non sposta i conteggi.
 
 La pagina si **aggiorna da sola** con l'intervallo scelto in alto a destra (da 3 a 120 secondi, impostazione di questo browser) leggendo lo stato già noto al server. **Aggiorna adesso** chiede invece al server una scansione immediata dei varchi. Quando la scheda del browser è in secondo piano l'aggiornamento si ferma e riprende al ritorno.
 
@@ -314,7 +375,9 @@ Pagina **Eventi e storico**: tutti i passaggi, i tentativi negati e gli allarmi 
 
 ### <a id="eventi-raccolta"></a>Come vengono raccolti
 
-A ogni scansione automatica il server chiede a ogni varco gli eventi nuovi rispetto all'ultimo archiviato, quindi in pagina compaiono con un ritardo al massimo pari all'intervallo di scansione. Se il server è rimasto spento, al riavvio recupera gli eventi persi nel frattempo (fino a 3.000 per varco). **Sincronizza dai varchi** forza una lettura immediata di tutti i varchi del sito.
+Con gli [eventi in tempo reale](#varchi-tempo-reale) ogni passaggio arriva in archivio entro un secondo. In più, a ogni scansione automatica il server legge il registro di ogni controller **dal punto in cui si era fermato** (data e ora dell'ultimo evento letto), in ordine e senza saltarne: recupera così quanto perso durante riconnessioni o riavvii, e i doppioni vengono scartati. Al primo collegamento con un controller importa la sua storia recente (ultime 24 ore); se il server è rimasto spento a lungo, al riavvio recupera fino a 3.000 eventi per controller, i più recenti. **Sincronizza dai varchi** forza una lettura immediata di tutti i varchi del sito.
+
+Ogni evento del controller ha un **numero progressivo**: se dopo una correzione all'indietro dell'orologio del dispositivo, o nella notte in cui finisce l'ora legale, alcuni eventi risultano registrati con un orario precedente all'ultimo letto, il salto nella numerazione li rivela e la console li va a cercare nelle due ore precedenti.
 
 ### <a id="eventi-consultare"></a>Consultare e filtrare
 
@@ -341,13 +404,15 @@ La scheda **Archivio e manutenzione** mostra quanti eventi sono archiviati, lo s
 
 ## <a id="operazioni"></a>Operazioni in background
 
-Gli invii ai varchi (utente, gruppo, deploy), le eliminazioni e la ricezione dell'anagrafica sono eseguiti dal server e mostrati in una finestra con barra di avanzamento, contatori di riusciti ed errori e **log in tempo reale**, una riga per varco. Al termine un riepilogo indica l'esito complessivo.
+Gli invii ai varchi (utente, più utenti, gruppo, deploy, invio a varchi scelti), le eliminazioni, le revoche in sospeso e la ricezione dell'anagrafica sono eseguiti dal server e mostrati in una finestra con barra di avanzamento, contatori di riusciti ed errori e **log in tempo reale**, una riga per persona e controller. Al termine un riepilogo indica l'esito complessivo e le pagine aperte (anche se nel frattempo hai cambiato pagina) si aggiornano da sole.
+
+Le operazioni verso controller diversi procedono in parallelo; quelle verso lo stesso controller si mettono in fila, e la lettura degli eventi cede il passo alle scritture. Ogni persona viene riletta dall'anagrafica al momento di scriverla: una modifica fatta mentre l'operazione è in corso non viene sovrascritta con dati vecchi, e una persona eliminata nel frattempo non viene riscritta.
 
 - **Continua in background** chiude la finestra senza fermare l'operazione: in alto compare il contatore **operazioni in corso**, da cui puoi riaprirla; al termine ricevi una notifica.
-- **Annulla operazione** (dove disponibile: sincronizzazione di gruppo, deploy, ricezione) ferma il lavoro al termine del passo in corso. I varchi già scritti restano aggiornati.
+- **Annulla operazione** (dove disponibile: invio di più utenti, sincronizzazione di gruppo, deploy, invio a varchi scelti, ricezione) ferma il lavoro al termine del passo in corso. I varchi già scritti restano aggiornati.
 - Le operazioni concluse restano consultabili, con il loro log, in **Backup e deploy → Operazioni recenti** (le ultime 40 dall'avvio del server). Gli operatori vedono le proprie, gli amministratori tutte.
 
-Un varco offline durante un'operazione viene segnalato come errore in quella riga: la console conserva comunque la configurazione corretta, e basta ripetere l'invio (o un deploy) quando il varco torna raggiungibile.
+Un varco offline durante un'operazione viene segnalato come errore in quella riga: la console conserva comunque la configurazione corretta, e basta ripetere l'invio (o un deploy) quando il varco torna raggiungibile. Le **revoche** non riuscite (tessere tolte, persone disabilitate o eliminate) non dipendono da te: restano [in sospeso](#utenti-revoche) e si ritentano da sole.
 
 ## <a id="backup"></a>Backup, ripristino e deploy
 
@@ -446,7 +511,8 @@ Alla scadenza la console torna da sola ai limiti della versione gratuita, senza 
 **Impostazioni**, valide per tutto il server e applicate subito:
 
 - **Nome dell'impianto**: mostrato nella pagina di accesso e nell'intestazione.
-- **Scansione automatica in background** e **intervallo** (5-120 secondi): il server interroga tutti i varchi di tutti i siti, aggiorna lo stato e scarica gli eventi anche a console chiusa. 10-30 secondi è un buon compromesso tra reattività e traffico verso i dispositivi. Spegnendola, stato ed eventi si aggiornano solo su richiesta.
+- **Eventi in tempo reale** (attivo di serie): i controller inviano subito ogni passaggio (vedi [Eventi in tempo reale](#varchi-tempo-reale)). Spegnilo solo se un altro programma occupa i collegamenti in tempo reale dei controller.
+- **Scansione automatica in background** e **intervallo** (5-120 secondi): il server interroga tutti i varchi di tutti i siti, aggiorna lo stato e scarica gli eventi anche a console chiusa, recuperando quelli persi dal tempo reale. 10-30 secondi è un buon compromesso tra reattività e traffico verso i dispositivi. Spegnendola, stato ed eventi si aggiornano solo su richiesta (e con il tempo reale).
 - **Conservazione eventi** (predefinito 90 giorni) e **conservazione registro attività** (predefinito 365 giorni).
 - **Chiusura della sessione per inattività**: da 15 minuti a 7 giorni. Per un monitor sempre acceso usa un account in sola lettura e una durata lunga.
 - **Browser di fiducia dopo la verifica in due passaggi**: per quanti giorni (da 1 a 90, oppure "Mai") un browser segnato come di fiducia non richiede il codice OTP, e se la fiducia decade quando cambia l'indirizzo IP del browser. Vedi [Browser di fiducia](#profilo-2fa-fiducia).
@@ -551,7 +617,7 @@ Per aggiornare esegui il nuovo setup sopra l'installazione esistente: il servizi
 
 Il setup di ogni versione si scarica dalla [pagina delle versioni](https://github.com/brn78/HikAccess-Pro-Web/releases) su GitHub; la console avvisa gli amministratori quando ne esce una nuova (vedi [Avviso delle nuove versioni](#server-avviso-versioni)).
 
-**Dalla console**: **Impostazioni → Aggiornamento del programma**, scegli il nuovo setup (`HikAccessWeb-<versione>-Setup.exe`) e conferma con la tua password. Il server controlla che sia il setup di HikAccess Pro Web e che la versione non sia precedente a quella installata, poi lo installa. Il servizio resta fermo per circa un minuto e la console si ricarica da sola con la nuova versione. Per sicurezza, dato che il setup gira con i privilegi di sistema:
+**Dalla console**: **Impostazioni → Aggiornamento del programma**, scegli il nuovo setup (`HikAccessWeb-<versione>-Setup.exe`) e conferma con la tua password. Il server controlla che sia il setup di HikAccess Pro Web, che la versione non sia precedente a quella installata e che il file sia **identico a quello pubblicato su GitHub** per quella versione (impronta SHA-256), poi lo installa. Se il server non raggiunge GitHub la verifica non è possibile e l'aggiornamento dalla console viene rifiutato: esegui il setup direttamente sul server, come amministratore di Windows. Il servizio resta fermo per circa un minuto e la console si ricarica da sola con la nuova versione. Per sicurezza, dato che il setup gira con i privilegi di sistema:
 
 - solo gli **amministratori**, con la conferma della password;
 - solo da un PC della **rete locale** del server (o dalla VPN), aprendo la console con l'indirizzo interno: non tramite KeenDNS o un altro proxy. Se hai aperto la console in un altro modo, il riquadro mostra l'indirizzo interno come collegamento e il pulsante **Apri la console locale**, che apre in una nuova scheda la console locale direttamente su questo riquadro (dopo l'accesso, se serve);
@@ -658,14 +724,35 @@ Nella scheda della persona controlla: utente abilitato, validità non scaduta, t
 <details>
 <summary><b>Una tessera rimossa apre ancora</b></summary>
 
-La revoca avviene al salvataggio della scheda: controlla nel log dell'operazione se il varco era offline in quel momento e, in tal caso, ripeti l'invio o esegui un deploy atomico.
+La revoca avviene al salvataggio della scheda. Se il controller in quel momento non rispondeva, la revoca è [in sospeso](#utenti-revoche): l'avviso in dashboard o nella pagina Utenti indica quale controller; controlla che sia raggiungibile e premi **Riprova ora**.
+
+</details>
+
+<details>
+<summary><b>Una porta resta aperta dopo un passaggio (serratura sempre attiva)</b></summary>
+
+Apri **Stato porta** dal menu del varco: se la modalità è «sempre aperta» usa **Ripristina funzionamento normale**. Poi lancia la **Diagnostica**: se la riga «Prima tessera» dice **ATTIVA**, è la funzione "prima tessera" del controller a lasciare la porta aperta dopo il primo badge (vedi [Comandi porta](#varchi-comandi)): disattivala dall'interfaccia web del dispositivo o da iVMS-4200. Verifica anche il tempo relè nella scheda del varco.
 
 </details>
 
 <details>
 <summary><b>Mancano eventi o arrivano in ritardo</b></summary>
 
-Gli eventi arrivano a ogni scansione: riduci l'intervallo o usa **Sincronizza dai varchi**. Se il server è stato spento a lungo, il recupero è limitato a 3.000 eventi per varco. Controlla l'orologio dei dispositivi se gli eventi compaiono con l'ora sbagliata.
+Nella pagina Varchi guarda la colonna **Eventi**: con **Tempo reale** i passaggi arrivano in un secondo; con **Solo scansione** o **Riconnessione** arrivano alla scansione successiva (riduci l'intervallo o usa **Sincronizza dai varchi**). Gli eventi non vanno persi: la scansione riparte dall'ultimo letto. Se il server è stato spento a lungo, il recupero è limitato a 3.000 eventi per controller. Se gli eventi compaiono con l'ora sbagliata, sincronizza l'orologio dei dispositivi.
+
+</details>
+
+<details>
+<summary><b>Gli eventi o le fasce orarie sono avanti o indietro di un'ora</b></summary>
+
+Il dispositivo ha un fuso orario senza ora legale (impostato da versioni precedenti alla 1.6 o a mano). Usa **Sincronizza orario** nella pagina Varchi: sui varchi HTTP imposta il fuso con le regole dell'ora legale; l'esito indica «Fuso orario corretto» quando lo cambia.
+
+</details>
+
+<details>
+<summary><b>Salvando un utente: «La scheda … è stata modificata dopo che l'hai aperta»</b></summary>
+
+Un altro operatore, o una ricezione dai varchi, ha cambiato la stessa persona mentre avevi la scheda aperta. Scegli **Riapri con i dati attuali** e rifai le tue modifiche: salvare la scheda vecchia avrebbe tolto le tessere o i varchi aggiunti nel frattempo.
 
 </details>
 
@@ -705,9 +792,9 @@ Sul server: `HikAccessWeb.exe --reset-password <utente> <nuova password>` (vedi 
 </details>
 
 <details>
-<summary><b>La cattura da varco (o Identifica badge) non legge la tessera</b></summary>
+<summary><b>La cattura da varco (o Identifica badge) non legge la tessera o è lenta</b></summary>
 
-Il varco deve essere online e la tessera va avvicinata al lettore di **quel** varco entro 30 secondi. Se il tempo scade, **Riprova**; in alternativa inserisci il numero a mano (lo trovi nell'evento "accesso negato" dello storico).
+Il varco deve essere online e la tessera va avvicinata al lettore di **quel** varco, dopo l'apertura della finestra ed entro 30 secondi. Se il tempo scade, **Riprova**; in alternativa inserisci il numero a mano (lo trovi nell'evento "accesso negato" dello storico). Se la lettura richiede diversi secondi, controlla nella pagina Varchi che la colonna **Eventi** indichi **Tempo reale** e che l'opzione sia attiva nelle Impostazioni.
 
 </details>
 
@@ -793,6 +880,10 @@ Apri il Visualizzatore eventi di Windows, registro Applicazione, origine **HikAc
 - **Sincronizzazione**: Invio di una persona (o di un gruppo di persone) ai varchi, con concessione o revoca dei diritti.
 - **Deploy atomico**: Sincronizzazione completa di tutti gli utenti su tutti i varchi di tutti i siti.
 - **Scansione**: Interrogazione periodica dei varchi da parte del server: stato online/offline e nuovi eventi.
+- **Eventi in tempo reale**: Collegamento permanente con il controller, che invia ogni passaggio appena avviene (HTTP: flusso di notifiche; SDK: armamento).
+- **Revoca in sospeso**: Tessera o persona da togliere da un controller che non rispondeva: la console la ritenta finché non riesce.
+- **Prima tessera (First Card)**: Funzione del controller per cui il primo badge abilitato lascia la porta sempre aperta (o abilita le altre tessere) fino a un nuovo passaggio o a un orario.
+- **Punto di ripresa**: Data e ora dell'ultimo evento letto da un controller: la scansione successiva riparte da lì, senza saltare eventi.
 - **Recupero eventi**: Lettura degli eventi persi durante un fermo del server, a partire dall'ultimo archiviato.
 - **Registro attività**: Elenco delle operazioni degli operatori sulla console, con esito.
 - **Cartella dati**: La cartella del server con configurazione, database degli eventi, account e chiavi di sessione.
