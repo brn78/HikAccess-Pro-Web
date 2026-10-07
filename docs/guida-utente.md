@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.2**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -382,6 +382,8 @@ Pagina **Eventi e storico**: tutti i passaggi, i tentativi negati e gli allarmi 
 Con gli [eventi in tempo reale](#varchi-tempo-reale) ogni passaggio arriva in archivio entro un secondo. In più, a ogni scansione automatica il server legge il registro di ogni controller **dal punto in cui si era fermato** (data e ora dell'ultimo evento letto), in ordine e senza saltarne: recupera così quanto perso durante riconnessioni o riavvii, e i doppioni vengono scartati. Al primo collegamento con un controller importa la sua storia recente (ultime 24 ore); se il server è rimasto spento a lungo, al riavvio recupera fino a 3.000 eventi per controller, i più recenti. **Sincronizza dai varchi** forza una lettura immediata di tutti i varchi del sito.
 
 Ogni evento del controller ha un **numero progressivo**: se dopo una correzione all'indietro dell'orologio del dispositivo, o nella notte in cui finisce l'ora legale, alcuni eventi risultano registrati con un orario precedente all'ultimo letto, il salto nella numerazione li rivela e la console li va a cercare nelle due ore precedenti.
+
+**Nome e matricola**. I controller "a tessere" collegati con l'SDK (per esempio il Totem DS-K2602) registrano solo il numero della tessera: nome e matricola li aggiunge la console, cercando la tessera tra gli utenti dell'anagrafica (anche se il lettore omette gli zeri iniziali). Lo stesso vale per una tessera non ancora inviata a quel varco: l'evento "accesso negato" mostra comunque di chi è. Se una tessera viene assegnata a un utente dopo il passaggio, gli eventi già archiviati senza nome lo prendono entro la scansione successiva. Il nome mandato dai controller "a persone" resta quello registrato sul dispositivo.
 
 ### <a id="eventi-consultare"></a>Consultare e filtrare
 
