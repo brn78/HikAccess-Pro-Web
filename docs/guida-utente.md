@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.4**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.5**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -363,10 +363,10 @@ Dal menu del tasto destro sulla riga:
 
 La **Dashboard** è il quadro d'insieme del sito attivo:
 
-- **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati. Un clic su un indicatore apre il dettaglio: **Varchi** (i soli varchi offline, se qualcuno non risponde), **Utenti e tessere**, gli **eventi di oggi** oppure i soli **accessi negati di oggi**.
+- **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati. I **transiti** sono le sole verifiche di persone (accessi concessi e negati): sincronizzazioni dell'ora, aperture da pulsante, porta aperta/chiusa, anomalie e allarmi non contano e, se presenti, sono indicati a parte come "altri eventi". Un clic su un indicatore apre il dettaglio: **Varchi** (i soli varchi offline, se qualcuno non risponde), **Utenti e tessere**, i **transiti di oggi** oppure i soli **accessi negati di oggi**.
 - **Stato varchi**: un riquadro per varco con stato, indirizzo, canale (con se gli eventi arrivano in tempo reale), tempo di risposta ed eventuale errore; clic sul riquadro per la scheda del varco, pulsante **Apri** e menu ⋯ con tutti i comandi, compreso **Stato porta**.
 - **Attività in tempo reale**: gli ultimi 20 eventi del sito; i nuovi vengono evidenziati. Clic per aprire la persona, tasto destro o ⋯ per il menu dell'evento.
-- **Transiti di oggi per ora**: accessi concessi e negati ora per ora; passa il mouse sulle colonne per i valori, **Tabella** mostra i numeri.
+- **Transiti di oggi per ora**: accessi concessi e negati ora per ora, più gli altri eventi di porta (pulsante di uscita, porta aperta o chiusa, forzature); passa il mouse sulle colonne per i valori, **Tabella** mostra i numeri.
 - **Revoche in sospeso**: se ce ne sono, un avviso in cima con **Dettagli** e **Riprova ora** (vedi [Revoche in sospeso](#utenti-revoche)).
 
 "Oggi", i periodi degli eventi e le scadenze seguono sempre l'orologio del **server**, non quello del PC da cui apri la console: un PC con l'ora o il fuso sbagliati non sposta i conteggi.

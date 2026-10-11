@@ -3,6 +3,15 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.5 · 11 ottobre 2026
+
+- *Dashboard*: **Transiti oggi** conta solo le verifiche di persone (accessi concessi e negati). Sincronizzazioni
+  dell'ora, aperture da pulsante, porta aperta o chiusa, anomalie e allarmi non vengono più contati come transiti:
+  se ci sono, compaiono a parte come "altri eventi". Lo stesso vale per il confronto con ieri.
+- Il grafico *Transiti di oggi per ora* mostra come "altri eventi di porta" solo gli eventi di porta (pulsante di
+  uscita, porta aperta o chiusa, forzature), non più le operazioni di sistema.
+- *Eventi e storico*: nuovo filtro **Transiti (concessi e negati)**, usato anche dall'indicatore della dashboard.
+
 ## 1.6.4 · 7 ottobre 2026
 
 - *Impostazioni → Informazioni di sistema*: **grafico a ciambella del disco** della cartella dati, con archivio eventi
