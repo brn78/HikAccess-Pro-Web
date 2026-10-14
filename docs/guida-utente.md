@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.6**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.7**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -440,11 +440,21 @@ Pagina **Backup e deploy** (amministratori).
 
 ### <a id="backup-esporta"></a>Esporta configurazione
 
-Scarica un unico file JSON con siti, varchi (comprese le password dei dispositivi), gruppi, utenti, tessere, PIN e permessi. Gli eventi non sono inclusi. Fallo dopo ogni modifica importante e **conservalo in un luogo protetto**: contiene credenziali. Il formato è lo stesso dell'app desktop HikAccess Pro, quindi il file si può importare anche lì.
+Scarica un file JSON con siti, varchi (comprese le password dei dispositivi), gruppi, utenti, tessere, PIN e permessi. Gli eventi non sono inclusi. Scegli cosa esportare:
 
-### <a id="backup-importa"></a>Importa e ripristina
+- **Tutta la configurazione** (`HikAccess_FullBackup_*.json`): il backup completo, da fare dopo ogni modifica importante. Il formato è lo stesso dell'app desktop HikAccess Pro.
+- **Un solo sito** (`HikAccess_Sito_*.json`): il sito con i suoi varchi e gruppi e le sole persone autorizzate su di esso (con i soli permessi di quel sito). È il pacchetto da portare su un altro server, per esempio dal portatile usato in cantiere al server dell'ufficio, o da un impianto a un altro.
 
-Sostituisce l'intera configurazione con quella del file scelto: un'esportazione della console, il file `hikaccess_config.json` dell'app desktop oppure un pacchetto `HikAccess_FullBackup_*.json` (anche nel vecchio formato monosito, migrato automaticamente). Prima del ripristino la console mostra cosa contiene il file e salva una **copia di sicurezza** della configurazione attuale nella cartella dati del server (`data\backups`, ultime 30). Gli eventi archiviati non vengono toccati. Al termine la console propone di avviare il deploy atomico. Se il file contiene più siti o varchi di quelli consentiti dalla [licenza](#sistema-licenza), viene ripristinato tutto ma i varchi in più restano sospesi: l'esito lo indica.
+**Conserva i file in un luogo protetto**: contengono le credenziali dei dispositivi. Dalla pagina **Siti**, il menu di un sito ha la voce **Esporta configurazione del sito**.
+
+### <a id="backup-importa"></a>Importa
+
+Scelto il file (un'esportazione della console, completa o di un sito, il `hikaccess_config.json` dell'app desktop o un pacchetto nel vecchio formato monosito, migrato automaticamente), la console mostra cosa contiene e chiede come importarlo:
+
+- **Unisci alla configurazione attuale** (predefinito per i pacchetti di un sito): niente viene cancellato. Il sito del file va in un **sito nuovo** oppure in **un sito esistente** a tua scelta (con più siti nel file l'abbinamento è per nome, i mancanti vengono creati). I **varchi** sono riconosciuti da indirizzo, porta e numero porta (quelli già presenti vengono aggiornati e restano nel loro sito), i **gruppi** dal nome nel sito di destinazione, le **persone** dalla matricola: chi esiste già riceve i varchi di quel sito e le tessere nuove, ma anagrafica, validità e permessi sugli altri siti restano com'erano; chi non esiste viene creato. Una tessera già di un'altra persona non viene spostata: l'esito la elenca.
+- **Sostituisci tutta la configurazione**: il ripristino completo. La configurazione attuale viene sostituita da quella del file, dopo aver salvato una **copia di sicurezza** nella cartella dati del server (`data\backups`, ultime 30).
+
+In entrambi i casi gli eventi archiviati non vengono toccati e al termine la console propone di **inviare la configurazione ai varchi** (del sito importato, o il deploy atomico completo). Se il file porta più siti o varchi di quelli consentiti dalla [licenza](#sistema-licenza), l'importazione riesce ma i varchi in più restano sospesi: l'esito lo indica.
 
 > [!NOTE]
 > **Migrare dall'app desktop.** Importa il suo `hikaccess_config.json` (si trova accanto a `HikAccessPro.exe`), lancia il deploy atomico e da quel momento usa la console come sistema principale. Non far lavorare app desktop e console sugli stessi varchi contemporaneamente: le modifiche si sovrascriverebbero.
