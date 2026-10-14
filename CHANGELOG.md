@@ -3,6 +3,18 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.7 · 14 ottobre 2026
+
+- **Esportazione di un solo sito** (*Backup e deploy* o menu del sito nella pagina *Siti*): il sito con i suoi varchi,
+  gruppi e le sole persone autorizzate su di esso, con i soli permessi di quel sito. È il pacchetto da portare su un
+  altro server (dal portatile di cantiere al server dell'ufficio, o da un impianto a un altro).
+- **Importazione in unione**: il pacchetto si aggiunge alla configurazione attuale senza cancellare nulla, in un sito
+  nuovo o in uno esistente a scelta. I varchi sono riconosciuti da indirizzo, porta e numero porta, i gruppi dal nome,
+  le persone dalla matricola: chi esiste già riceve i varchi del sito e le tessere nuove, il resto dei suoi dati resta.
+  Le tessere già di un'altra persona non vengono spostate e l'esito le elenca. Il ripristino completo
+  (**sostituisci**) resta disponibile; al termine si può inviare la configurazione ai soli varchi del sito importato.
+- Aiuto contestuale: suggerimento per *Registra in serie* e per la cattura da flusso e registro.
+
 ## 1.6.6 · 14 ottobre 2026
 
 - **Cattura da varco con il tempo reale attivo**: alcuni terminali (es. DS-K1T805MX) non spingono nel flusso degli
