@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.5**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.6**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -208,7 +208,7 @@ Ogni comando viene registrato nel [registro attività](#sistema-registro) con l'
 
 ### <a id="varchi-diagnostica"></a>Diagnostica e orologio
 
-- **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo: parametri della porta (tempo relè, funzione **prima tessera**), stato della porta, tessere registrate e stato degli [eventi in tempo reale](#varchi-tempo-reale); se il varco non risponde, il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
+- **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo: parametri della porta (tempo relè, funzione **prima tessera**), stato della porta, tessere registrate e stato degli [eventi in tempo reale](#varchi-tempo-reale) (da quando è aperto il collegamento, quanti eventi di accesso sono arrivati dal flusso e l'ora dell'ultimo; se il terminale manda nel flusso qualcosa che la console non riconosce, ne mostra l'inizio: copialo quando segnali il problema); se il varco non risponde, il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
 - **Messaggi di errore dei dispositivi**: i codici di errore dell'SDK Hikvision e delle risposte ISAPI sono tradotti in italiano (es. «memoria utenti del dispositivo piena», «numero tessera già presente sul dispositivo»), con il codice originale tra parentesi quando serve all'assistenza.
 - **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta: una notifica riassume l'esito e **Dettagli** mostra il risultato di ogni varco, da copiare con .
 - Orologio, comandi porta, stato porta e diagnostica si mettono **in fila** con le altre richieste allo stesso controller (i DS-K2602T/K2604T ne servono una alla volta e una ricerca nel registro eventi può durare diversi secondi): la lettura degli eventi cede il passo e la richiesta aspetta il proprio turno invece di andare in timeout.
@@ -288,7 +288,7 @@ La scheda di una persona si apre sempre con i dati attuali del server, anche se 
 
 ### <a id="utenti-tessere"></a>Tessere
 
-- **Tessera principale**: il numero letto dal terminale (in genere il numero stampato sulla tessera o il codice del chip in decimale). **Cattura da varco** lo acquisisce direttamente dal lettore: scegli il varco, avvicina la tessera entro 30 secondi, controlla il numero letto e premi **Usa questa tessera**. Se la tessera risulta già assegnata a un'altra persona la console lo segnala prima di accettarla. Se la scheda ha già una tessera principale, la console chiede se **aggiungere** quella letta come altra tessera (secondo badge) o **sostituire** la principale (badge smarrito). In alternativa puoi digitare il numero a mano.
+- **Tessera principale**: il numero letto dal terminale (in genere il numero stampato sulla tessera o il codice del chip in decimale). **Cattura da varco** lo acquisisce direttamente dal lettore: scegli il varco, avvicina la tessera entro 30 secondi, controlla il numero letto e premi **Usa questa tessera**. Se la tessera risulta già assegnata a un'altra persona la console lo segnala prima di accettarla. Se la scheda ha già una tessera principale, la console chiede se **aggiungere** quella letta come altra tessera (secondo badge) o **sostituire** la principale (badge smarrito). In alternativa puoi digitare il numero a mano. La lettura usa insieme gli [eventi in tempo reale](#varchi-tempo-reale) e il registro del varco: vale la prima via che porta la tessera, così funziona anche con i terminali che non spingono nel flusso le tessere non registrate.
 - **Altre tessere della stessa persona**: aggiungi un numero e premi <kbd>Invio</kbd> (o virgola, spazio), oppure usa il pulsante **Cattura da varco** accanto al campo. Tutte le tessere ricevono gli stessi varchi autorizzati.
 - Una tessera può appartenere a **una sola persona**: la console rifiuta i duplicati e, quando riceve dai varchi un record "solo tessera" che corrisponde a una persona già in anagrafica, li unisce.
 
@@ -324,13 +324,24 @@ Se disattivi l'interruttore, la modifica resta solo nella console. Per inviarla 
 
 Dai controller "a tessere" (senza anagrafica) arrivano solo i numeri: la console crea record **solo tessera**, che puoi completare con il nome aprendo la scheda (la matricola resta il numero della tessera), anche passando le tessere una dopo l'altra con [Identifica badge](#utenti-identifica). Per una matricola diversa crea un nuovo utente con quella tessera: il record solo tessera viene unito. Se la stessa tessera è già di una persona nota, i record vengono uniti.
 
+### <a id="utenti-serie"></a>Registrare molte persone di seguito
+
+Per una serie di badge (per esempio 20 nuovi dipendenti con le stesse autorizzazioni) usa **Registra in serie**, in alto nella pagina Utenti: una sola finestra, senza riaprire la scheda per ogni persona.
+
+1. **Impostazioni comuni**, una volta sola: varco di lettura, gruppo e varchi autorizzati, reparto, **prima matricola** (proposta con lo schema già in uso: 2026-001 → 2026-002), **Invia subito ai varchi**. Per il nome scegli se **scriverlo a ogni tessera** o lasciarlo **automatico** (es. "Badge {n}", con `{n}` = matricola e `{tessera}` = numero tessera) per completarlo in seguito.
+2. **Inizia la lettura**: la finestra mostra "Tessera n. 1 · matricola …" e attende il badge sul lettore (o il numero digitato a mano).
+3. Letto il badge, scrivi il nome e premi <kbd>Invio</kbd> (**Registra e avanti**): la persona viene salvata, inviata ai varchi in background e compare nell'elenco in basso; la lettura riparte da sola per la tessera successiva con la **matricola incrementata**. Con il nome automatico il salvataggio avviene da solo dopo un attimo.
+4. Una tessera **già assegnata** viene segnalata e saltata; **Salta questa tessera** ignora quella appena letta. Quando hai finito premi **Termina**.
+
+Per una persona in più con le impostazioni di una già registrata, dal menu della riga c'è **Duplica utente**, e nella scheda il pulsante **Salva e crea simile** salva e apre subito la scheda successiva con la matricola seguente.
+
 ### <a id="utenti-identifica"></a>Identificare un badge
 
 **Identifica badge**, in alto nella pagina, trova la persona a cui appartiene una tessera passandola sul lettore di un varco: è il modo più rapido per dare nome e cognome ai record **solo tessera**. Scegli il varco e avvicina la tessera entro 30 secondi, oppure digita il numero. La console mostra di chi è e apre da sola la sua scheda, con **Nome e cognome** già selezionato: scrivi il nome e premi <kbd>Invio</kbd> (o **Salva utente**). Se la tessera non è registrata si apre la scheda di un **nuovo utente** con quella tessera e, come matricola proposta, il suo numero.
 
 Funziona **a raffica**: chiusa la scheda, salvata o no, la finestra di lettura si riapre per il badge successivo. L'invio ai varchi di ogni scheda salvata prosegue in background e un avviso ne indica l'esito. Per smettere premi **Annulla** nella finestra di lettura.
 
-Con gli [eventi in tempo reale](#varchi-tempo-reale) attivi il numero compare non appena la tessera tocca il lettore; senza, entro qualche secondo (sui DS-K2602T/K2604T, che rispondono lentamente, anche 5-10 secondi). Vale solo un passaggio fatto **dopo** l'apertura della finestra: un badge passato prima non viene preso per errore.
+Con gli [eventi in tempo reale](#varchi-tempo-reale) attivi il numero compare non appena la tessera tocca il lettore; in ogni caso la console rilegge anche il registro del varco, perché alcuni terminali non spingono nel flusso le tessere non registrate: senza tempo reale il numero arriva entro qualche secondo (sui DS-K2602T/K2604T, che rispondono lentamente, anche 5-10 secondi). Vale solo un passaggio fatto **dopo** l'apertura della finestra: un badge passato prima non viene preso per errore.
 
 ### <a id="utenti-multipli"></a>Operazioni su più utenti
 
@@ -354,6 +365,7 @@ Se un controller è stato dismesso, eliminalo dalla pagina Varchi: al tentativo 
 
 Dal menu del tasto destro sulla riga:
 
+- **Duplica utente**: nuova scheda con gruppo, varchi, validità e tipo della persona scelta e la matricola successiva proposta; da compilare nome e tessera (vedi [registrare molte persone](#utenti-serie)).
 - **Mostra storico transiti**: gli eventi degli ultimi 30 giorni della persona.
 - **Apri primo varco autorizzato**: comando di apertura sul primo varco del sito su cui la persona è autorizzata (utile in portineria).
 - **Copia numero badge** / **Copia matricola** negli appunti.
@@ -802,7 +814,7 @@ Sul server: `HikAccessWeb.exe --reset-password <utente> <nuova password>` (vedi 
 <details>
 <summary><b>La cattura da varco (o Identifica badge) non legge la tessera o è lenta</b></summary>
 
-Il varco deve essere online e la tessera va avvicinata al lettore di **quel** varco, dopo l'apertura della finestra ed entro 30 secondi. Se il tempo scade, **Riprova**; in alternativa inserisci il numero a mano (lo trovi nell'evento "accesso negato" dello storico). Se la lettura richiede diversi secondi, controlla nella pagina Varchi che la colonna **Eventi** indichi **Tempo reale** e che l'opzione sia attiva nelle Impostazioni.
+Il varco deve essere online e la tessera va avvicinata al lettore di **quel** varco, dopo l'apertura della finestra ed entro 30 secondi. Se il tempo scade, **Riprova**; in alternativa inserisci il numero a mano (lo trovi nell'evento "accesso negato" dello storico). Se la lettura richiede diversi secondi, controlla nella pagina Varchi che la colonna **Eventi** indichi **Tempo reale** e che l'opzione sia attiva nelle Impostazioni. Se l'evento "badge sconosciuto" compare nello storico ma la cattura non lo vede, apri **Diagnostica** del varco: indica quanti eventi arrivano dal flusso in tempo reale e, se il terminale manda qualcosa di non riconosciuto, ne mostra l'inizio da segnalare.
 
 </details>
 
