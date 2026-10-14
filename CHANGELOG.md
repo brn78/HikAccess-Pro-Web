@@ -3,6 +3,23 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.6.6 · 14 ottobre 2026
+
+- **Cattura da varco con il tempo reale attivo**: alcuni terminali (es. DS-K1T805MX) non spingono nel flusso degli
+  eventi la lettura di una tessera non registrata, che però compare nel loro registro; la cattura restava a vuoto anche
+  se l'evento "badge sconosciuto" arrivava in archivio. Ora la cattura ascolta il flusso **e** rilegge il registro del
+  varco in parallelo: vale la prima via che porta la tessera, su tutti i modelli.
+- Il flusso degli eventi accetta anche le notifiche in XML (`EventNotificationAlert`), usate da qualche firmware al
+  posto del JSON.
+- *Diagnostica* del varco: quanti eventi di accesso sono arrivati dal flusso in tempo reale e quando l'ultimo; se il
+  terminale manda qualcosa che la console non riconosce, la diagnostica ne mostra l'inizio (utile per segnalarlo).
+- **Registra in serie** (pagina Utenti): impostazioni comuni una volta sola (varco di lettura, gruppo e varchi, prima
+  matricola con lo schema in uso, nome scritto a ogni tessera o automatico), poi una sola finestra che resta aperta:
+  badge sul lettore, nome, Invio: la persona è salvata e inviata ai varchi, la lettura riparte per la tessera successiva
+  con la matricola incrementata (2026-001 → 2026-002). Le tessere già assegnate vengono saltate.
+- Nella scheda utente **Salva e crea simile** salva e apre subito la scheda di un'altra persona con le stesse
+  impostazioni e la matricola successiva; dal menu di un utente **Duplica utente** fa lo stesso partendo da lui.
+
 ## 1.6.5 · 11 ottobre 2026
 
 - *Dashboard*: **Transiti oggi** conta solo le verifiche di persone (accessi concessi e negati). Sincronizzazioni
