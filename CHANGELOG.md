@@ -1,7 +1,7 @@
 # Novità delle versioni
 
-Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
-Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
+Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
+Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
 ## 1.7.0 · 15 ottobre 2026
 
