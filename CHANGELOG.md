@@ -3,6 +3,29 @@
 Il setup di ogni versione è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare basta caricarlo da *Impostazioni → Aggiornamento del programma*: dati, account e licenza restano.
 
+## 1.7.0 · 15 ottobre 2026
+
+- **Festività** (*Gruppi di accesso → Festività*): un calendario per tutti i siti con le festività nazionali italiane
+  calcolate da sole (anche Pasqua e Lunedì dell'Angelo, San Francesco il 4 ottobre), il **santo patrono** della
+  località (nome, giorno e mese) e altre chiusure come ponti e ferie, una volta o ogni anno. Nei gruppi con fasce
+  orarie l'opzione **Chiuso nelle festività** tiene chiusi i varchi in quei giorni: le date vengono scritte sui
+  controller e aggiornate da sole ogni anno.
+- **Notifiche Telegram** (con licenza): il bot si configura in *Sistema → Impostazioni*; ogni operatore collega la
+  sua chat dal *Profilo* con un QR e un PIN e sceglie quali eventi ricevere (accessi negati, porta forzata, porta
+  aperta troppo a lungo, allarmi e manomissioni, varco non raggiungibile, comandi da remoto, accessi concessi), su
+  quali varchi e per quali persone. Gli amministratori le impostano anche per gli altri dalla pagina *Operatori*.
+  Nessuna porta da aprire sul router: è il server a contattare Telegram.
+- **Nuova grafica**: colori e ombre più morbidi, barra laterale chiara nel tema chiaro con il gruppo *Gestione*
+  richiudibile e la voce **Sistema** in fondo, che apre una pagina a schede con impostazioni, operatori, licenza,
+  backup, chiavi API e registro attività, più gli avvisi da guardare (nuova versione, licenza).
+- **Scarica e installa** (*Sistema → Impostazioni → Aggiornamento del programma*): il server scarica il setup da
+  GitHub, ne controlla dimensione, impronta e versione, salva una copia della configurazione e lo installa; la console
+  si ricarica da sola. Resta possibile caricare un setup scaricato a mano.
+- **Licenza**: le notifiche Telegram si aggiungono al servizio REST tra le funzioni della licenza e si possono chiedere
+  nella richiesta di attivazione. Le licenze già emesse restano valide.
+- **Guida utente** con l'icona di ogni capitolo e le parti nuove su festività, notifiche Telegram, pagina Sistema e
+  Scarica e installa.
+
 ## 1.6.7 · 14 ottobre 2026
 
 - **Esportazione di un solo sito** (*Backup e deploy* o menu del sito nella pagina *Siti*): il sito con i suoi varchi,

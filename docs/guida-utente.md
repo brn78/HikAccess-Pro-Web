@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.6.7**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.7.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -18,6 +18,7 @@
 - [Dashboard](#dashboard)
 - [Eventi e storico](#eventi)
 - [Operazioni in background](#operazioni)
+- [Notifiche Telegram](#notifiche)
 - [Backup, ripristino e deploy](#backup)
 - [Sistema](#sistema)
 - [Profilo e sicurezza](#profilo)
@@ -74,7 +75,8 @@ Un amministratore può reimpostarla da **Operatori**. Se a non ricordare la pass
 
 ### <a id="interfaccia-menu"></a>Menu laterale e barra superiore
 
-- Il **menu laterale** è diviso in Monitoraggio, Gestione, Sistema (solo amministratori) e Aiuto. In alto, accanto a «Console web», c'è la **versione in uso**. Il gruppo **Sistema** resta chiuso: si apre con un clic sul titolo (⌄ nel menu compresso) e da solo quando sei su una delle sue pagine; un pallino sul titolo segnala una nuova versione. Il pulsante **Comprimi menu** in basso lo riduce alle sole icone; su telefono si apre con ☰. In fondo, il riquadro **Monitoraggio varchi** mostra se la scansione automatica è attiva e quando è avvenuta l'ultima. Agli amministratori, sopra, un riquadro segnala la [licenza](#sistema-licenza) quando serve attenzione: versione gratuita, varchi sospesi, licenza non valida o in scadenza.
+- Il **menu laterale** ha in alto **Monitoraggio** ( Dashboard, Eventi e storico) e **Gestione** ( Varchi, Gruppi, Utenti e tessere, Siti). Il gruppo Gestione si chiude con un clic sul titolo ⌄: il browser ricorda la scelta, e il gruppo si riapre da solo quando arrivi su una sua pagina. Accanto a «Console web» c'è la **versione in uso**.
+- In fondo al menu: **Sistema** ⚙ (solo amministratori) apre la [pagina con le funzioni di amministrazione](#sistema); un pallino sull'icona segnala una nuova versione o una [licenza](#sistema-licenza) da guardare (rosso se non è valida). Poi **Guida utente** 📖, la riga **Monitoraggio varchi** (scansione automatica attiva e ultima lettura; clic per la Dashboard) e **Nascondi menu** , che riduce il menu alle sole icone (con il monogramma «HA»). Il browser ricorda la scelta, a parte per le finestre strette, dove il menu parte ridotto; su telefono il menu si apre con ☰.
 - Nella **barra superiore** trovi il nome dell'impianto e della pagina, il contatore delle [operazioni in corso](#operazioni), il **selettore del sito attivo**, il pulsante del **tema** (chiaro, scuro o automatico come il sistema) e il menu con il tuo nome (profilo, impostazioni, guida, uscita).
 
 ### <a id="interfaccia-sito"></a>Il sito attivo
@@ -88,7 +90,7 @@ Dashboard, Varchi, Gruppi ed Eventi mostrano solo il sito attivo. La pagina Uten
 - Le schede di modifica si aprono in un **pannello laterale**; <kbd>Esc</kbd>, **Annulla** o un clic fuori le chiudono senza salvare. Se hai cambiato qualcosa, la console chiede prima conferma (**Chiudi senza salvare** oppure **Continua a modificare**), anche quando cambi pagina con il menu, con <kbd>F1</kbd> o con il tasto Indietro del browser.
 - **Selezione multipla** (pagine Utenti e Varchi, per amministratori e operatori): la casella all'inizio della riga la seleziona, quella nell'intestazione seleziona tutte le righe visualizzate; tenendo premuto <kbd>Maiusc</kbd> si seleziona l'intervallo dall'ultima casella toccata. Con almeno una riga scelta compare sopra la tabella la barra delle **operazioni sulle righe selezionate**, con il loro numero e **Deseleziona**. La selezione vale per le righe visualizzate: quelle tolte da un filtro o dalla ricerca escono dalla selezione, così un'operazione non tocca mai righe che non vedi.
 - Le conferme e gli esiti compaiono come **notifiche** in alto a destra; gli errori restano più a lungo. Alcune notifiche hanno un pulsante (**Vedi log**, **Dettagli**) per aprire il resoconto completo.
-- I testi di esito, dettaglio e diagnostica (per esempio l'esito di **Sincronizza orario** varco per varco) hanno in alto a destra il pulsante per copiarli negli appunti.
+- I testi di esito, dettaglio e diagnostica (per esempio l'esito di **Sincronizza orario** varco per varco) hanno in alto a destra il pulsante ⧉ per copiarli negli appunti.
 - I campi contrassegnati da \* sono obbligatori.
 
 ### <a id="interfaccia-scorciatoie"></a>Scorciatoie da tastiera
@@ -210,7 +212,7 @@ Ogni comando viene registrato nel [registro attività](#sistema-registro) con l'
 
 - **Diagnostica e test connessione** verifica il varco e mostra canale, seriale, firmware e le informazioni lette dal dispositivo: parametri della porta (tempo relè, funzione **prima tessera**), stato della porta, tessere registrate e stato degli [eventi in tempo reale](#varchi-tempo-reale) (da quando è aperto il collegamento, quanti eventi di accesso sono arrivati dal flusso e l'ora dell'ultimo; se il terminale manda nel flusso qualcosa che la console non riconosce, ne mostra l'inizio: copialo quando segnali il problema); se il varco non risponde, il motivo preciso dell'errore. Riabilita anche un tentativo dopo un rifiuto delle credenziali.
 - **Messaggi di errore dei dispositivi**: i codici di errore dell'SDK Hikvision e delle risposte ISAPI sono tradotti in italiano (es. «memoria utenti del dispositivo piena», «numero tessera già presente sul dispositivo»), con il codice originale tra parentesi quando serve all'assistenza.
-- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta: una notifica riassume l'esito e **Dettagli** mostra il risultato di ogni varco, da copiare con .
+- **Sincronizza orologio con il server** imposta data e ora del dispositivo uguali a quelle del server; sui varchi HTTP imposta anche il **fuso orario con le regole dell'ora legale** (le versioni precedenti alla 1.6 scrivevano un fuso fisso, per cui d'estate il dispositivo restava indietro di un'ora). Un dispositivo che segue già un server NTP ed è in orario resta in NTP: si corregge solo il fuso. Un orologio sbagliato produce eventi con l'ora errata e può far rifiutare utenti con validità a date o fasce orarie: controllalo dopo un'interruzione di corrente. Il pulsante **Sincronizza orario** in alto nella pagina Varchi lo fa su tutti i varchi del sito in una volta: una notifica riassume l'esito e **Dettagli** mostra il risultato di ogni varco, da copiare con ⧉.
 - Orologio, comandi porta, stato porta e diagnostica si mettono **in fila** con le altre richieste allo stesso controller (i DS-K2602T/K2604T ne servono una alla volta e una ricerca nel registro eventi può durare diversi secondi): la lettura degli eventi cede il passo e la richiesta aspetta il proprio turno invece di andare in timeout.
 - **Copia indirizzo IP** copia l'IP negli appunti, per aprire l'interfaccia web del terminale.
 
@@ -271,7 +273,21 @@ Fuori fascia la tessera viene rifiutata dal varco e l'evento compare tra gli acc
 - Sui controller l'orario di ogni gruppo occupa un **modello orario** numerato (dal 2 in su; il modello 1 è quello "sempre" di fabbrica): se l'impianto aveva modelli creati con iVMS-4200, quelli con lo stesso numero vengono sostituiti.
 
 > [!NOTE]
-> Le fasce seguono l'orologio del controller: se l'ora è sbagliata usa **Sincronizza orologio con il server** dal menu del varco. Le festività non sono gestite: nei giorni festivi valgono le fasce del giorno della settimana.
+> Le fasce seguono l'orologio del controller: se l'ora è sbagliata usa **Sincronizza orologio con il server** dal menu del varco.
+
+### <a id="gruppi-festivita"></a>Festività e chiusure
+
+Il pulsante **Festività** in alto nella pagina apre il **calendario delle festività**, unico per tutti i siti:
+
+- **Festività nazionali italiane**: calcolate da sole ogni anno (Capodanno, Epifania, Pasqua e lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, Ferragosto, San Francesco d'Assisi il 4 ottobre, Ognissanti, Immacolata, Natale e Santo Stefano);
+- **Santo patrono**: nome, giorno e mese della festa della località, ogni anno;
+- **Altre chiusure**: ponti, ferie aziendali o giorni singoli, dal giorno indicato a quello di fine compreso; con **Ogni anno** le stesse date si ripetono tutti gli anni.
+
+Nella scheda di un gruppo con **Giorni e fasce orarie**, la riga **Festività** dice se i membri restano fuori nei giorni del calendario (**Chiuso nelle festività**, attivo di partenza) oppure se in quei giorni valgono le fasce del giorno della settimana. Un gruppo **Sempre** entra anche nei festivi.
+
+- Sui controller le festività diventano **piani festivi** (numeri da 1) riuniti nel **gruppo festivo 1**, che il modello orario del gruppo richiama. Salvando il calendario vengono scritte subito, con l'esito in una notifica.
+- Si scrivono le **prossime ricorrenze** (al massimo 16 periodi; giorni consecutivi come Natale e Santo Stefano contano come uno). Ogni giorno la console sostituisce le festività passate con quelle dell'anno dopo.
+- L'elenco **Prossime festività sui varchi** nel calendario mostra le date effettivamente scritte.
 
 ## <a id="utenti"></a>Utenti, tessere e PIN
 
@@ -297,7 +313,7 @@ La scheda di una persona si apre sempre con i dati attuali del server, anche se 
 
 ### <a id="utenti-pin"></a>PIN
 
-Il **PIN tastiera** è un codice da 4 a 8 cifre usato sui terminali con tastierino. È il terminale, con la propria modalità di autenticazione (solo tessera, tessera + PIN, PIN...), a decidere se e quando richiederlo: la console si limita a inviarlo insieme alla persona. Il PIN è visibile solo ad amministratori e operatori (pulsante ).
+Il **PIN tastiera** è un codice da 4 a 8 cifre usato sui terminali con tastierino. È il terminale, con la propria modalità di autenticazione (solo tessera, tessera + PIN, PIN...), a decidere se e quando richiederlo: la console si limita a inviarlo insieme alla persona. Il PIN è visibile solo ad amministratori e operatori (pulsante 👁).
 
 ### <a id="utenti-validita"></a>Validità e accesso
 
@@ -424,7 +440,7 @@ La scheda **Archivio e manutenzione** mostra quanti eventi sono archiviati, lo s
 
 Gli invii ai varchi (utente, più utenti, gruppo, deploy, invio a varchi scelti), le eliminazioni, le revoche in sospeso e la ricezione dell'anagrafica sono eseguiti dal server **in background**: puoi continuare a lavorare, e in alto compare il contatore **operazioni in corso**. Al termine arriva una **notifica con l'esito** (verde se tutto è riuscito, gialla o rossa con gli errori, che resta visibile più a lungo) e le pagine aperte si aggiornano da sole.
 
-La **finestra dell'operazione** si apre solo quando la chiedi: con **Vedi log** nella notifica finale, con **Mostra** nell'avviso di avvio, dal contatore in alto mentre è in corso oppure dalle operazioni recenti. Mostra barra di avanzamento, contatori di riusciti ed errori e il **log**, una riga per persona e controller; il pulsante in alto a destra del log lo copia negli appunti, per esempio per inviarlo all'assistenza.
+La **finestra dell'operazione** si apre solo quando la chiedi: con **Vedi log** nella notifica finale, con **Mostra** nell'avviso di avvio, dal contatore in alto mentre è in corso oppure dalle operazioni recenti. Mostra barra di avanzamento, contatori di riusciti ed errori e il **log**, una riga per persona e controller; il pulsante ⧉ in alto a destra del log lo copia negli appunti, per esempio per inviarlo all'assistenza.
 
 Le operazioni verso controller diversi procedono in parallelo; quelle verso lo stesso controller si mettono in fila, e la lettura degli eventi cede il passo alle scritture. Ogni persona viene riletta dall'anagrafica al momento di scriverla: una modifica fatta mentre l'operazione è in corso non viene sovrascritta con dati vecchi, e una persona eliminata nel frattempo non viene riscritta.
 
@@ -433,6 +449,25 @@ Le operazioni verso controller diversi procedono in parallelo; quelle verso lo s
 - Le operazioni concluse restano consultabili, con il loro log, in **Backup e deploy → Operazioni recenti** (le ultime 40 dall'avvio del server). Gli operatori vedono le proprie, gli amministratori tutte.
 
 Un varco offline durante un'operazione viene segnalato come errore in quella riga: la console conserva comunque la configurazione corretta, e basta ripetere l'invio (o un deploy) quando il varco torna raggiungibile. Le **revoche** non riuscite (tessere tolte, persone disabilitate o eliminate) non dipendono da te: restano [in sospeso](#utenti-revoche) e si ritentano da sole.
+
+## <a id="notifiche"></a>Notifiche Telegram
+
+Gli operatori possono ricevere sul telefono, con **Telegram**, un messaggio per gli eventi che scelgono: accessi negati, porte forzate, porte aperte troppo a lungo, allarmi e manomissioni, varchi non raggiungibili, comandi porta da remoto, anche accessi concessi. Funziona con un bot della console, una chat collegata per ogni operatore e le preferenze di ciascuno.
+
+> [!NOTE]
+> Le notifiche Telegram sono una funzione della [licenza](#sistema-licenza), come il servizio REST: non sono comprese nella versione gratuita. Senza, il bot resta configurato ma non legge né invia messaggi.
+
+### <a id="notifiche-telegram"></a>Configurare il bot e collegare la chat
+
+1. **Il bot** (una volta, un amministratore): in Telegram apri **@BotFather**, scrivi `/newbot` e scegli nome e nome utente (deve finire con «bot»). Copia il **token** che ti risponde in **Sistema → Impostazioni**, riquadro **Notifiche Telegram**, e salva: la console chiede a Telegram il nome del bot e conserva il token cifrato. Facoltativo: l'**indirizzo della console da fuori** (es. quello di KeenDNS) aggiunge a ogni messaggio il collegamento «Apri nella console».
+2. **La chat** (ogni operatore, per sé): **Profilo e sicurezza**, riquadro **Notifiche Telegram**, **Collega Telegram**. Inquadra il QR con il telefono (o apri il link), premi **Avvia** nella chat del bot e scrivi il **PIN di 6 cifre** mostrato nella console. Il codice vale 10 minuti e una volta sola; il PIN non è nel QR né nel link, e tre PIN sbagliati annullano il collegamento.
+3. **Che cosa ricevere**: **Quali eventi** (caselle), **Su quali varchi** (tutti o solo alcuni, di tutti i siti) e **Per quali persone** (tutte o solo alcune: vale per gli accessi concessi e negati, mentre porte forzate, allarmi e varchi non raggiungibili arrivano comunque). **Salva le notifiche**, poi **Mandami un messaggio di prova**.
+
+- Il messaggio arriva appena il varco registra l'evento: tipo, varco, persona e tessera, data e ora. Più di 4 eventi insieme arrivano in un solo messaggio riassuntivo. Gli eventi recuperati dal registro dopo un fermo del server non vengono notificati.
+- **Varco non raggiungibile**: dopo un minuto senza risposta del controller, e un secondo messaggio quando torna raggiungibile.
+- Gli amministratori impostano le notifiche degli altri da **Sistema → Operatori**, menu dell'operatore, **Notifiche Telegram**.
+- Nella chat, `/stop` scollega la chat; si scollega da sola anche se blocca il bot. Gli account disabilitati non ricevono messaggi.
+- Il server legge i messaggi del bot ogni 25 secondi circa («long polling»): non servono porte aperte sul router né HTTPS, solo l'accesso a Internet verso `api.telegram.org`. Il bot va usato solo dalla console: se un altro programma legge i suoi messaggi, la console lo segnala.
 
 ## <a id="backup"></a>Backup, ripristino e deploy
 
@@ -469,6 +504,8 @@ Oltre all'esportazione, includi nei backup del server l'intera cartella dati (ve
 
 ## <a id="sistema"></a>Sistema
 
+La voce **Sistema** ⚙ in fondo al menu (solo amministratori) apre una pagina a schede: **Impostazioni**, **Operatori**, **Licenza**, **Backup e deploy**, **Chiavi API** e **Registro attività**. In cima, quando serve, gli avvisi: nuova versione disponibile, licenza non valida o in scadenza, varchi sospesi. Sulle pagine di amministrazione la voce Sistema resta evidenziata.
+
 ### <a id="sistema-operatori"></a>Operatori
 
 **Operatori**: gli account della console. Per ogni account: nome utente (non modificabile), nome e cognome, [ruolo](#ruoli), stato abilitato/disabilitato, ultimo accesso con indirizzo, data dell'ultimo cambio password.
@@ -477,6 +514,7 @@ Oltre all'esportazione, includi nei backup del server l'intera cartella dati (ve
 - **Reimposta password**: per chi l'ha dimenticata; le sue sessioni aperte vengono chiuse.
 - **Disabilita account**: blocca l'accesso senza cancellare lo storico delle operazioni; preferibile all'eliminazione per chi lascia l'azienda.
 - **Disattiva verifica in due passaggi**: per chi ha perso il telefono e i codici di recupero; l'operatore potrà riattivarla dal suo profilo. La colonna **Due passaggi** mostra chi l'ha attiva.
+- **Notifiche Telegram** ✈: quali eventi riceve l'operatore sul telefono, su quali varchi e per quali persone, e lo stato della sua chat (vedi [Notifiche Telegram](#notifiche-telegram)). Collegare la chat spetta all'operatore, dal suo profilo; da qui la si può scollegare.
 - **Elimina account**: rimuove l'account; il registro attività conserva le operazioni già eseguite.
 - Il proprio account non può disabilitarsi né cambiare ruolo da qui; la propria password si cambia da **Profilo e sicurezza**. Deve restare almeno un amministratore abilitato.
 
@@ -521,17 +559,17 @@ e in `secrets.yaml` la riga `hikaccess_api: "Bearer hap_…"` con la chiave. Dop
 
 ### <a id="sistema-licenza"></a>Licenza e attivazione
 
-**Licenza** (solo amministratori). Senza chiave di attivazione la console è la **versione gratuita**: **1 sito** e **2 varchi**, senza il [servizio REST](#sistema-chiavi-api); tutte le altre funzioni (utenti, tessere, PIN, gruppi, eventi, operatori, backup, accesso remoto) sono complete. Una **licenza** amplia siti e varchi e può comprendere il servizio REST; può essere senza scadenza oppure a tempo, come la prova di 30 giorni.
+**Licenza** (solo amministratori). Senza chiave di attivazione la console è la **versione gratuita**: **1 sito** e **2 varchi**, senza il [servizio REST](#sistema-chiavi-api) e senza le [notifiche Telegram](#notifiche-telegram); tutte le altre funzioni (utenti, tessere, PIN, gruppi, festività, eventi, operatori, backup, accesso remoto) sono complete. Una **licenza** amplia siti e varchi e può comprendere il servizio REST e le notifiche Telegram; può essere senza scadenza oppure a tempo, come la prova di 30 giorni.
 
 - **Stato della licenza**: versione gratuita oppure licenza attivata, con intestatario, numero, limiti e scadenza; sotto, siti e varchi in uso rispetto a quelli consentiti.
 - **Codice macchina**: identifica il server, e la chiave di attivazione vale solo per quel codice. Non cambia con riavvii, aggiornamenti, nome o indirizzo IP del server; cambia se reinstalli Windows o sposti il programma su un altro computer.
-- **Richiedi l'attivazione**: indica la ragione sociale (sarà l'intestatario della licenza), referente, telefono, un'eventuale email per la risposta, se chiedi una licenza o una prova di 30 giorni, quanti siti e varchi ti servono e se ti serve il servizio REST. **Scrivi l'email** apre il programma di posta con la richiesta pronta per **b.leonardi78@gmail.com**, già completa di codice macchina, versione e dati del server. Con la posta nel browser usa **Copia la richiesta** e incollala in un nuovo messaggio a quell'indirizzo.
+- **Richiedi l'attivazione**: indica la ragione sociale (sarà l'intestatario della licenza), referente, telefono, un'eventuale email per la risposta, se chiedi una licenza o una prova di 30 giorni, quanti siti e varchi ti servono e se ti servono il servizio REST e le notifiche Telegram. **Scrivi l'email** apre il programma di posta con la richiesta pronta per **b.leonardi78@gmail.com**, già completa di codice macchina, versione e dati del server. Con la posta nel browser usa **Copia la richiesta** e incollala in un nuovo messaggio a quell'indirizzo.
 - **Chiave di attivazione**: incolla la chiave ricevuta (inizia con `HAP1-`; va bene anche il testo dell'intera email) e premi **Attiva**. La console controlla che sia autentica, emessa per questo server e non scaduta, e applica subito i nuovi limiti. Nella stessa casella si inserisce la chiave nuova di un ampliamento o di un rinnovo.
 - **Rimuovi la licenza**: si torna alla versione gratuita, per esempio prima di trasferire la licenza su un altro server.
 
 **Oltre i limiti.** Senza la licenza adatta non si aggiungono siti o varchi oltre quelli consentiti e non si creano chiavi API: la console lo segnala con il collegamento **Vai alla pagina Licenza**. Se i varchi configurati sono più di quelli consentiti (licenza scaduta o rimossa, ripristino di un backup più grande), restano in uso i primi in ordine di ID dei primi siti e gli altri diventano **sospesi**: restano in elenco, ma non vengono monitorati, non ricevono comandi né utenti e non si leggono tessere da lì. Per sicurezza la revoca delle tessere tolte e l'eliminazione degli utenti raggiungono anche i varchi sospesi.
 
-Alla scadenza la console torna da sola ai limiti della versione gratuita, senza perdere configurazione ed eventi; il riquadro nel menu laterale avvisa gli amministratori negli ultimi 30 giorni. Attivazioni, chiavi rifiutate e rimozioni finiscono nel [registro attività](#sistema-registro) (categoria **Licenza**).
+Alla scadenza la console torna da sola ai limiti della versione gratuita, senza perdere configurazione ed eventi; il pallino sulla voce Sistema e la pagina Sistema avvisano gli amministratori negli ultimi 30 giorni. Attivazioni, chiavi rifiutate e rimozioni finiscono nel [registro attività](#sistema-registro) (categoria **Licenza**).
 
 > [!NOTE]
 > **Trasferire la licenza** su un altro server, o dopo aver reinstallato Windows: dalla pagina Licenza del server nuovo invia una richiesta e scrivi nelle note che si tratta di un trasferimento. La chiave nuova sarà emessa per il nuovo codice macchina.
@@ -547,8 +585,9 @@ Alla scadenza la console torna da sola ai limiti della versione gratuita, senza 
 - **Chiusura della sessione per inattività**: da 15 minuti a 7 giorni. Per un monitor sempre acceso usa un account in sola lettura e una durata lunga.
 - **Browser di fiducia dopo la verifica in due passaggi**: per quanti giorni (da 1 a 90, oppure "Mai") un browser segnato come di fiducia non richiede il codice OTP, e se la fiducia decade quando cambia l'indirizzo IP del browser. Vedi [Browser di fiducia](#profilo-2fa-fiducia).
 - **Accesso remoto**: i **proxy attendibili** e la verifica **Questa connessione**. Vedi [Accesso remoto e proxy](#sistema-accesso-remoto).
+- **Notifiche Telegram** ✈: il bot della console (token creato con @BotFather) e l'indirizzo della console da fuori per il collegamento «Apri nella console». Vedi [Notifiche Telegram](#notifiche-telegram).
 - **Informazioni di sistema**: versione, licenza, nome del server, avvio e tempo di attività, modalità (servizio di Windows o finestra), disponibilità dell'SDK Hikvision, cartella dati, conteggi della configurazione, ultima scansione e ultima pulizia. Sotto, il **grafico a ciambella del disco** della cartella dati: archivio eventi (passaggi e registro attività), altri dati della console (configurazione, backup, aggiornamenti caricati), altri file e programmi e, al centro, la percentuale di spazio libero; il collegamento porta all'archivio in Eventi e storico.
-- **Aggiornamento del programma**: versione installata, avviso delle nuove versioni con le novità e il collegamento per scaricare il setup, esito dell'ultimo aggiornamento e installazione di una nuova versione caricando il setup. L'interruttore **Avvisa quando esce una nuova versione** si salva con le altre impostazioni. Vedi [Aggiornare e disinstallare](#server-aggiornamento) e [Avviso delle nuove versioni](#server-avviso-versioni).
+- **Aggiornamento del programma**: versione installata, avviso delle nuove versioni con le novità, **Scarica e installa**, esito dell'ultimo aggiornamento e installazione di una nuova versione caricando il setup. L'interruttore **Avvisa quando esce una nuova versione** si salva con le altre impostazioni. Vedi [Aggiornare e disinstallare](#server-aggiornamento) e [Avviso delle nuove versioni](#server-avviso-versioni).
 
 ### <a id="sistema-accesso-remoto"></a>Accesso remoto e proxy
 
@@ -647,7 +686,16 @@ Per aggiornare esegui il nuovo setup sopra l'installazione esistente: il servizi
 
 Il setup di ogni versione si scarica dalla [pagina delle versioni](https://github.com/brn78/HikAccess-Pro-Web/releases) su GitHub; la console avvisa gli amministratori quando ne esce una nuova (vedi [Avviso delle nuove versioni](#server-avviso-versioni)).
 
-**Dalla console**: **Impostazioni → Aggiornamento del programma**, scegli il nuovo setup (`HikAccessWeb-<versione>-Setup.exe`) e conferma con la tua password. Il server controlla che sia il setup di HikAccess Pro Web, che la versione non sia precedente a quella installata e che il file sia **identico a quello pubblicato su GitHub** per quella versione (impronta SHA-256), poi lo installa. Se il server non raggiunge GitHub la verifica non è possibile e l'aggiornamento dalla console viene rifiutato: esegui il setup direttamente sul server, come amministratore di Windows. Il servizio resta fermo per circa un minuto e la console si ricarica da sola con la nuova versione. Per sicurezza, dato che il setup gira con i privilegi di sistema:
+**Scarica e installa**: quando esce una nuova versione, **Sistema → Impostazioni → Aggiornamento del programma** mostra il pulsante **Scarica e installa** ⬇. Confermi con la tua password e il server:
+
+1. scarica il setup dalla **pagina ufficiale** del programma su GitHub, con una barra di avanzamento;
+2. controlla che il file sia **completo** e **identico** a quello pubblicato (impronta SHA-256 indicata da GitHub), che sia il setup di HikAccess Pro Web e che la versione sia proprio quella annunciata;
+3. salva una **copia della configurazione** (casella attiva di partenza) nella cartella dati, sottocartella `backups`;
+4. avvia il setup: il servizio resta fermo per circa un minuto e la pagina si ricarica da sola con la nuova versione.
+
+Se uno dei controlli non va, il setup non parte e il motivo compare nella finestra e nel [registro attività](#sistema-registro). Riaprendo la pagina durante un aggiornamento, l'avanzamento riprende da dove era.
+
+**Caricando il setup**: in alternativa (per esempio se il server non raggiunge GitHub), scarica il setup sul tuo PC, scegli il file (`HikAccessWeb-<versione>-Setup.exe`) nello stesso riquadro e conferma con la tua password. Il server controlla che sia il setup di HikAccess Pro Web, che la versione non sia precedente a quella installata e che il file sia **identico a quello pubblicato su GitHub** per quella versione (impronta SHA-256), poi lo installa. Se il server non raggiunge GitHub la verifica non è possibile e l'aggiornamento dalla console viene rifiutato: esegui il setup direttamente sul server, come amministratore di Windows. Il servizio resta fermo per circa un minuto e la console si ricarica da sola con la nuova versione. Per sicurezza, dato che il setup gira con i privilegi di sistema:
 
 - solo gli **amministratori**, con la conferma della password;
 - solo da un PC della **rete locale** del server (o dalla VPN), aprendo la console con l'indirizzo interno: non tramite KeenDNS o un altro proxy. Se hai aperto la console in un altro modo, il riquadro mostra l'indirizzo interno come collegamento e il pulsante **Apri la console locale**, che apre in una nuova scheda la console locale direttamente su questo riquadro (dopo l'accesso, se serve);
@@ -659,11 +707,11 @@ L'esito dell'ultimo aggiornamento resta in Impostazioni; il log del setup è nel
 
 Una volta al giorno il server chiede a GitHub qual è l'ultima versione pubblicata di HikAccess Pro Web e la confronta con quella installata. Quando ne esce una nuova, gli **amministratori** vedono:
 
-- un **pallino** sulla voce **Impostazioni** del menu, finché la versione nuova non viene installata;
+- un **pallino** sulla voce **Sistema** del menu e un avviso in cima alla pagina Sistema, finché la versione nuova non viene installata;
 - un avviso al primo accesso, una volta per versione e per browser, con il collegamento **Vedi le novità**;
-- nel riquadro **Aggiornamento del programma**, la versione nuova con la data di pubblicazione, le **novità** e i pulsanti **Scarica il setup** e **Pagina della versione**, che aprono GitHub in un'altra scheda.
+- nel riquadro **Aggiornamento del programma**, la versione nuova con la data di pubblicazione, le **novità** e i pulsanti **Scarica e installa**, **Scarica il setup** e **Pagina della versione** (gli ultimi due aprono GitHub in un'altra scheda).
 
-Nulla si installa da solo: scarichi il setup sul tuo PC e lo carichi nello stesso riquadro, come descritto sopra. Sotto il pulsante trovi l'impronta **SHA-256** del file pubblicato, per chi vuole confrontarla con quella del file scaricato (in PowerShell: `Get-FileHash HikAccessWeb-<versione>-Setup.exe`).
+Nulla si installa da solo: l'installazione parte solo con **Scarica e installa** o caricando il setup, come descritto sopra. Sotto il pulsante trovi l'impronta **SHA-256** del file pubblicato, per chi vuole confrontarla con quella del file scaricato (in PowerShell: `Get-FileHash HikAccessWeb-<versione>-Setup.exe`).
 
 Il riquadro mostra anche quando è stato fatto l'ultimo controllo; **Controlla ora** lo ripete subito. Operatori e account in sola lettura non vedono l'avviso. La prima segnalazione di ogni versione finisce nel [registro attività](#sistema-registro) (categoria **Sistema**, «Nuova versione disponibile»).
 
@@ -912,6 +960,7 @@ Apri il Visualizzatore eventi di Windows, registro Applicazione, origine **HikAc
 - **Scansione**: Interrogazione periodica dei varchi da parte del server: stato online/offline e nuovi eventi.
 - **Eventi in tempo reale**: Collegamento permanente con il controller, che invia ogni passaggio appena avviene (HTTP: flusso di notifiche; SDK: armamento).
 - **Revoca in sospeso**: Tessera o persona da togliere da un controller che non rispondeva: la console la ritenta finché non riesce.
+- **Bot di Telegram**: Account automatico di Telegram creato con @BotFather: la console lo usa per inviare le notifiche agli operatori che hanno collegato la loro chat.
 - **Prima tessera (First Card)**: Funzione del controller per cui il primo badge abilitato lascia la porta sempre aperta (o abilita le altre tessere) fino a un nuovo passaggio o a un orario.
 - **Punto di ripresa**: Data e ora dell'ultimo evento letto da un controller: la scansione successiva riparte da lì, senza saltare eventi.
 - **Recupero eventi**: Lettura degli eventi persi durante un fermo del server, a partire dall'ultimo archiviato.
