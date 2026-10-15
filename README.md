@@ -6,6 +6,7 @@
   <a href="https://github.com/brn78/HikAccess-Pro-Web/releases/latest"><img alt="Ultima versione" src="https://img.shields.io/github/v/release/brn78/HikAccess-Pro-Web?label=versione&color=2563eb"></a>
   <img alt="Windows 10, 11 e Server 2016 o successivi" src="https://img.shields.io/badge/Windows-10%20%7C%2011%20%7C%20Server%202016%2B-0078D4?logo=windows&logoColor=white">
   <img alt="Hikvision ISAPI e SDK" src="https://img.shields.io/badge/Hikvision-ISAPI%20%7C%20SDK-E3001B">
+  <img alt="Notifiche Telegram" src="https://img.shields.io/badge/notifiche-Telegram-26A5E4">
   <img alt="Versione gratuita: 1 sito e 2 varchi" src="https://img.shields.io/badge/versione%20gratuita-1%20sito%20%C2%B7%202%20varchi-16A34A">
   <img alt="Interfaccia in italiano" src="https://img.shields.io/badge/lingua-italiano-009246">
 </p>
@@ -23,8 +24,8 @@
 ---
 
 **HikAccess Pro Web** gestisce il controllo accessi **Hikvision** di una o più sedi da un'unica console web: varchi,
-gruppi di accesso, utenti con tessere Mifare e PIN, comandi delle porte, monitoraggio in tempo reale e storico degli
-eventi. Si installa su un PC o un server Windows della rete, gira come servizio e si usa da qualsiasi browser, dal PC,
+gruppi di accesso con fasce orarie e festività, utenti con tessere Mifare e PIN, comandi delle porte, monitoraggio in
+tempo reale, storico degli eventi e notifiche Telegram. Si installa su un PC o un server Windows della rete, gira come servizio e si usa da qualsiasi browser, dal PC,
 dal tablet o dal telefono, con account personali e ruoli.
 
 Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: configurazione ed eventi restano sul tuo server.
@@ -42,6 +43,10 @@ Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: config
 **🏢 Multisito**<br>
 Più sedi in una sola console, ognuna con i suoi varchi e gruppi di accesso, anche con giorni e fasce orarie; gli
 utenti sono unici per tutto l'impianto.
+
+**📅 Festività**<br>
+Festività nazionali calcolate da sole (anche Pasqua), il **santo patrono** della località e le chiusure aziendali:
+i gruppi con fasce orarie restano chiusi in quei giorni, direttamente sui controller.
 
 **🚪 Varchi Hikvision**<br>
 Terminali e controller via HTTP/ISAPI oppure con l'SDK Hikvision sulla porta 8000, anche multi-porta (per esempio i
@@ -64,6 +69,11 @@ anche con la console chiusa: dashboard, accessi negati, storico degli eventi con
 Account personali con ruoli (amministratore, operatore, sola lettura), verifica in due passaggi, blocco dei tentativi
 errati e registro attività di ogni operazione.
 
+**🔔 Notifiche Telegram**<br>
+Ogni operatore collega la sua chat con un QR e un PIN e sceglie cosa ricevere: accessi negati, porta forzata o aperta
+troppo a lungo, allarmi, varchi non raggiungibili, solo per alcuni varchi o alcune persone. Nessuna porta da aprire sul
+router. *Con licenza.*
+
 **🏠 Home Assistant e domotica**<br>
 Servizio REST con chiavi API per aprire i varchi da Home Assistant o da altri sistemi, con varchi consentiti e
 scadenza per ogni chiave. *Con licenza.*
@@ -74,7 +84,7 @@ attendibili.
 
 **⚙️ Pensato per il server**<br>
 Servizio di Windows con avvio automatico e icona di stato, backup e ripristino, invio di tutti gli utenti a tutti i
-varchi, aggiornamento dalla console con l'avviso quando esce una nuova versione.
+varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **Scarica e installa**.
 
 </td>
 </tr>
@@ -92,12 +102,19 @@ varchi, aggiornamento dalla console con l'avviso quando esce una nuova versione.
 <td align="center"><img src="docs/immagini/chiavi-api.png" alt="Chiavi API"><br><b>Chiavi API</b>: endpoint pronti per Home Assistant</td>
 </tr>
 <tr>
-<td align="center"><img src="docs/immagini/dashboard-chiaro.png" alt="Dashboard con il tema chiaro"><br><b>Tema chiaro o scuro</b>, anche automatico</td>
-<td align="center"><img src="docs/immagini/accesso.png" alt="Pagina di accesso"><br><b>Accesso protetto</b>, con verifica in due passaggi</td>
+<td align="center"><img src="docs/immagini/notifiche.png" alt="Notifiche Telegram nel profilo dell'operatore"><br><b>Notifiche Telegram</b>: eventi, varchi e persone per ogni operatore</td>
+<td align="center"><img src="docs/immagini/festivita.png" alt="Calendario delle festività"><br><b>Festività</b>: nazionali, santo patrono e chiusure</td>
 </tr>
 <tr>
+<td align="center"><img src="docs/immagini/dashboard-chiaro.png" alt="Dashboard con il tema chiaro"><br><b>Tema chiaro o scuro</b>, anche automatico</td>
+<td align="center"><img src="docs/immagini/sistema.png" alt="Pagina Sistema"><br><b>Sistema</b>: impostazioni, operatori, licenza e backup</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/immagini/accesso.png" alt="Pagina di accesso"><br><b>Accesso protetto</b>, con verifica in due passaggi</td>
 <td align="center"><img src="docs/immagini/guida.png" alt="Guida utente nella console"><br><b>Guida integrata</b>: <kbd>F1</kbd> da qualsiasi pagina</td>
-<td align="center"><img src="docs/immagini/mobile.png" alt="Dashboard sul telefono" width="46%"><br><b>Anche dal telefono</b></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><img src="docs/immagini/mobile.png" alt="Dashboard sul telefono" width="23%"><br><b>Anche dal telefono</b></td>
 </tr>
 </table>
 
@@ -124,14 +141,15 @@ il runtime .NET: non serve installare altro.
 3. **Aggiungi i varchi** da *Varchi → Aggiungi varco*: indirizzo IP, utente e password del dispositivo.
 4. **Carica gli utenti**: riceverli dai varchi o inserirli a mano; tessere e permessi arrivano da soli ai dispositivi.
 
-Per aggiornare basta caricare il nuovo setup da *Impostazioni → Aggiornamento del programma*: dati e account restano.
-Quando esce una nuova versione la console avvisa gli amministratori, con le novità e il collegamento per scaricarla.
+Per aggiornare basta premere **Scarica e installa** in *Sistema → Impostazioni → Aggiornamento del programma*: il
+server scarica il setup da qui, ne controlla l'impronta, salva una copia della configurazione e lo installa; dati,
+account e licenza restano. Quando esce una nuova versione la console avvisa gli amministratori, con le novità.
 Tutti i dettagli sono nella [guida utente](docs/guida-utente.md#server).
 
 ## 🔑 Versione gratuita e licenza
 
-HikAccess Pro Web si usa **gratis e senza scadenza** con un impianto piccolo. Per più sedi o varchi, o per collegare
-Home Assistant, serve una licenza.
+HikAccess Pro Web si usa **gratis e senza scadenza** con un impianto piccolo. Per più sedi o varchi, per collegare
+Home Assistant o per le notifiche Telegram serve una licenza.
 
 | | Versione gratuita | Con licenza |
 |---|:---:|:---:|
@@ -139,6 +157,7 @@ Home Assistant, serve una licenza.
 | Varchi | 2 | secondo la licenza, anche illimitati |
 | Utenti, tessere, PIN, gruppi, eventi, operatori, backup, accesso da fuori | ✓ | ✓ |
 | Servizio REST per Home Assistant (chiavi API) | — | ✓ |
+| Notifiche Telegram agli operatori | — | ✓ |
 | Scadenza | nessuna | nessuna, oppure a tempo (per esempio la prova di 30 giorni) |
 
 **Come si attiva**
@@ -191,8 +210,18 @@ raccogliere gli eventi: quando torna acceso recupera anche i passaggi avvenuti n
 <details>
 <summary><b>Serve una connessione a Internet?</b></summary>
 <br>
-No. Server e varchi lavorano nella rete locale. Internet serve solo se vuoi usare la console da fuori, tramite un proxy
-HTTPS o una VPN, e per inviare la richiesta di attivazione.
+No. Server e varchi lavorano nella rete locale. Internet serve solo se vuoi usare la console da fuori (tramite un proxy
+HTTPS o una VPN), per le notifiche Telegram, per l'aggiornamento con *Scarica e installa* e per inviare la richiesta di
+attivazione.
+</details>
+
+<details>
+<summary><b>Come funzionano le notifiche Telegram?</b></summary>
+<br>
+Si crea un bot con @BotFather e se ne incolla il token in <b>Sistema → Impostazioni</b>. Ogni operatore collega poi la
+sua chat dal proprio <b>Profilo</b>, inquadrando un QR e scrivendo al bot il PIN mostrato, e sceglie quali eventi, varchi
+e persone gli interessano; gli amministratori possono impostarlo anche per gli altri. È il server a contattare Telegram,
+quindi non serve aprire porte sul router. Con <code>/stop</code> nella chat si scollega.
 </details>
 
 <details>
@@ -212,9 +241,10 @@ richiesta indicando nelle note che si tratta di un trasferimento.
 <details>
 <summary><b>Come si aggiorna?</b></summary>
 <br>
-Da <b>Impostazioni → Aggiornamento del programma</b> carichi il nuovo setup e confermi con la tua password: il
-servizio si ferma per circa un minuto e la console si ricarica da sola. In alternativa si esegue il nuovo setup sul
-server. Dati, account e licenza restano.
+Da <b>Sistema → Impostazioni → Aggiornamento del programma</b> premi <b>Scarica e installa</b> e confermi con la tua
+password: il server scarica il setup, ne verifica l'impronta, salva una copia della configurazione e lo installa; il
+servizio si ferma per circa un minuto e la console si ricarica da sola. Si può anche caricare un setup scaricato a mano,
+oppure eseguirlo sul server. Dati, account e licenza restano.
 </details>
 
 <details>
@@ -222,7 +252,7 @@ server. Dati, account e licenza restano.
 <br>
 Dalla versione 1.4.0 lo dice la console: una volta al giorno il server chiede a GitHub qual è l'ultima versione
 pubblicata e, se è più recente di quella installata, gli amministratori vedono un pallino sulla voce
-<b>Impostazioni</b> e, nel riquadro dell'aggiornamento, le novità e il pulsante per scaricare il setup. Nulla si
+<b>Sistema</b> e, nel riquadro dell'aggiornamento, le novità e il pulsante <b>Scarica e installa</b>. Nulla si
 installa da solo e non viene inviato alcun dato dell'impianto; l'avviso si può disattivare dalle impostazioni.
 </details>
 
@@ -235,6 +265,6 @@ Licenze, prove e assistenza: **b.leonardi78@gmail.com**. La richiesta di attivaz
 
 <p align="center">
   <sub>© 2026 Bruno Leonardi · Tutti i diritti riservati.<br>
-  Hikvision è un marchio dei rispettivi proprietari. HikAccess Pro Web è un prodotto indipendente, non affiliato a Hikvision.<br>
+  Hikvision e Telegram sono marchi dei rispettivi proprietari. HikAccess Pro Web è un prodotto indipendente, non affiliato a Hikvision né a Telegram.<br>
   Le immagini mostrano dati dimostrativi.</sub>
 </p>
