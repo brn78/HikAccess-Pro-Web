@@ -142,9 +142,10 @@ il runtime .NET: non serve installare altro.
 
 ## 🚀 Installazione in quattro passi
 
-1. **Esegui il setup sul server** come amministratore: scegli la porta della console (predefinita 5080) e, se vuoi, crea
-   subito l'account amministratore. Il setup installa il servizio di Windows, apre la porta nel firewall e controlla
-   che la console risponda.
+1. **Esegui il setup sul server** come amministratore: scegli la cartella dei dati, la porta della console (predefinita
+   5080) e, se vuoi, crea subito l'account amministratore. Il setup installa il servizio di Windows, apre la porta nel
+   firewall e controlla che la console risponda. Se non crei l'account, la console chiede un codice che si legge solo
+   sul server: il setup apre la pagina con il codice già scritto.
 2. **Apri la console** da qualsiasi PC della rete: `http://<nome-o-IP-del-server>:5080`.
 3. **Aggiungi i varchi** da *Varchi → Aggiungi varco*: indirizzo IP, utente e password del dispositivo.
 4. **Carica gli utenti**: riceverli dai varchi o inserirli a mano; tessere e permessi arrivano da soli ai dispositivi.
@@ -196,7 +197,13 @@ in PDF.
 
 - Accesso con password e ruoli, **verifica in due passaggi** con un'app di autenticazione e browser di fiducia.
 - Blocco dei tentativi errati, sessioni che scadono per inattività, cookie protetti.
-- Le password di varchi e telecamere non arrivano mai al browser; quelle degli operatori sono salvate solo come impronta.
+- Le password di varchi e telecamere non arrivano al browser, salvo la *Copia password* riservata agli amministratori;
+  quelle degli operatori sono salvate solo come impronta.
+- **Conferma con la propria password** prima delle operazioni delicate, come esportare la configurazione o creare una
+  chiave API.
+- **Pacchetti di configurazione cifrati** con una password scelta da chi esporta.
+- Primo accesso protetto da un codice che si legge solo sul server; come servizio di Windows la cartella dei dati è
+  accessibile solo ad amministratori e sistema.
 - **Registro attività** di accessi, comandi e modifiche, esportabile in CSV.
 - Nessun servizio cloud: configurazione ed eventi restano sul server.
 

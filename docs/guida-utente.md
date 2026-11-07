@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -55,7 +55,7 @@ La console è composta da due parti:
 
 ### <a id="accesso-primo-avvio"></a>Configurazione iniziale
 
-Il setup può creare subito l'account amministratore (pagina **Account amministratore**): in quel caso accedi con quel nome utente e quella password da qualsiasi PC della rete. Altrimenti al primo avvio non esiste alcun account: aprendo la console **dal PC del server** (`http://localhost:5080`) compare la pagina **Configurazione iniziale**, che crea l'account amministratore: scegli nome utente, nome e cognome e una password. Per sicurezza questa pagina non è disponibile dagli altri PC della rete.
+Il setup può creare subito l'account amministratore (pagina **Account amministratore**): in quel caso accedi con quel nome utente e quella password da qualsiasi PC della rete. Altrimenti al primo avvio non esiste alcun account: aprendo la console **dal PC del server** (`http://localhost:5080`) compare la pagina **Configurazione iniziale**, che crea l'account amministratore: scegli nome utente, nome e cognome e una password. Per sicurezza questa pagina non è disponibile dagli altri PC della rete e chiede il **codice della configurazione iniziale**: se la console si apre dal setup o dall'icona del server è già scritto, altrimenti lo trovi nel file `setup-code.txt` della cartella dei dati, che possono aprire solo gli amministratori di Windows. Il file si cancella appena l'amministratore è creato.
 
 Se sul server non c'è un browser adatto (Windows Server Core, oppure Server 2016 e 2019 con il solo Internet Explorer), crea l'amministratore da un prompt dei comandi come amministratore con `HikAccessWeb.exe --reset-password <utente> <password>` (vedi [Recupero dell'accesso amministratore](#server-reset-password)) e accedi da un altro PC.
 
@@ -535,16 +535,16 @@ Pagina **Backup e deploy** (amministratori).
 
 ### <a id="backup-esporta"></a>Esporta configurazione
 
-Scarica un file JSON con siti, varchi (comprese le password dei dispositivi), gruppi, utenti, tessere, PIN e permessi. Gli eventi non sono inclusi. Scegli cosa esportare:
+Scarica un file con siti, varchi (comprese le password dei dispositivi), gruppi, utenti, tessere, PIN e permessi. Gli eventi non sono inclusi. Scegli cosa esportare:
 
-- **Tutta la configurazione** (`HikAccess_FullBackup_*.json`): il backup completo, da fare dopo ogni modifica importante. Il formato è lo stesso dell'app desktop HikAccess Pro.
-- **Un solo sito** (`HikAccess_Sito_*.json`): il sito con i suoi varchi e gruppi e le sole persone autorizzate su di esso (con i soli permessi di quel sito). È il pacchetto da portare su un altro server, per esempio dal portatile usato in cantiere al server dell'ufficio, o da un impianto a un altro.
+- **Tutta la configurazione** (`HikAccess_FullBackup_*`): il backup completo, da fare dopo ogni modifica importante.
+- **Un solo sito** (`HikAccess_Sito_*`): il sito con i suoi varchi e gruppi e le sole persone autorizzate su di esso (con i soli permessi di quel sito). È il pacchetto da portare su un altro server, per esempio dal portatile usato in cantiere al server dell'ufficio, o da un impianto a un altro.
 
-**Conserva i file in un luogo protetto**: contengono le credenziali dei dispositivi. Dalla pagina **Siti**, il menu di un sito ha la voce **Esporta configurazione del sito**.
+La console chiede la tua password e una **password del file**: il pacchetto (`.hikpack`) viene cifrato con quella, che non resta sul server e non si può recuperare, quindi annotala in un posto sicuro. Solo se devi aprirlo con l'app desktop HikAccess Pro spunta **Senza password**: il file `.json` sarà leggibile da chiunque lo trovi, con le credenziali dei dispositivi, e l'esportazione in chiaro finisce nel registro attività. Dalla pagina **Siti**, il menu di un sito ha la voce **Esporta configurazione del sito**.
 
 ### <a id="backup-importa"></a>Importa
 
-Scelto il file (un'esportazione della console, completa o di un sito, il `hikaccess_config.json` dell'app desktop o un pacchetto nel vecchio formato monosito, migrato automaticamente), la console mostra cosa contiene e chiede come importarlo:
+Scelto il file (un'esportazione della console, completa o di un sito, il `hikaccess_config.json` dell'app desktop o un pacchetto nel vecchio formato monosito, migrato automaticamente), la console mostra cosa contiene e chiede come importarlo, con la conferma della tua password. Un pacchetto cifrato chiede prima la password del file:
 
 - **Unisci alla configurazione attuale** (predefinito per i pacchetti di un sito): niente viene cancellato. Il sito del file va in un **sito nuovo** oppure in **un sito esistente** a tua scelta (con più siti nel file l'abbinamento è per nome, i mancanti vengono creati). I **varchi** sono riconosciuti da indirizzo, porta e numero porta (quelli già presenti vengono aggiornati e restano nel loro sito), i **gruppi** dal nome nel sito di destinazione, le **persone** dalla matricola: chi esiste già riceve i varchi di quel sito e le tessere nuove, ma anagrafica, validità e permessi sugli altri siti restano com'erano; chi non esiste viene creato. Una tessera già di un'altra persona non viene spostata: l'esito la elenca.
 - **Sostituisci tutta la configurazione**: il ripristino completo. La configurazione attuale viene sostituita da quella del file, dopo aver salvato una **copia di sicurezza** nella cartella dati del server (`data\backups`, ultime 30).
@@ -577,6 +577,8 @@ La voce **Sistema** ⚙ in fondo al menu (solo amministratori) apre una pagina a
 - **Notifiche Telegram** ✈: quali eventi riceve l'operatore sul telefono, su quali varchi e per quali persone, e lo stato della sua chat (vedi [Notifiche Telegram](#notifiche-telegram)). Collegare la chat spetta all'operatore, dal suo profilo; da qui la si può scollegare.
 - **Elimina account**: rimuove l'account; il registro attività conserva le operazioni già eseguite.
 - Il proprio account non può disabilitarsi né cambiare ruolo da qui; la propria password si cambia da **Profilo e sicurezza**. Deve restare almeno un amministratore abilitato.
+
+Creare un operatore, reimpostare la sua password, cambiargli il ruolo, riabilitarlo o disattivargli la verifica in due passaggi chiede la conferma con la tua password: sono le modifiche che danno accesso alla console.
 
 Le password sono salvate solo come impronta crittografica: nessuno, nemmeno un amministratore, può leggerle.
 
@@ -706,7 +708,7 @@ Digitare il codice a ogni accesso è scomodo sul proprio PC. Nella pagina del co
 
 ### <a id="server-installazione"></a>Installazione
 
-Il programma di installazione (`HikAccessWeb-<versione>-Setup.exe`) si esegue sul PC o server che farà da server, con diritti di amministratore. Chiede la **porta TCP** della console (predefinita 5080) e, se non esistono ancora account, l'**account amministratore** (facoltativo, vedi [Configurazione iniziale](#accesso-primo-avvio)). Installa poi il **servizio di Windows** "HikAccess Pro Web", che parte da solo a ogni avvio del sistema (con **avvio ritardato**: circa due minuti dopo l'avvio di Windows, quando il server è meno impegnato) anche senza utenti collegati e si riavvia in caso di errore, e controlla che la console risponda. Con il servizio installa anche l'[icona di stato](#server-icona-stato) per chi accede al server. Infine apre la porta nel Firewall di Windows per le reti Private e di Dominio (a richiesta anche per le Pubbliche) e crea i collegamenti nel menu Start. I dati (configurazione, database, account) stanno in `C:\ProgramData\HikAccessWeb`.
+Il programma di installazione (`HikAccessWeb-<versione>-Setup.exe`) si esegue sul PC o server che farà da server, con diritti di amministratore. Chiede la **porta TCP** della console (predefinita 5080) e, se non esistono ancora account, l'**account amministratore** (facoltativo, vedi [Configurazione iniziale](#accesso-primo-avvio)). Installa poi il **servizio di Windows** "HikAccess Pro Web", che parte da solo a ogni avvio del sistema (con **avvio ritardato**: circa due minuti dopo l'avvio di Windows, quando il server è meno impegnato) anche senza utenti collegati e si riavvia in caso di errore, e controlla che la console risponda. Con il servizio installa anche l'[icona di stato](#server-icona-stato) per chi accede al server. Infine apre la porta nel Firewall di Windows per le reti Private e di Dominio (a richiesta anche per le Pubbliche) e crea i collegamenti nel menu Start. Alla prima installazione chiede anche la **cartella dei dati** (configurazione, database, account, foto degli eventi): quella proposta è `C:\ProgramData\HikAccessWeb`, ma su un server conviene un disco dati locale, mai una cartella di rete. Con il servizio quella cartella la possono aprire solo gli amministratori di Windows e il sistema. Porta e cartella dei dati stanno nel file `appsettings.Local.json` accanto al programma, che gli aggiornamenti conservano.
 
 In alternativa, il pacchetto portabile (cartella con `HikAccessWeb.exe`) si avvia con un doppio clic e tiene i dati nella sottocartella `data`; gli script `Install-Service.ps1` e `Uninstall-Service.ps1` installano e rimuovono il servizio a mano. I dettagli tecnici (porta, HTTPS, cartella dati, riga di comando) sono nel file README della cartella di installazione.
 
@@ -974,7 +976,7 @@ Il messaggio indica il motivo. **Incompleta o non valida**: copiala per intero, 
 <details>
 <summary><b>La porta 5080 è occupata da un altro programma</b></summary>
 
-Il setup lo segnala alla fine dell'installazione ("la console non risponde"). Esegui di nuovo il setup e scegli un'altra porta (oppure, per il pacchetto portabile, modifica `Urls` in `appsettings.json`); il setup aggiorna collegamenti e regola del firewall.
+Il setup lo segnala alla fine dell'installazione ("la console non risponde"). Esegui di nuovo il setup e scegli un'altra porta (oppure, per il pacchetto portabile, modifica `Urls` in `appsettings.Local.json`); il setup aggiorna collegamenti e regola del firewall.
 
 </details>
 

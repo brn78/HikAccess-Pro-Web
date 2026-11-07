@@ -3,6 +3,35 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.8.1 · 7 novembre 2026
+
+Versione dedicata alla sicurezza.
+
+- **Pacchetti di configurazione cifrati**: il file esportato (`.hikpack`) contiene password dei dispositivi, tessere e
+  PIN, quindi ora viene cifrato (AES-256) con una password scelta da chi esporta. Senza quella password non si apre e
+  non si può recuperare. Per l'app desktop, che non apre i file cifrati, si può ancora esportare in chiaro: la scelta
+  resta nel registro attività. I pacchetti già esportati e `hikaccess_config.json` si importano come prima.
+- **Conferma con la propria password** prima delle operazioni delicate: esportazione e importazione della configurazione,
+  *Copia password* di un dispositivo, nuova chiave API, copia della password di un varco verso un altro indirizzo, nuovo
+  operatore e modifiche che danno accesso alla console (password, ruolo, riabilitazione, verifica in due passaggi).
+- **Password dei dispositivi legate all'indirizzo**: cambiando indirizzo, porta o utente di un varco o di una telecamera
+  la password va riscritta, anche per la *Verifica*. Una sessione rubata non può mandarla a un server a scelta.
+- **Primo accesso protetto**: se l'account amministratore non viene creato dal setup, la console chiede un codice che si
+  legge solo sul server. Il setup e l'icona di stato aprono la pagina con il codice già scritto.
+- **Setup rinnovato**: alla prima installazione si sceglie anche la cartella dei dati; come servizio di Windows la
+  cartella è accessibile solo ad amministratori e sistema. Porta e cartella ora stanno in `appsettings.Local.json`
+  accanto al programma; l'aggiornamento le riporta lì da solo.
+- **Disinstallazione**: se si sceglie di eliminare i dati, vengono tolti solo i file del programma, così gli altri file
+  in una cartella scelta a mano restano.
+- **Account al sicuro**: se il file degli account risulta illeggibile, la console riparte dalla copia precedente.
+- **Proxy riconosciuti meglio**: le richieste che passano da Cloudflare, Akamai, Fastly o Apache non vengono scambiate per
+  accessi diretti. Intestazioni di sicurezza aggiornate, e il testo tecnico degli errori interni lo vedono solo gli
+  amministratori.
+
+**Da sapere.** Le copie automatiche nella cartella `data\backups` restano in chiaro: le protegge l'accesso alla cartella
+dei dati, perché il server non può conoscere una password scelta da te. Se porti altrove una copia della configurazione,
+usa l'esportazione cifrata.
+
 ## 1.8.0 · 7 novembre 2026
 
 - **Telecamere** (voce *Telecamere* nel menu): Hikvision, anche come canali di NVR e DVR, o di altra marca con RTSP. Per
