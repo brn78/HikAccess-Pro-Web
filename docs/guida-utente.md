@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.7.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -17,6 +17,7 @@
 - [Utenti, tessere e PIN](#utenti)
 - [Dashboard](#dashboard)
 - [Eventi e storico](#eventi)
+- [Telecamere](#telecamere)
 - [Operazioni in background](#operazioni)
 - [Notifiche Telegram](#notifiche)
 - [Backup, ripristino e deploy](#backup)
@@ -48,7 +49,7 @@ La console è composta da due parti:
 - **Evento**: Un passaggio, un accesso negato, un allarme o un'azione registrata da un varco, archiviata nel database della console.
 - **Operazione in background**: Un lavoro lungo (invio di un utente ai varchi, deploy, ricezione dell'anagrafica) che il server esegue mostrando l'avanzamento e il log.
 - **Operatore**: Chi usa la console, con un account personale e un ruolo (amministratore, operatore, sola lettura).
-- **Licenza**: Senza chiave di attivazione la console è la **versione gratuita**: 1 sito e 2 varchi, senza servizio REST. Una licenza, legata al server, amplia questi limiti (vedi [Licenza e attivazione](#sistema-licenza)).
+- **Licenza**: Senza chiave di attivazione la console è la **versione gratuita**: 1 sito, 2 varchi e 1 telecamera, senza servizio REST. Una licenza, legata al server, amplia questi limiti (vedi [Licenza e attivazione](#sistema-licenza)).
 
 ## <a id="accesso"></a>Primo avvio e accesso
 
@@ -112,12 +113,13 @@ Ogni account ha uno dei tre ruoli. Assegna a ciascuno il minimo necessario: la p
 | Funzione | Amministratore | Operatore | Sola lettura |
 | --- | :---: | :---: | :---: |
 | Dashboard, stato dei varchi, storico eventi | ✓ | ✓ | ✓ |
+| Video delle telecamere e immagini degli eventi | ✓ | ✓ | ✓ |
 | Elenchi di varchi, gruppi e utenti | ✓ | ✓ | solo consultazione, senza PIN |
 | Comandi porta (apri, chiudi, sblocco e blocco permanente), orologio, diagnostica | ✓ | ✓ | — |
 | Utenti, tessere, PIN, cattura badge, ricezione da varco, sincronizzazioni | ✓ | ✓ | — |
 | Gruppi di accesso | ✓ | ✓ | — |
 | Esportazione CSV degli eventi | ✓ | ✓ | — |
-| Aggiunta, modifica ed eliminazione di varchi e siti | ✓ | — | — |
+| Aggiunta, modifica ed eliminazione di varchi, telecamere e siti | ✓ | — | — |
 | Backup, ripristino, deploy atomico | ✓ | — | — |
 | Conservazione e manutenzione del database eventi | ✓ | — | — |
 | Operatori, chiavi API, licenza, impostazioni, registro attività | ✓ | — | — |
@@ -419,6 +421,7 @@ Ogni evento del controller ha un **numero progressivo**: se dopo una correzione 
 - Il selettore **max** limita il numero di righe mostrate (500-5.000): se il limite viene raggiunto, restringi il periodo o i filtri.
 - Menu del tasto destro su un evento: **Apri porta di questo varco**, copia badge/matricola/nome, **Cerca storico di questo utente/badge**, **Filtra storico per questo varco**, **Mostra tutti gli eventi di oggi**, **Assegna badge / crea utente**.
 - Clic su un evento: apre la persona in anagrafica; se il badge non è di nessuno, propone di creare l'utente con quel numero già inserito.
+- Se il sito ha delle [telecamere](#telecamere-eventi), la colonna **Foto** mostra l'anteprima dello scatto: un clic apre l'immagine grande, e la stessa voce è nel menu del tasto destro.
 - Le descrizioni ("Accesso concesso (PIN)", "Porta aperta troppo a lungo", "Manomissione lettore"…) seguono la tabella ufficiale dei codici evento Hikvision, la stessa per SDK e ISAPI. Un codice non ancora in tabella compare come `Evento 5/0x..` e viene ridescritto da solo al primo avvio di una versione che lo conosce.
 
 > [!TIP]
@@ -435,6 +438,63 @@ La scheda **Archivio e manutenzione** mostra quanti eventi sono archiviati, lo s
 - **Autoconservazione**: gli eventi più vecchi del numero di giorni impostato (predefinito 90) vengono eliminati all'avvio del server e poi ogni 6 ore. **Esegui pulizia** lo fa subito. Scegli il periodo in base alle regole sulla privacy del tuo impianto: ciò che viene cancellato non è recuperabile.
 - **Ottimizza database**: compatta il file e ricostruisce gli indici; sicuro, utile dopo grandi cancellazioni.
 - **Rigenera tabella eventi**: **cancella tutti gli eventi** e ricrea la tabella. Solo per un database danneggiato, dopo aver esportato ciò che serve.
+
+## <a id="telecamere"></a>Telecamere
+
+Pagina **Telecamere**: il **video dal vivo** delle telecamere del sito attivo e, per quelle associate ai varchi, una **foto a ogni passaggio**, concesso o negato, che resta legata all'evento. Funziona con telecamere Hikvision, canali di NVR e DVR Hikvision e telecamere di altre marche con RTSP.
+
+> [!NOTE]
+> La versione gratuita comprende **una telecamera**, completa di video e foto. Una [licenza](#sistema-licenza) indica quante telecamere usare, anche illimitate. Quelle oltre il limite restano configurate ma **sospese**: niente video né foto.
+
+### <a id="telecamere-aggiungere"></a>Aggiungere una telecamera
+
+**Aggiungi telecamera** (amministratori) apre la scheda.
+
+- **Hikvision**: bastano indirizzo IP, utente e password. Per un NVR o un DVR indica anche il **canale**, cioè il numero della camera; se il registratore ha ingressi analogici i digitali vengono dopo: con 16 analogici, D1 è il canale 17.
+- **Altra marca**: scrivi gli indirizzi RTSP e l'indirizzo delle foto, oppure solo indirizzo IP, utente e password e premi **Verifica**: se la telecamera offre ONVIF, gli indirizzi si compilano da soli. Se scrivi utente e password dentro un indirizzo (`rtsp://utente:password@…`), la console li sposta nei campi della scheda. Gli indirizzi cifrati `rtsps://` non sono supportati.
+
+**Verifica** prova davvero la telecamera con i dati scritti, anche prima di salvare, e riassume cosa ha trovato: modello e firmware, una foto con il tempo impiegato, il video con formato e risoluzione. Sul dispositivo non scrive nulla, e il riquadro segnala cosa conviene cambiare, per esempio lo Smart Codec attivo o un flusso H.265. Basta un utente che possa vedere il video: non serve l'amministratore del dispositivo.
+
+Come per i varchi, se la telecamera rifiuta le credenziali il server smette di ritentare finché non le correggi, così l'utente non viene bloccato dal dispositivo. Il blocco vale per tutti i canali dello stesso NVR, e anche **Verifica** si ferma al primo rifiuto. Salvare la scheda o premere **Verifica** riabilita i tentativi.
+
+### <a id="telecamere-video"></a>Video dal vivo
+
+La scheda **Dal vivo** mostra un riquadro per telecamera; un clic lo ingrandisce, e da lì si sceglie tra **Leggero** (flusso secondario) e **Alta qualità** (flusso principale) e si passa a schermo intero. Il video di un varco si apre anche dal pulsante con la telecamera nella Dashboard.
+
+- Il server riceve il video via RTSP e lo passa al browser così com'è, senza ricodificarlo: consuma pochissimo e la telecamera vede un solo collegamento, anche con più operatori. Il video non viene registrato: attraversa il server solo mentre qualcuno lo guarda, e la visione finisce nel [registro attività](#sistema-registro).
+- Servono le porte RTSP (554) e HTTP (80) della telecamera raggiungibili **dal server**; il browser parla solo con la console, quindi il video funziona anche da fuori, con un proxy che lascia passare i WebSocket.
+- Il flusso predefinito è il **secondario**: più leggero e quasi sempre H.264, che tutti i browser riproducono. Il formato H.265 dipende dal browser e dalla scheda video del PC. Se il browser non può riprodurre il video, o il collegamento non passa, il riquadro mostra **una foto al secondo** e ne spiega il motivo; se il problema era il collegamento, ogni minuto riprova il video da solo.
+- Se la telecamera smette di inviare, dopo qualche secondo il riquadro lo scrive sopra l'immagine: quella che vedi non è più la diretta. Il video riprende da solo quando la telecamera torna.
+- Il video parte dal primo fotogramma chiave. Per una partenza rapida imposta sulla telecamera un intervallo I-frame pari ai fotogrammi al secondo e spegni H.264+ e H.265+ sul flusso usato qui.
+
+### <a id="telecamere-eventi"></a>Foto degli eventi
+
+Nella scheda della telecamera scegli i **varchi associati** e quali eventi fotografare: accessi concessi, accessi negati e, se vuoi, gli allarmi della porta (forzatura, porta aperta troppo a lungo, manomissione). Una telecamera può servire più varchi e un varco può avere più telecamere; gli scatti per evento vanno da 1 a 3, a un secondo l'uno dall'altro.
+
+- Con gli [eventi in tempo reale](#varchi-tempo-reale) la foto parte appena il controller segnala il passaggio, quando la persona è ancora davanti alla telecamera.
+- Con la sola scansione periodica l'evento arriva in ritardo: se nella pagina Varchi la colonna Eventi dice **Solo scansione**, la foto mostra la scena di qualche secondo dopo. Il ritardo è scritto sotto l'immagine e, oltre 30 secondi, la foto non viene scattata perché non mostrerebbe più chi è passato.
+- Le anteprime compaiono nello storico [Eventi](#eventi-consultare) e in **Attività in tempo reale** della Dashboard, con il bordo verde per gli accessi concessi e rosso per quelli negati. Un clic apre l'immagine grande, con chi, dove, quando e il pulsante per scaricarla.
+
+Una telecamera di altra marca senza indirizzo delle foto mostra il video, ma non può fotografare gli eventi.
+
+**Terminali con fotocamera.** I terminali come i DS-K1T possono allegare una foto a ogni evento. Con l'opzione **Salva anche le foto dei terminali con fotocamera**, nella scheda Conservazione immagini, la console la tiene con l'evento senza bisogno di una telecamera. Sul terminale deve essere attivo l'invio delle foto, spesso spento di fabbrica, e il controller deve essere collegato in tempo reale.
+
+### <a id="telecamere-problemi"></a>Se qualcosa non funziona
+
+- **Credenziali rifiutate con la password giusta**: controlla sul dispositivo che l'autenticazione web sia Digest o Digest/Basic e che l'orologio sia giusto, perché con molto scarto il dispositivo rifiuta l'accesso. Dopo 5-7 errori l'utente viene bloccato per circa 30 minuti.
+- **Foto rifiutate su telecamere 4K o con H.264+ e H.265+**: la console prova da sola una foto a 1080p e poi il flusso secondario; se non basta, riduci la risoluzione o spegni H.264+ e H.265+.
+- **Alta qualità ferma per qualche secondo, soprattutto all'avvio o in Wi-Fi**: se dei pacchetti vanno persi, il video riprende dal fotogramma chiave successivo, che con H.264+ e H.265+ può arrivare dopo oltre 15 secondi. La console non lo aspetta: dopo 3 secondi riapre il collegamento, fino a tre volte al minuto. Se capita spesso spegni H.264+ e H.265+ sul flusso principale, oppure usa il flusso **Leggero**. La **Verifica** segnala se sono attivi.
+- **Telecamere sulle porte PoE di un NVR**: stanno su una rete interna del registratore, raggiungibile solo da lui. Aggiungile come canali dell'NVR, non con il loro indirizzo.
+- **Canale inesistente (404)**: premi **Verifica** con l'indirizzo dell'NVR e scegli il canale dall'elenco.
+
+### <a id="telecamere-privacy"></a>Conservazione e privacy
+
+La scheda **Conservazione immagini** mostra quante foto sono archiviate e lo spazio occupato. Le foto oltre i **giorni di conservazione** (predefiniti 7) vengono eliminate da sole, ogni ora, insieme alle cartelle dei giorni scaduti e a eventuali file rimasti; oltre lo **spazio massimo** (predefinito 10 GB) si eliminano le più vecchie. Con meno di 1 GB libero sul disco le foto non vengono salvate e la telecamera lo segnala. Utente e indirizzi delle telecamere sono visibili solo agli amministratori.
+
+> [!WARNING]
+> **Le foto dei passaggi sono dati personali.** Prima di attivarle verifica con il responsabile della privacy informativa e cartelli, durata della conservazione e chi può vedere le immagini. Se riguardano dei lavoratori servono anche le garanzie sui controlli a distanza (art. 4 dello Statuto dei lavoratori: accordo sindacale o autorizzazione dell'Ispettorato del lavoro).
+
+Le immagini stanno nella cartella `snapshots` dei dati del server, oppure in quella indicata da `HikAccess:SnapshotDirectory`; non fanno parte del backup della configurazione. **Rigenera tabella eventi** elimina anche le immagini.
 
 ## <a id="operazioni"></a>Operazioni in background
 
@@ -559,15 +619,15 @@ e in `secrets.yaml` la riga `hikaccess_api: "Bearer hap_…"` con la chiave. Dop
 
 ### <a id="sistema-licenza"></a>Licenza e attivazione
 
-**Licenza** (solo amministratori). Senza chiave di attivazione la console è la **versione gratuita**: **1 sito** e **2 varchi**, senza il [servizio REST](#sistema-chiavi-api) e senza le [notifiche Telegram](#notifiche-telegram); tutte le altre funzioni (utenti, tessere, PIN, gruppi, festività, eventi, operatori, backup, accesso remoto) sono complete. Una **licenza** amplia siti e varchi e può comprendere il servizio REST e le notifiche Telegram; può essere senza scadenza oppure a tempo, come la prova di 30 giorni.
+**Licenza** (solo amministratori). Senza chiave di attivazione la console è la **versione gratuita**: **1 sito**, **2 varchi** e **1 telecamera**, senza il [servizio REST](#sistema-chiavi-api) e senza le [notifiche Telegram](#notifiche-telegram); tutte le altre funzioni (utenti, tessere, PIN, gruppi, festività, eventi, operatori, backup, accesso remoto) sono complete. Una **licenza** amplia siti, varchi e telecamere e può comprendere il servizio REST e le notifiche Telegram; può essere senza scadenza oppure a tempo, come la prova di 30 giorni.
 
-- **Stato della licenza**: versione gratuita oppure licenza attivata, con intestatario, numero, limiti e scadenza; sotto, siti e varchi in uso rispetto a quelli consentiti.
+- **Stato della licenza**: versione gratuita oppure licenza attivata, con intestatario, numero, limiti e scadenza; sotto, siti, varchi e telecamere in uso rispetto a quelli consentiti.
 - **Codice macchina**: identifica il server, e la chiave di attivazione vale solo per quel codice. Non cambia con riavvii, aggiornamenti, nome o indirizzo IP del server; cambia se reinstalli Windows o sposti il programma su un altro computer.
-- **Richiedi l'attivazione**: indica la ragione sociale (sarà l'intestatario della licenza), referente, telefono, un'eventuale email per la risposta, se chiedi una licenza o una prova di 30 giorni, quanti siti e varchi ti servono e se ti servono il servizio REST e le notifiche Telegram. **Scrivi l'email** apre il programma di posta con la richiesta pronta per **b.leonardi78@gmail.com**, già completa di codice macchina, versione e dati del server. Con la posta nel browser usa **Copia la richiesta** e incollala in un nuovo messaggio a quell'indirizzo.
+- **Richiedi l'attivazione**: indica la ragione sociale (sarà l'intestatario della licenza), referente, telefono, un'eventuale email per la risposta, se chiedi una licenza o una prova di 30 giorni, quanti siti, varchi e telecamere ti servono e se ti servono il servizio REST e le notifiche Telegram. **Scrivi l'email** apre il programma di posta con la richiesta pronta per **b.leonardi78@gmail.com**, già completa di codice macchina, versione e dati del server. Con la posta nel browser usa **Copia la richiesta** e incollala in un nuovo messaggio a quell'indirizzo.
 - **Chiave di attivazione**: incolla la chiave ricevuta (inizia con `HAP1-`; va bene anche il testo dell'intera email) e premi **Attiva**. La console controlla che sia autentica, emessa per questo server e non scaduta, e applica subito i nuovi limiti. Nella stessa casella si inserisce la chiave nuova di un ampliamento o di un rinnovo.
 - **Rimuovi la licenza**: si torna alla versione gratuita, per esempio prima di trasferire la licenza su un altro server.
 
-**Oltre i limiti.** Senza la licenza adatta non si aggiungono siti o varchi oltre quelli consentiti e non si creano chiavi API: la console lo segnala con il collegamento **Vai alla pagina Licenza**. Se i varchi configurati sono più di quelli consentiti (licenza scaduta o rimossa, ripristino di un backup più grande), restano in uso i primi in ordine di ID dei primi siti e gli altri diventano **sospesi**: restano in elenco, ma non vengono monitorati, non ricevono comandi né utenti e non si leggono tessere da lì. Per sicurezza la revoca delle tessere tolte e l'eliminazione degli utenti raggiungono anche i varchi sospesi.
+**Oltre i limiti.** Senza la licenza adatta non si aggiungono siti o varchi oltre quelli consentiti e non si creano chiavi API: la console lo segnala con il collegamento **Vai alla pagina Licenza**. Se i varchi configurati sono più di quelli consentiti (licenza scaduta o rimossa, ripristino di un backup più grande), restano in uso i primi in ordine di ID dei primi siti e gli altri diventano **sospesi**: restano in elenco, ma non vengono monitorati, non ricevono comandi né utenti e non si leggono tessere da lì. Per sicurezza la revoca delle tessere tolte e l'eliminazione degli utenti raggiungono anche i varchi sospesi. Allo stesso modo le telecamere oltre il limite restano in elenco ma sospese, senza video né foto. Le licenze emesse prima delle telecamere ne comprendono una, come la versione gratuita.
 
 Alla scadenza la console torna da sola ai limiti della versione gratuita, senza perdere configurazione ed eventi; il pallino sulla voce Sistema e la pagina Sistema avvisano gli amministratori negli ultimi 30 giorni. Attivazioni, chiavi rifiutate e rimozioni finiscono nel [registro attività](#sistema-registro) (categoria **Licenza**).
 

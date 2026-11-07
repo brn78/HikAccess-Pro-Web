@@ -7,7 +7,8 @@
   <img alt="Windows 10, 11 e Server 2016 o successivi" src="https://img.shields.io/badge/Windows-10%20%7C%2011%20%7C%20Server%202016%2B-0078D4?logo=windows&logoColor=white">
   <img alt="Hikvision ISAPI e SDK" src="https://img.shields.io/badge/Hikvision-ISAPI%20%7C%20SDK-E3001B">
   <img alt="Notifiche Telegram" src="https://img.shields.io/badge/notifiche-Telegram-26A5E4">
-  <img alt="Versione gratuita: 1 sito e 2 varchi" src="https://img.shields.io/badge/versione%20gratuita-1%20sito%20%C2%B7%202%20varchi-16A34A">
+  <img alt="Telecamere: video e foto" src="https://img.shields.io/badge/telecamere-video%20e%20foto-7C3AED">
+  <img alt="Versione gratuita: 1 sito, 2 varchi e 1 telecamera" src="https://img.shields.io/badge/versione%20gratuita-1%20sito%20%C2%B7%202%20varchi%20%C2%B7%201%20telecamera-16A34A">
   <img alt="Interfaccia in italiano" src="https://img.shields.io/badge/lingua-italiano-009246">
 </p>
 
@@ -25,7 +26,7 @@
 
 **HikAccess Pro Web** gestisce il controllo accessi **Hikvision** di una o più sedi da un'unica console web: varchi,
 gruppi di accesso con fasce orarie e festività, utenti con tessere Mifare e PIN, comandi delle porte, monitoraggio in
-tempo reale, storico degli eventi e notifiche Telegram. Si installa su un PC o un server Windows della rete, gira come servizio e si usa da qualsiasi browser, dal PC,
+tempo reale, storico degli eventi, notifiche Telegram e **telecamere con video dal vivo e foto a ogni passaggio**. Si installa su un PC o un server Windows della rete, gira come servizio e si usa da qualsiasi browser, dal PC,
 dal tablet o dal telefono, con account personali e ruoli.
 
 Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: configurazione ed eventi restano sul tuo server.
@@ -61,6 +62,10 @@ ritentate da sole sui controller spenti). Invio, gruppo, abilitazione ed elimina
 **📊 Monitoraggio in tempo reale**<br>
 I controller inviano ogni passaggio appena avviene e il server legge comunque i loro registri senza saltare eventi,
 anche con la console chiusa: dashboard, accessi negati, storico degli eventi con ricerca ed esportazione CSV.
+
+**🎥 Telecamere**<br>
+Telecamere Hikvision o di altra marca con RTSP: video dal vivo nel browser, senza plugin e senza ricodifica, e una foto
+a ogni accesso concesso o negato, visibile negli eventi. Una telecamera è compresa nella versione gratuita.
 
 </td>
 <td width="50%" valign="top">
@@ -110,11 +115,12 @@ varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **S
 <td align="center"><img src="docs/immagini/sistema.png" alt="Pagina Sistema"><br><b>Sistema</b>: impostazioni, operatori, licenza e backup</td>
 </tr>
 <tr>
+<td align="center"><img src="docs/immagini/telecamere.png" alt="Pagina Telecamere con il video dal vivo"><br><b>Telecamere</b>: video dal vivo e foto agli eventi</td>
 <td align="center"><img src="docs/immagini/accesso.png" alt="Pagina di accesso"><br><b>Accesso protetto</b>, con verifica in due passaggi</td>
-<td align="center"><img src="docs/immagini/guida.png" alt="Guida utente nella console"><br><b>Guida integrata</b>: <kbd>F1</kbd> da qualsiasi pagina</td>
 </tr>
 <tr>
-<td colspan="2" align="center"><img src="docs/immagini/mobile.png" alt="Dashboard sul telefono" width="23%"><br><b>Anche dal telefono</b></td>
+<td align="center"><img src="docs/immagini/guida.png" alt="Guida utente nella console"><br><b>Guida integrata</b>: <kbd>F1</kbd> da qualsiasi pagina</td>
+<td align="center"><img src="docs/immagini/mobile.png" alt="Dashboard sul telefono" width="46%"><br><b>Anche dal telefono</b></td>
 </tr>
 </table>
 
@@ -130,6 +136,8 @@ il runtime .NET: non serve installare altro.
   varchi.
 - **Varchi**: terminali e controller di controllo accessi Hikvision raggiungibili via HTTP/ISAPI (porta 80) oppure SDK
   (porta 8000).
+- **Telecamere** (facoltative): Hikvision o di altra marca, raggiungibili dal server via RTSP (porta 554); per vedere
+  il video ovunque serve un flusso H.264, mentre H.265 dipende dal browser e dal PC.
 - **Postazioni**: un browser recente (Edge, Chrome, Firefox, Safari) su PC, tablet o telefono.
 
 ## 🚀 Installazione in quattro passi
@@ -148,13 +156,14 @@ Tutti i dettagli sono nella [guida utente](docs/guida-utente.md#server).
 
 ## 🔑 Versione gratuita e licenza
 
-HikAccess Pro Web si usa **gratis e senza scadenza** con un impianto piccolo. Per più sedi o varchi, per collegare
-Home Assistant o per le notifiche Telegram serve una licenza.
+HikAccess Pro Web si usa **gratis e senza scadenza** con un impianto piccolo. Per più sedi, varchi o telecamere, per
+collegare Home Assistant o per le notifiche Telegram serve una licenza.
 
 | | Versione gratuita | Con licenza |
 |---|:---:|:---:|
 | Siti | 1 | secondo la licenza, anche illimitati |
 | Varchi | 2 | secondo la licenza, anche illimitati |
+| Telecamere, con video e foto agli eventi | 1 | secondo la licenza, anche illimitate |
 | Utenti, tessere, PIN, gruppi, eventi, operatori, backup, accesso da fuori | ✓ | ✓ |
 | Servizio REST per Home Assistant (chiavi API) | — | ✓ |
 | Notifiche Telegram agli operatori | — | ✓ |
@@ -169,7 +178,9 @@ Home Assistant o per le notifiche Telegram serve una licenza.
    senza reinstallare.
 
 La chiave vale solo per il server per cui è stata emessa. Se la licenza scade si torna alla versione gratuita senza
-perdere nulla: i varchi in più restano configurati ma sospesi, e la revoca delle tessere li raggiunge comunque.
+perdere nulla: varchi e telecamere in più restano configurati ma sospesi, e la revoca delle tessere raggiunge comunque i
+varchi. Le licenze già emesse restano valide e comprendono 1 telecamera; una chiave con più telecamere richiede la 1.8.0
+o successiva.
 
 <p align="center">
   <img src="docs/immagini/licenza.png" alt="Pagina Licenza con codice macchina e richiesta di attivazione" width="85%">
@@ -185,7 +196,7 @@ in PDF.
 
 - Accesso con password e ruoli, **verifica in due passaggi** con un'app di autenticazione e browser di fiducia.
 - Blocco dei tentativi errati, sessioni che scadono per inattività, cookie protetti.
-- Le password dei varchi non arrivano mai al browser; quelle degli operatori sono salvate solo come impronta.
+- Le password di varchi e telecamere non arrivano mai al browser; quelle degli operatori sono salvate solo come impronta.
 - **Registro attività** di accessi, comandi e modifiche, esportabile in CSV.
 - Nessun servizio cloud: configurazione ed eventi restano sul server.
 
@@ -198,6 +209,24 @@ I terminali e i controller di controllo accessi Hikvision raggiungibili in rete 
 persone» con nome, tessere, PIN e validità, oppure con l'SDK Hikvision sulla porta di servizio 8000, come fa
 iVMS-4200: per esempio i controller DS-K2604 di prima generazione. Nei controller multi-porta si crea un varco per
 ogni porta.
+</details>
+
+<details>
+<summary><b>Quali telecamere posso usare?</b></summary>
+<br>
+Le telecamere IP Hikvision, anche come canali di un NVR o DVR, e quelle di altre marche con RTSP: se offrono ONVIF
+bastano indirizzo IP, utente e password. Il pulsante <b>Verifica</b> prova foto e video prima di salvare, senza scrivere
+nulla sul dispositivo. Per il video in ogni browser serve un flusso H.264; il secondario di solito lo è. NVR, DVR, H.265 e
+ONVIF finora sono stati provati solo su dispositivi simulati.
+</details>
+
+<details>
+<summary><b>Il video viene registrato? Dove finiscono le foto?</b></summary>
+<br>
+Il video non viene registrato: attraversa il server solo mentre qualcuno lo guarda. Le foto dei passaggi restano sul tuo
+server e vengono eliminate da sole dopo i giorni di conservazione scelti (predefiniti 7). Sono dati personali: prima di
+attivarle verifica con il responsabile della privacy informativa, cartelli e, per i lavoratori, le garanzie sui controlli a
+distanza. La <a href="docs/guida-utente.md">guida utente</a> spiega cosa controllare.
 </details>
 
 <details>

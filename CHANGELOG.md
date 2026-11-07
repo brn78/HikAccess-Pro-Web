@@ -3,6 +3,30 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.8.0 · 7 novembre 2026
+
+- **Telecamere** (voce *Telecamere* nel menu): Hikvision, anche come canali di NVR e DVR, o di altra marca con RTSP. Per
+  le altre marche indirizzo IP, utente e password bastano se la telecamera offre ONVIF. **Verifica** prova foto e video
+  prima di salvare e non scrive nulla sul dispositivo.
+- **Video dal vivo nel browser**, senza plugin e senza ricodifica: un riquadro per telecamera, flusso leggero o alta
+  qualità, schermo intero, anche dal telefono e da fuori tramite il proxy. Il video non viene registrato e la telecamera
+  vede un solo collegamento anche con più operatori. Se il browser non può riprodurlo, il riquadro mostra una foto al
+  secondo.
+- **Foto a ogni passaggio**: si associa la telecamera ai varchi e si sceglie cosa fotografare (accessi concessi, accessi
+  negati, allarmi della porta). Le anteprime compaiono nello storico *Eventi* e nell'*Attività in tempo reale* della
+  dashboard, con il bordo verde o rosso; un clic apre l'immagine grande con chi, dove e quando.
+- **Terminali con fotocamera**: a scelta la console conserva anche la foto che il terminale allega all'evento.
+- **Conservazione delle immagini**: giorni di conservazione (predefiniti 7) e spazio massimo (predefinito 10 GB). Le
+  foto dei passaggi sono dati personali: la guida spiega cosa verificare prima di attivarle.
+- **Licenza**: il numero di telecamere si aggiunge ai limiti della licenza. La versione gratuita comprende 1 telecamera
+  completa di video e foto, e le licenze già emesse restano valide con 1 telecamera.
+- **Guida utente** con il nuovo capitolo *Telecamere*.
+
+**Da sapere.** Il flusso consigliato è quello secondario, quasi sempre H.264. Con H.264+ e H.265+ i fotogrammi chiave
+sono rari: in Wi-Fi l'alta qualità può fermarsi qualche secondo, e la console riapre da sola il collegamento. Video e
+foto sono stati provati su una telecamera Hikvision vera; NVR, DVR, H.265 e ONVIF finora solo su dispositivi simulati,
+quindi segnala pure ciò che non va.
+
 ## 1.7.0 · 15 ottobre 2026
 
 - **Festività** (*Gruppi di accesso → Festività*): un calendario per tutti i siti con le festività nazionali italiane
