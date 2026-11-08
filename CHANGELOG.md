@@ -3,6 +3,30 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.8.3 · 8 novembre 2026
+
+I dispositivi Hikvision si trovano da soli.
+
+- **Rileva in rete** nelle pagine *Varchi* e *Telecamere* (amministratori): il server cerca nella rete locale
+  terminali, controller, telecamere e videoregistratori Hikvision come fa il programma SADP, senza credenziali, e li
+  elenca con modello, firmware, indirizzo, porte web e SDK, MAC, stato di attivazione e se sono già configurati nella
+  console. **Varco** o **Telecamera** aprono la scheda già compilata con indirizzo, porta e protocollo giusti (un
+  controller senza interfaccia web, per esempio il DS-K2602, viene proposto sulla porta 8000 con l'SDK): restano da
+  scrivere utente e password. I filtri mostrano solo i varchi, solo le telecamere o solo i dispositivi nuovi; la
+  ricerca cerca per modello, indirizzo, MAC e seriale.
+- **Indirizzo specifico**: per un dispositivo dietro un router o raggiunto in VPN, dove la ricerca di rete non arriva,
+  si scrive il suo indirizzo e la console lo interroga direttamente.
+- **Rileva in rete nella scheda**: aprendo un nuovo varco o una nuova telecamera, il pulsante accanto a *Connessione*
+  elenca i dispositivi e **Seleziona** compila i campi della scheda aperta.
+- **Setup**: con il servizio di Windows il firewall apre anche la porta UDP 37020 con cui i dispositivi rispondono
+  alla ricerca; gli script `Install-Service.ps1` e `Uninstall-Service.ps1` fanno lo stesso.
+- **Guida utente**: nuovo paragrafo *Trovare i dispositivi in rete*, un'icona (i) nella finestra e una voce nella
+  risoluzione dei problemi.
+
+**Da sapere.** La ricerca parte dal server e raggiunge la sua sottorete. I dispositivi raggiunti in VPN rispondono alla
+ricerca mirata solo se il firmware lo prevede: sugli apparati veri hanno risposto i controller, non le telecamere. La
+ricerca non scrive nulla sui dispositivi e viene annotata nel registro attività.
+
 ## 1.8.2 · 8 novembre 2026
 
 Menu più ordinati, telecamere più rapide da aggiungere e una correzione sugli utenti.

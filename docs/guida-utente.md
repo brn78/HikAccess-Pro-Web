@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.2**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.3**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -160,6 +160,17 @@ Al salvataggio la console verifica subito la connessione e legge modello, serial
 
 > [!TIP]
 > **Più terminali uguali.** Dal menu di un varco esistente, **Nuovo varco con le stesse credenziali** apre la scheda già compilata con protocollo, porta TCP, utente e password del varco di origine (nei terminali a singola porta la password è di solito la stessa per tutto il sito): basta inserire nome e indirizzo IP del nuovo dispositivo.
+
+### <a id="varchi-rilevare"></a>Trovare i dispositivi in rete
+
+**Rileva in rete** (amministratori), nelle pagine *Varchi* e *Telecamere*, chiede ai dispositivi Hikvision della rete locale del server di presentarsi, come fa il programma SADP di Hikvision, senza credenziali: rispondono terminali, controller, telecamere e videoregistratori, anche appena collegati e non ancora attivati. Per ognuno compaiono modello, firmware, indirizzo IP, porte web e SDK, indirizzo MAC e se è già configurato nella console; il seriale si legge passando con il mouse sul modello. **Varco** o **Telecamera** aprono la scheda già compilata con indirizzo, porta e protocollo giusti (un controller senza interfaccia web, per esempio il DS-K2602, viene proposto sulla porta 8000 con il canale SDK): restano da scrivere utente e password del dispositivo.
+
+Lo stesso pulsante è nella scheda di un nuovo varco o di una nuova telecamera, accanto a *Connessione*: **Seleziona** compila i campi della scheda aperta. I filtri mostrano solo i varchi, solo le telecamere o solo i dispositivi non ancora configurati; la casella di ricerca cerca per modello, indirizzo, MAC e seriale.
+
+La ricerca di rete raggiunge solo la sottorete del server. Per un dispositivo dietro un router o raggiunto in VPN scrivi il suo indirizzo in **Indirizzo specifico** e premi **Cerca questo IP**: i controller rispondono, molte telecamere e videoregistratori no, quindi se non compare compila la scheda a mano. La ricerca non scrive nulla sui dispositivi e viene annotata nel registro attività.
+
+> [!NOTE]
+> Con il programma installato come **servizio di Windows** le risposte dei dispositivi arrivano sulla porta UDP 37020 del server: il setup la apre nel Firewall di Windows insieme a quella della console. Con un firewall di terze parti va aperta a mano.
 
 ### <a id="varchi-multiporta"></a>Controller multi-porta
 
@@ -450,7 +461,7 @@ Pagina **Telecamere**: il **video dal vivo** delle telecamere del sito attivo e,
 
 ### <a id="telecamere-aggiungere"></a>Aggiungere una telecamera
 
-**Aggiungi telecamera** (amministratori) apre la scheda.
+**Aggiungi telecamera** (amministratori) apre la scheda. **Rileva in rete** elenca invece telecamere e videoregistratori Hikvision della rete locale e apre la scheda già compilata con indirizzo e porte (vedi [Trovare i dispositivi in rete](#varchi-rilevare)); lo stesso pulsante è nella scheda, accanto a *Collegamento*.
 
 - **Hikvision**: bastano indirizzo IP, utente e password. Per un NVR o un DVR indica anche il **canale**, cioè il numero della camera; se il registratore ha ingressi analogici i digitali vengono dopo: con 16 analogici, D1 è il canale 17.
 - **Altra marca**: scrivi gli indirizzi RTSP e l'indirizzo delle foto, oppure solo indirizzo IP, utente e password e premi **Verifica**: se la telecamera offre ONVIF, gli indirizzi si compilano da soli. Se scrivi utente e password dentro un indirizzo (`rtsp://utente:password@…`), la console li sposta nei campi della scheda. Gli indirizzi cifrati `rtsps://` non sono supportati.
@@ -723,7 +734,7 @@ Digitare il codice a ogni accesso è scomodo sul proprio PC. Nella pagina del co
 
 ### <a id="server-installazione"></a>Installazione
 
-Il programma di installazione (`HikAccessWeb-<versione>-Setup.exe`) si esegue sul PC o server che farà da server, con diritti di amministratore. Chiede la **porta TCP** della console (predefinita 5080) e, se non esistono ancora account, l'**account amministratore** (facoltativo, vedi [Configurazione iniziale](#accesso-primo-avvio)). Installa poi il **servizio di Windows** "HikAccess Pro Web", che parte da solo a ogni avvio del sistema (con **avvio ritardato**: circa due minuti dopo l'avvio di Windows, quando il server è meno impegnato) anche senza utenti collegati e si riavvia in caso di errore, e controlla che la console risponda. Con il servizio installa anche l'[icona di stato](#server-icona-stato) per chi accede al server. Infine apre la porta nel Firewall di Windows per le reti Private e di Dominio (a richiesta anche per le Pubbliche) e crea i collegamenti nel menu Start. Alla prima installazione chiede anche la **cartella dei dati** (configurazione, database, account, foto degli eventi): quella proposta è `C:\ProgramData\HikAccessWeb`, ma su un server conviene un disco dati locale, mai una cartella di rete. Con il servizio quella cartella la possono aprire solo gli amministratori di Windows e il sistema. Porta e cartella dei dati stanno nel file `appsettings.Local.json` accanto al programma, che gli aggiornamenti conservano.
+Il programma di installazione (`HikAccessWeb-<versione>-Setup.exe`) si esegue sul PC o server che farà da server, con diritti di amministratore. Chiede la **porta TCP** della console (predefinita 5080) e, se non esistono ancora account, l'**account amministratore** (facoltativo, vedi [Configurazione iniziale](#accesso-primo-avvio)). Installa poi il **servizio di Windows** "HikAccess Pro Web", che parte da solo a ogni avvio del sistema (con **avvio ritardato**: circa due minuti dopo l'avvio di Windows, quando il server è meno impegnato) anche senza utenti collegati e si riavvia in caso di errore, e controlla che la console risponda. Con il servizio installa anche l'[icona di stato](#server-icona-stato) per chi accede al server. Infine apre nel Firewall di Windows, per le reti Private e di Dominio (a richiesta anche per le Pubbliche), la porta della console e la porta UDP 37020 con cui i dispositivi rispondono a [Rileva in rete](#varchi-rilevare), e crea i collegamenti nel menu Start. Alla prima installazione chiede anche la **cartella dei dati** (configurazione, database, account, foto degli eventi): quella proposta è `C:\ProgramData\HikAccessWeb`, ma su un server conviene un disco dati locale, mai una cartella di rete. Con il servizio quella cartella la possono aprire solo gli amministratori di Windows e il sistema. Porta e cartella dei dati stanno nel file `appsettings.Local.json` accanto al programma, che gli aggiornamenti conservano.
 
 In alternativa, il pacchetto portabile (cartella con `HikAccessWeb.exe`) si avvia con un doppio clic e tiene i dati nella sottocartella `data`; gli script `Install-Service.ps1` e `Uninstall-Service.ps1` installano e rimuovono il servizio a mano. I dettagli tecnici (porta, HTTPS, cartella dati, riga di comando) sono nel file README della cartella di installazione.
 
@@ -845,6 +856,13 @@ La console è stata aperta con Internet Explorer, per esempio sul server con Win
 <summary><b>Dagli altri PC la console non si apre</b></summary>
 
 Controlla indirizzo e porta (`http://nome-server:5080`), che il servizio sia attivo e che la rete del server sia **Privata** o di Dominio: la regola del firewall creata dal setup vale per le reti Pubbliche solo se hai scelto l'opzione (per cambiarla esegui di nuovo il setup). Con un firewall di terze parti apri la porta TCP scelta.
+
+</details>
+
+<details>
+<summary><b>Rileva in rete non trova nulla</b></summary>
+
+La ricerca parte dal server, non dal PC su cui usi il browser, e trova solo i dispositivi nella stessa sottorete del server. Se il programma gira come servizio di Windows, la porta UDP 37020 deve essere aperta nel firewall (il setup lo fa; con un firewall di terze parti aprila a mano). Per un dispositivo dietro un router o in VPN usa **Indirizzo specifico**; se nemmeno così risponde, il suo firmware non prevede la ricerca mirata: compila la scheda a mano.
 
 </details>
 

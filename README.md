@@ -51,7 +51,8 @@ i gruppi con fasce orarie restano chiusi in quei giorni, direttamente sui contro
 
 **🚪 Varchi Hikvision**<br>
 Terminali e controller via HTTP/ISAPI oppure con l'SDK Hikvision sulla porta 8000, anche multi-porta (per esempio i
-DS-K2604). Apertura, chiusura, sblocco e blocco permanente, stato della porta, orologio con ora legale, diagnostica,
+DS-K2604). **Rileva in rete** li trova da solo nella rete locale, come il programma SADP, e apre la scheda già
+compilata. Apertura, chiusura, sblocco e blocco permanente, stato della porta, orologio con ora legale, diagnostica,
 operazioni su più varchi insieme.
 
 **💳 Utenti, tessere e PIN**<br>
@@ -148,7 +149,8 @@ il runtime .NET: non serve installare altro.
    firewall e controlla che la console risponda. Se non crei l'account, la console chiede un codice che si legge solo
    sul server: il setup apre la pagina con il codice già scritto.
 2. **Apri la console** da qualsiasi PC della rete: `http://<nome-o-IP-del-server>:5080`.
-3. **Aggiungi i varchi** da *Varchi → Aggiungi varco*: indirizzo IP, utente e password del dispositivo.
+3. **Aggiungi i varchi** da *Varchi → Rileva in rete*: la console trova i dispositivi Hikvision della rete e compila la
+   scheda, restano utente e password del dispositivo. Oppure *Aggiungi varco* e si scrive tutto a mano.
 4. **Carica gli utenti**: riceverli dai varchi o inserirli a mano; tessere e permessi arrivano da soli ai dispositivi.
 
 Per aggiornare basta premere **Scarica e installa** in *Sistema → Impostazioni → Aggiornamento del programma*: il
@@ -216,7 +218,8 @@ in PDF.
 I terminali e i controller di controllo accessi Hikvision raggiungibili in rete via HTTP/ISAPI, la gestione «a
 persone» con nome, tessere, PIN e validità, oppure con l'SDK Hikvision sulla porta di servizio 8000, come fa
 iVMS-4200: per esempio i controller DS-K2604 di prima generazione. Nei controller multi-porta si crea un varco per
-ogni porta.
+ogni porta. <b>Rileva in rete</b> trova terminali, controller, telecamere e videoregistratori Hikvision della rete
+locale del server senza credenziali, con modello, firmware e porte, e apre la scheda già compilata.
 </details>
 
 <details>
