@@ -42,8 +42,9 @@ Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: config
 <td width="50%" valign="top">
 
 **🏢 Multisito**<br>
-Più sedi in una sola console, ognuna con i suoi varchi e gruppi di accesso, anche con giorni e fasce orarie; gli
-utenti sono unici per tutto l'impianto.
+Più sedi in una sola console, ognuna con i suoi varchi, i suoi gruppi di accesso (anche con giorni e fasce orarie) e
+le sue persone; chi lavora in più sedi si condivide tra i siti, con la stessa matricola. Il sito attivo è sempre in
+evidenza in alto a sinistra.
 
 **📅 Festività**<br>
 Festività nazionali calcolate da sole (anche Pasqua), il **santo patrono** della località e le chiusure aziendali:
@@ -78,8 +79,8 @@ errati e registro attività di ogni operazione.
 
 **🔔 Notifiche Telegram**<br>
 Ogni operatore collega la sua chat con un QR e un PIN e sceglie cosa ricevere: accessi negati, porta forzata o aperta
-troppo a lungo, allarmi, varchi non raggiungibili, solo per alcuni varchi o alcune persone. Nessuna porta da aprire sul
-router. *Con licenza.*
+troppo a lungo, allarmi, varchi non raggiungibili, solo per alcuni varchi o alcune persone. Se il varco ha una
+telecamera associata, l'avviso arriva con la **foto dell'evento**. Nessuna porta da aprire sul router. *Con licenza.*
 
 **🏠 Home Assistant e domotica**<br>
 Servizio REST con chiavi API per aprire i varchi da Home Assistant o da altri sistemi, con varchi consentiti e

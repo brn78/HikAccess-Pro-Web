@@ -3,6 +3,31 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.9.0 · 8 novembre 2026
+
+Ogni sito ha le sue persone, il sito attivo è sempre sott'occhio e gli avvisi Telegram arrivano con la foto.
+
+- **Persone per sito**: un sito nuovo nasce vuoto e la pagina *Utenti* mostra solo le persone del sito attivo. Chi
+  viene creato, ricevuto da un varco o importato in un sito resta in quel sito; la matricola è sempre unica in tutto
+  l'impianto, così la stessa persona può entrare in più sedi senza doppioni. Per chi lavora in più sedi c'è la
+  **condivisione**: nella scheda (sezione *Siti in cui è presente*), dal menu della persona (*Condividi con un altro
+  sito…*) o per più persone insieme (*Condividi con un sito*). *Togli dal sito* fa il contrario: le autorizzazioni sui
+  varchi di quel sito vengono revocate con l'invio e il resto non cambia. Aggiornando, ogni persona finisce nei siti dei
+  suoi varchi autorizzati e del suo gruppo (nel primo sito se non ne ha): nulla si perde, cambia solo dove la vedi.
+- **Sito attivo in evidenza**: il selettore è ora in alto a sinistra, prima del nome della pagina, più grande e
+  colorato. Al cambio di sito pulsa e un avviso dice in quale sito stai lavorando, con la descrizione del sito e i suoi
+  numeri (varchi, gruppi, persone).
+- **Telegram con la foto**: se il varco ha una telecamera associata che fotografa l'evento (o il terminale manda la sua
+  foto), l'avviso arriva come foto con il testo sotto, appena lo scatto è pronto (di solito entro pochi secondi, al più
+  una quindicina). Si spegne per ogni operatore in *Profilo → Notifiche* (*Allega la foto dell'evento*); gli
+  amministratori lo impostano anche per gli altri. Le foto sono dati personali e passano dai server di Telegram:
+  tienine conto nell'informativa.
+- **Dashboard**: il riquadro *Persone del sito* conta le persone presenti nel sito, non più tutta l'anagrafica.
+- **Eliminazione di un sito**: non si elimina un sito che ha ancora persone presenti solo lì.
+
+**Da sapere.** Le persone già condivise di fatto (autorizzate su varchi di due siti) compaiono in entrambi. Gli avvisi
+riassuntivi (più di 4 eventi insieme) e quelli sui varchi non raggiungibili restano solo testo.
+
 ## 1.8.3 · 8 novembre 2026
 
 I dispositivi Hikvision si trovano da soli.

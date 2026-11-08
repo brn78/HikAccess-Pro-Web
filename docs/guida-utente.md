@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.3**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.9.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -82,7 +82,7 @@ Un amministratore può reimpostarla da **Operatori**. Se a non ricordare la pass
 
 ### <a id="interfaccia-sito"></a>Il sito attivo
 
-Dashboard, Varchi, Gruppi ed Eventi mostrano solo il sito attivo. La pagina Utenti mostra sempre tutta l'anagrafica, ma le colonne e le spunte dei varchi si riferiscono al sito attivo. Il sito scelto viene ricordato dal browser.
+Il **selettore del sito attivo** è in alto a sinistra, prima del nome della pagina: Dashboard, Varchi, Gruppi, Telecamere, Eventi e Utenti mostrano solo quel sito, perché ogni sito ha i suoi varchi, i suoi gruppi e le sue persone (una persona si può condividere con altri siti, vedi [Persone e siti](#utenti-siti)). Al cambio di sito il selettore pulsa e un avviso ricorda in quale sito stai lavorando, con la sua descrizione e i suoi numeri. Il sito scelto viene ricordato dal browser.
 
 ### <a id="interfaccia-tabelle"></a>Tabelle, schede e menu
 
@@ -129,14 +129,14 @@ Deve restare sempre almeno un amministratore abilitato: la console impedisce di 
 
 ## <a id="siti"></a>Siti
 
-Pagina **Siti** (modifiche riservate agli amministratori). Un sito è una sede con i propri varchi e gruppi; gli utenti sono comuni a tutti i siti e possono essere autorizzati in più sedi.
+Pagina **Siti** (modifiche riservate agli amministratori). Un sito è una sede con i propri varchi, gruppi, telecamere e persone: un sito nuovo nasce vuoto e quello che fai in un sito resta lì. Chi lavora in più sedi si **condivide** tra i siti (la matricola resta unica in tutto l'impianto, vedi [Persone e siti](#utenti-siti)).
 
-- **Nuovo sito**: nome e descrizione. Alla creazione la console propone di renderlo attivo per aggiungere subito varchi e gruppi. La versione gratuita gestisce un solo sito; i siti oltre la [licenza](#sistema-licenza) sono segnati **Oltre la licenza** e i loro varchi sono sospesi.
-- **Rendi attivo**: cambia il sito attivo (equivale al selettore in alto).
-- **Elimina sito**: possibile solo se il sito non ha varchi né gruppi, e mai per l'ultimo sito rimasto.
+- **Nuovo sito**: nome e descrizione (la descrizione compare nell'avviso al cambio di sito). Alla creazione la console propone di renderlo attivo per aggiungere subito varchi e gruppi. La versione gratuita gestisce un solo sito; i siti oltre la [licenza](#sistema-licenza) sono segnati **Oltre la licenza** e i loro varchi sono sospesi.
+- **Rendi attivo**: cambia il sito attivo (equivale al selettore in alto a sinistra); un avviso conferma nome e descrizione del sito in cui stai lavorando.
+- **Elimina sito**: possibile solo se il sito non ha varchi, gruppi, telecamere né persone presenti solo lì, e mai per l'ultimo sito rimasto. Le persone condivise con altri siti perdono soltanto questo sito.
 
 > [!TIP]
-> Con un solo impianto basta il sito predefinito. Crea più siti quando le sedi hanno varchi e regole distinte: ogni sito ha i suoi gruppi e la sua dashboard.
+> Con un solo impianto basta il sito predefinito. Crea più siti quando le sedi hanno varchi, regole e persone distinte: ogni sito ha i suoi gruppi, le sue persone e la sua dashboard, e condividi solo chi deve entrare in più sedi.
 
 ## <a id="varchi"></a>Varchi
 
@@ -304,7 +304,7 @@ Nella scheda di un gruppo con **Giorni e fasce orarie**, la riga **Festività** 
 
 ## <a id="utenti"></a>Utenti, tessere e PIN
 
-Pagina **Utenti e tessere**: l'anagrafica di tutto l'impianto. La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica). Con le caselle all'inizio delle righe si opera su più persone insieme (vedi [Operazioni su più utenti](#utenti-multipli)).
+Pagina **Utenti e tessere**: le persone del sito attivo, comprese quelle condivise da altri siti (per le persone di un'altra sede cambia sito attivo, vedi [Persone e siti](#utenti-siti)). La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica). Con le caselle all'inizio delle righe si opera su più persone insieme (vedi [Operazioni su più utenti](#utenti-multipli)).
 
 La scheda di una persona si apre sempre con i dati attuali del server, anche se l'elenco è stato caricato da un po'. Se nel frattempo un altro operatore (o una ricezione dai varchi) modifica la stessa persona, al salvataggio la console avvisa che la scheda «è stata modificata dopo che l'hai aperta» e propone **Riapri con i dati attuali**: così una scheda vecchia non toglie tessere o varchi aggiunti da altri. Annota prima le modifiche che vuoi rifare.
 
@@ -339,7 +339,18 @@ Il **PIN tastiera** è un codice da 4 a 8 cifre usato sui terminali con tastieri
 
 ### <a id="utenti-varchi"></a>Varchi autorizzati
 
-Nella sezione **Varchi autorizzati · sito ...** spunti i varchi del sito attivo su cui la persona può passare. La casella di ricerca filtra l'elenco; **Da gruppo** ricarica i varchi del gruppo scelto (con **Annulla** nell'avviso); **Tutti** e **Nessuno** agiscono sull'intero elenco. Le autorizzazioni sugli **altri siti** restano invariate: per modificarle cambia sito attivo dal selettore in alto e riapri la scheda della persona (la nota sotto l'elenco ricorda su quanti varchi di altri siti è autorizzata).
+Nella sezione **Varchi autorizzati · sito ...** spunti i varchi del sito attivo su cui la persona può passare. La casella di ricerca filtra l'elenco; **Da gruppo** ricarica i varchi del gruppo scelto (con **Annulla** nell'avviso); **Tutti** e **Nessuno** agiscono sull'intero elenco. Le autorizzazioni sugli **altri siti** restano invariate: per modificarle cambia sito attivo dal selettore in alto a sinistra e riapri la scheda della persona, che deve essere presente anche in quel sito (la nota sotto l'elenco ricorda su quanti varchi di altri siti è autorizzata).
+
+### <a id="utenti-siti"></a>Persone e siti
+
+Ogni sito ha le sue persone: chi viene creato, ricevuto da un varco o importato in un sito è presente in quel sito e compare solo lì. La **matricola resta unica** in tutto l'impianto, perché è la chiave della persona sui controller: la stessa persona può quindi essere presente in più sedi, senza doppioni.
+
+- **Condividere**: nella scheda, sezione **Siti in cui è presente**, spunta gli altri siti; oppure dall'elenco, menu della persona → **Condividi con un altro sito…**, o **Condividi con un sito** dopo averne selezionate più d'una. Nel sito scelto la persona compare nell'elenco e, cambiando sito attivo, le spunti i varchi di quella sede. Sui controller non viene scritto nulla finché non la invii da lì.
+- **Togliere da un sito**: togli la spunta nella scheda, oppure **Togli dal sito…** nel menu o tra le operazioni su più persone. Le autorizzazioni sui varchi di quel sito vengono revocate con l'invio e il gruppo di quel sito viene tolto; negli altri siti non cambia nulla. Una persona presente in un solo sito non si toglie: si elimina.
+- **Eliminare** una persona la toglie dall'anagrafica e da tutti i varchi di tutti i siti, come prima.
+
+> [!NOTE]
+> Aggiornando da una versione precedente, ogni persona viene messa nei siti dei suoi varchi autorizzati e del suo gruppo; chi non ha né varchi né gruppo va nel primo sito. Nulla si perde: cambia solo dove la vedi.
 
 ### <a id="utenti-sincronizzazione"></a>Salvare e inviare ai varchi
 
@@ -500,6 +511,7 @@ Nella scheda della telecamera scegli i **varchi associati** e quali eventi fotog
 - Con gli [eventi in tempo reale](#varchi-tempo-reale) la foto parte appena il controller segnala il passaggio, quando la persona è ancora davanti alla telecamera.
 - Con la sola scansione periodica l'evento arriva in ritardo: se nella pagina Varchi la colonna Eventi dice **Solo scansione**, la foto mostra la scena di qualche secondo dopo. Il ritardo è scritto sotto l'immagine e, oltre 30 secondi, la foto non viene scattata perché non mostrerebbe più chi è passato.
 - Le anteprime compaiono nello storico [Eventi](#eventi-consultare) e in **Attività in tempo reale** della Dashboard, con il bordo verde per gli accessi concessi e rosso per quelli negati. Un clic apre l'immagine grande, con chi, dove, quando e il pulsante per scaricarla.
+- La stessa foto accompagna l'avviso su [Telegram](#notifiche) degli operatori che hanno scelto di riceverla con l'evento.
 
 Una telecamera di altra marca senza indirizzo delle foto mostra il video, ma non può fotografare gli eventi.
 
@@ -547,9 +559,10 @@ Gli operatori possono ricevere sul telefono, con **Telegram**, un messaggio per 
 
 1. **Il bot** (una volta, un amministratore): in Telegram apri **@BotFather**, scrivi `/newbot` e scegli nome e nome utente (deve finire con «bot»). Copia il **token** che ti risponde in **Sistema → Impostazioni**, riquadro **Notifiche Telegram**, e salva: la console chiede a Telegram il nome del bot e conserva il token cifrato. Facoltativo: l'**indirizzo della console da fuori** (es. quello di KeenDNS) aggiunge a ogni messaggio il collegamento «Apri nella console».
 2. **La chat** (ogni operatore, per sé): **Profilo e sicurezza**, riquadro **Notifiche Telegram**, **Collega Telegram**. Inquadra il QR con il telefono (o apri il link), premi **Avvia** nella chat del bot e scrivi il **PIN di 6 cifre** mostrato nella console. Il codice vale 10 minuti e una volta sola; il PIN non è nel QR né nel link, e tre PIN sbagliati annullano il collegamento.
-3. **Che cosa ricevere**: **Quali eventi** (caselle), **Su quali varchi** (tutti o solo alcuni, di tutti i siti) e **Per quali persone** (tutte o solo alcune: vale per gli accessi concessi e negati, mentre porte forzate, allarmi e varchi non raggiungibili arrivano comunque). **Salva le notifiche**, poi **Mandami un messaggio di prova**.
+3. **Che cosa ricevere**: **Quali eventi** (caselle), **Su quali varchi** (tutti o solo alcuni, di tutti i siti), **Per quali persone** (tutte o solo alcune: vale per gli accessi concessi e negati, mentre porte forzate, allarmi e varchi non raggiungibili arrivano comunque) e **Allega la foto dell'evento**. **Salva le notifiche**, poi **Mandami un messaggio di prova**.
 
 - Il messaggio arriva appena il varco registra l'evento: tipo, varco, persona e tessera, data e ora. Più di 4 eventi insieme arrivano in un solo messaggio riassuntivo. Gli eventi recuperati dal registro dopo un fermo del server non vengono notificati.
+- **Con la foto**: se il varco ha una [telecamera associata](#telecamere-eventi) che fotografa quell'evento (o il terminale manda la sua foto), l'avviso arriva come foto con il testo sotto, appena lo scatto è pronto: di solito entro pochi secondi, al più una quindicina; se la foto non arriva in tempo, parte il solo testo. Si spegne con **Allega la foto dell'evento** nelle proprie notifiche. Gli avvisi riassuntivi e quelli sui varchi non raggiungibili restano solo testo. Le foto sono dati personali e passano dai server di Telegram: tienine conto nell'informativa (vedi [Conservazione e privacy](#telecamere-privacy)).
 - **Varco non raggiungibile**: dopo un minuto senza risposta del controller, e un secondo messaggio quando torna raggiungibile.
 - Gli amministratori impostano le notifiche degli altri da **Sistema → Operatori**, menu dell'operatore, **Notifiche Telegram**.
 - Nella chat, `/stop` scollega la chat; si scollega da sola anche se blocca il bot. Gli account disabilitati non ricevono messaggi.
