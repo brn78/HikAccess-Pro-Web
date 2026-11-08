@@ -3,6 +3,29 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.8.2 · 8 novembre 2026
+
+Menu più ordinati, telecamere più rapide da aggiungere e una correzione sugli utenti.
+
+- **Menu delle telecamere** come quello dei varchi, con nome e modello in testa: video, *Verifica foto e video*, copia
+  dell'indirizzo, interfaccia web della telecamera (la password si copia dopo la conferma con la propria), modifica ed
+  eliminazione.
+- **Nuova telecamera con le stesse credenziali** e **altro canale dello stesso dispositivo**: schede già compilate,
+  comode soprattutto per le telecamere di un NVR, con il primo canale libero già proposto. Se la password copiata
+  andrebbe a un altro indirizzo, porta o utente, la console chiede la conferma con la propria password.
+- **Modello dei varchi a colpo d'occhio**: nella pagina *Varchi* la colonna *Dispositivo* mostra il modello (per esempio
+  DS-K2602T) con il firmware, ricavato dal seriale; il seriale completo resta nel suggerimento e nella ricerca.
+- **Menu laterale riordinato**: *Telecamere* è in *Gestione*, accanto a *Varchi*, e ogni pagina ha nel titolo l'icona
+  della sua voce. La **conservazione delle immagini** è ora una pagina di *Sistema*.
+- **Utenti senza matricola**: un record arrivato da un controller senza matricola non si poteva aprire né eliminare.
+  Ora compare come *Record senza matricola* e si elimina con un clic, solo dall'anagrafica perché su un controller non
+  può esistere; la ricezione dai varchi non li importa più e li conta nel log. Le matricole nuove con `/` o `\` non si
+  possono più salvare, perché impedivano di aprire la scheda; quelle già presenti restano modificabili.
+- **Setup**: l'ultima pagina della procedura guidata mostra il testo per intero.
+
+**Da sapere.** La conservazione delle immagini è tra le pagine di amministrazione: operatori e utenti in sola lettura
+non la vedono più.
+
 ## 1.8.1 · 7 novembre 2026
 
 Versione dedicata alla sicurezza.

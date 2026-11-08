@@ -65,7 +65,8 @@ anche con la console chiusa: dashboard, accessi negati, storico degli eventi con
 
 **🎥 Telecamere**<br>
 Telecamere Hikvision o di altra marca con RTSP: video dal vivo nel browser, senza plugin e senza ricodifica, e una foto
-a ogni accesso concesso o negato, visibile negli eventi. Una telecamera è compresa nella versione gratuita.
+a ogni accesso concesso o negato, visibile negli eventi. Le telecamere di un NVR si aggiungono in pochi clic, canale per
+canale, con le stesse credenziali. Una telecamera è compresa nella versione gratuita.
 
 </td>
 <td width="50%" valign="top">
@@ -99,7 +100,7 @@ varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **S
 
 <table>
 <tr>
-<td width="50%" align="center"><img src="docs/immagini/varchi.png" alt="Pagina Varchi"><br><b>Varchi</b>: stato, canale, seriale e comandi</td>
+<td width="50%" align="center"><img src="docs/immagini/varchi.png" alt="Pagina Varchi"><br><b>Varchi</b>: stato, canale, modello e comandi</td>
 <td width="50%" align="center"><img src="docs/immagini/utenti.png" alt="Scheda di un utente"><br><b>Utenti e tessere</b>: la scheda della persona</td>
 </tr>
 <tr>
@@ -231,7 +232,8 @@ ONVIF finora sono stati provati solo su dispositivi simulati.
 <summary><b>Il video viene registrato? Dove finiscono le foto?</b></summary>
 <br>
 Il video non viene registrato: attraversa il server solo mentre qualcuno lo guarda. Le foto dei passaggi restano sul tuo
-server e vengono eliminate da sole dopo i giorni di conservazione scelti (predefiniti 7). Sono dati personali: prima di
+server e vengono eliminate da sole dopo i giorni di conservazione scelti in *Sistema → Conservazione immagini*
+(predefiniti 7). Sono dati personali: prima di
 attivarle verifica con il responsabile della privacy informativa, cartelli e, per i lavoratori, le garanzie sui controlli a
 distanza. La <a href="docs/guida-utente.md">guida utente</a> spiega cosa controllare.
 </details>

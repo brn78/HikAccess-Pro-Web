@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.8.2**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -76,7 +76,7 @@ Un amministratore può reimpostarla da **Operatori**. Se a non ricordare la pass
 
 ### <a id="interfaccia-menu"></a>Menu laterale e barra superiore
 
-- Il **menu laterale** ha in alto **Monitoraggio** ( Dashboard, Eventi e storico) e **Gestione** ( Varchi, Gruppi, Utenti e tessere, Siti). Il gruppo Gestione si chiude con un clic sul titolo ⌄: il browser ricorda la scelta, e il gruppo si riapre da solo quando arrivi su una sua pagina. Accanto a «Console web» c'è la **versione in uso**.
+- Il **menu laterale** ha in alto **Monitoraggio** ( Dashboard, Eventi e storico) e **Gestione** ( Varchi, Telecamere, Gruppi, Utenti e tessere, Siti). Il gruppo Gestione si chiude con un clic sul titolo ⌄: il browser ricorda la scelta, e il gruppo si riapre da solo quando arrivi su una sua pagina. Accanto a «Console web» c'è la **versione in uso**. Il titolo di ogni pagina riporta la stessa icona della sua voce di menu.
 - In fondo al menu: **Sistema** ⚙ (solo amministratori) apre la [pagina con le funzioni di amministrazione](#sistema); un pallino sull'icona segnala una nuova versione o una [licenza](#sistema-licenza) da guardare (rosso se non è valida). Poi **Guida utente** 📖, la riga **Monitoraggio varchi** (scansione automatica attiva e ultima lettura; clic per la Dashboard) e **Nascondi menu** , che riduce il menu alle sole icone (con il monogramma «HA»). Il browser ricorda la scelta, a parte per le finestre strette, dove il menu parte ridotto; su telefono il menu si apre con ☰.
 - Nella **barra superiore** trovi il nome dell'impianto e della pagina, il contatore delle [operazioni in corso](#operazioni), il **selettore del sito attivo**, il pulsante del **tema** (chiaro, scuro o automatico come il sistema) e il menu con il tuo nome (profilo, impostazioni, guida, uscita).
 
@@ -140,7 +140,7 @@ Pagina **Siti** (modifiche riservate agli amministratori). Un sito è una sede c
 
 ## <a id="varchi"></a>Varchi
 
-Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, arrivo degli eventi, seriale, firmware, tempo di risposta e ultimo contatto. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito. Con le caselle all'inizio delle righe si eseguono alcune operazioni su più varchi insieme (vedi [Operazioni su più varchi](#varchi-multipli)).
+Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, arrivo degli eventi, dispositivo, tempo di risposta e ultimo contatto. La colonna **Dispositivo** mostra il modello, ricavato dal seriale Hikvision (per esempio DS-K2602T), con il firmware sotto; il seriale completo compare passando con il mouse e si può cercare. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito. Con le caselle all'inizio delle righe si eseguono alcune operazioni su più varchi insieme (vedi [Operazioni su più varchi](#varchi-multipli)).
 
 ### <a id="varchi-aggiungere"></a>Aggiungere un varco
 
@@ -342,6 +342,8 @@ Se disattivi l'interruttore, la modifica resta solo nella console. Per inviarla 
 
 Dai controller "a tessere" (senza anagrafica) arrivano solo i numeri: la console crea record **solo tessera**, che puoi completare con il nome aprendo la scheda (la matricola resta il numero della tessera), anche passando le tessere una dopo l'altra con [Identifica badge](#utenti-identifica). Per una matricola diversa crea un nuovo utente con quella tessera: il record solo tessera viene unito. Se la stessa tessera è già di una persona nota, i record vengono uniti.
 
+Un record del dispositivo **senza matricola** non entra in anagrafica: non si potrebbe né aprire né modificare. Il log della ricezione dice quanti ne ha ignorati; se servono, correggili dall'interfaccia web del controller e ripeti la ricezione. Un record così arrivato con una versione precedente compare nell'elenco come **Record senza matricola**: un clic lo elimina dall'anagrafica, senza toccare i controller, dove un utente senza matricola non può esistere.
+
 ### <a id="utenti-serie"></a>Registrare molte persone di seguito
 
 Per una serie di badge (per esempio 20 nuovi dipendenti con le stesse autorizzazioni) usa **Registra in serie**, in alto nella pagina Utenti: una sola finestra, senza riaprire la scheda per ogni persona.
@@ -457,6 +459,19 @@ Pagina **Telecamere**: il **video dal vivo** delle telecamere del sito attivo e,
 
 Come per i varchi, se la telecamera rifiuta le credenziali il server smette di ritentare finché non le correggi, così l'utente non viene bloccato dal dispositivo. Il blocco vale per tutti i canali dello stesso NVR, e anche **Verifica** si ferma al primo rifiuto. Salvare la scheda o premere **Verifica** riabilita i tentativi.
 
+### <a id="telecamere-menu"></a>Menu della telecamera
+
+Nella scheda **Elenco**, il tasto destro o ⋯ su una riga apre il menu, con lo stesso ordine di quello dei varchi: in testa il nome e il modello.
+
+- **Apri il video**: il video dal vivo in una finestra grande.
+- **Verifica foto e video** (amministratori): la stessa prova della scheda, con i dati salvati; aggiorna modello, seriale e firmware.
+- **Copia indirizzo IP** e **Interfaccia web della telecamera** (amministratori): apre la pagina del dispositivo in una nuova scheda e, come per i varchi, permette di copiare la password dopo la conferma con la propria; ogni copia finisce nel registro attività.
+- **Nuova telecamera con le stesse credenziali**: scheda già compilata con porte, utente, password e impostazioni della telecamera scelta; restano da scrivere nome e indirizzo. Poiché la password andrebbe a un altro dispositivo, la console chiede la conferma con la tua password, oppure puoi scrivere quella del nuovo dispositivo.
+- **Aggiungi un altro canale di questo dispositivo** (solo Hikvision): stesso indirizzo e credenziali, con il primo canale non ancora usato; è il modo più rapido per aggiungere le telecamere di un NVR. Controlla il canale con **Verifica** e scegli i varchi da fotografare.
+- **Modifica parametri telecamera** ed **Elimina telecamera**.
+
+I varchi associati non vengono copiati: ogni telecamera fotografa i passaggi che scegli nella sua scheda.
+
 ### <a id="telecamere-video"></a>Video dal vivo
 
 La scheda **Dal vivo** mostra un riquadro per telecamera; un clic lo ingrandisce, e da lì si sceglie tra **Leggero** (flusso secondario) e **Alta qualità** (flusso principale) e si passa a schermo intero. Il video di un varco si apre anche dal pulsante con la telecamera nella Dashboard.
@@ -477,7 +492,7 @@ Nella scheda della telecamera scegli i **varchi associati** e quali eventi fotog
 
 Una telecamera di altra marca senza indirizzo delle foto mostra il video, ma non può fotografare gli eventi.
 
-**Terminali con fotocamera.** I terminali come i DS-K1T possono allegare una foto a ogni evento. Con l'opzione **Salva anche le foto dei terminali con fotocamera**, nella scheda Conservazione immagini, la console la tiene con l'evento senza bisogno di una telecamera. Sul terminale deve essere attivo l'invio delle foto, spesso spento di fabbrica, e il controller deve essere collegato in tempo reale.
+**Terminali con fotocamera.** I terminali come i DS-K1T possono allegare una foto a ogni evento. Con l'opzione **Salva anche le foto dei terminali con fotocamera**, nella pagina Sistema → Conservazione immagini, la console la tiene con l'evento senza bisogno di una telecamera. Sul terminale deve essere attivo l'invio delle foto, spesso spento di fabbrica, e il controller deve essere collegato in tempo reale.
 
 ### <a id="telecamere-problemi"></a>Se qualcosa non funziona
 
@@ -489,7 +504,7 @@ Una telecamera di altra marca senza indirizzo delle foto mostra il video, ma non
 
 ### <a id="telecamere-privacy"></a>Conservazione e privacy
 
-La scheda **Conservazione immagini** mostra quante foto sono archiviate e lo spazio occupato. Le foto oltre i **giorni di conservazione** (predefiniti 7) vengono eliminate da sole, ogni ora, insieme alle cartelle dei giorni scaduti e a eventuali file rimasti; oltre lo **spazio massimo** (predefinito 10 GB) si eliminano le più vecchie. Con meno di 1 GB libero sul disco le foto non vengono salvate e la telecamera lo segnala. Utente e indirizzi delle telecamere sono visibili solo agli amministratori.
+La pagina **Sistema → Conservazione immagini** (amministratori) mostra quante foto sono archiviate e lo spazio occupato. Le foto oltre i **giorni di conservazione** (predefiniti 7) vengono eliminate da sole, ogni ora, insieme alle cartelle dei giorni scaduti e a eventuali file rimasti; oltre lo **spazio massimo** (predefinito 10 GB) si eliminano le più vecchie. Con meno di 1 GB libero sul disco le foto non vengono salvate e la telecamera lo segnala. Utente e indirizzi delle telecamere sono visibili solo agli amministratori.
 
 > [!WARNING]
 > **Le foto dei passaggi sono dati personali.** Prima di attivarle verifica con il responsabile della privacy informativa e cartelli, durata della conservazione e chi può vedere le immagini. Se riguardano dei lavoratori servono anche le garanzie sui controlli a distanza (art. 4 dello Statuto dei lavoratori: accordo sindacale o autorizzazione dell'Ispettorato del lavoro).
@@ -564,7 +579,7 @@ Oltre all'esportazione, includi nei backup del server l'intera cartella dati (ve
 
 ## <a id="sistema"></a>Sistema
 
-La voce **Sistema** ⚙ in fondo al menu (solo amministratori) apre una pagina a schede: **Impostazioni**, **Operatori**, **Licenza**, **Backup e deploy**, **Chiavi API** e **Registro attività**. In cima, quando serve, gli avvisi: nuova versione disponibile, licenza non valida o in scadenza, varchi sospesi. Sulle pagine di amministrazione la voce Sistema resta evidenziata.
+La voce **Sistema** ⚙ in fondo al menu (solo amministratori) apre una pagina a schede: **Impostazioni**, [**Conservazione immagini**](#telecamere-privacy), **Operatori**, **Licenza**, **Backup e deploy**, **Chiavi API** e **Registro attività**. In cima, quando serve, gli avvisi: nuova versione disponibile, licenza non valida o in scadenza, varchi sospesi. Sulle pagine di amministrazione la voce Sistema resta evidenziata.
 
 ### <a id="sistema-operatori"></a>Operatori
 
