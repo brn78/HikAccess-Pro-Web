@@ -3,6 +3,21 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.10.1 · 12 novembre 2026
+
+Piccole comodità di tutti i giorni: la matricola si propone da sola, le schede si allargano e gli elenchi si leggono meglio.
+
+- **Matricola proposta**: creando un utente la scheda si apre con la matricola già scritta, la prima libera dopo
+  l'ultima in uso, con lo schema del sito (001 → 002, 2026-001 → 2026-002) e tenendo conto delle matricole di tutti i
+  siti. Il campo resta libero, per scriverne un'altra, e il cursore parte dal nome.
+- **Schede laterali ridimensionabili**: ogni scheda si allarga o si stringe trascinando la linea sul suo bordo
+  sinistro (doppio clic: larghezza normale); la linguetta con le frecce, che compare passandoci sopra, la porta a tutto
+  schermo. Il browser ricorda la larghezza scelta.
+- **Righe a colori alterni** in tutti gli elenchi, per seguirle meglio con l'occhio. Si spengono e si riaccendono con
+  *Righe a colori alterni* nel menu del tasto destro di una riga, che ora c'è in ogni elenco.
+- **Tasto destro**: dove la console non ha un suo menu non compare più quello del browser. Resta nelle caselle di testo
+  (per incollare), sul testo selezionato (per copiare) e ovunque tenendo premuto Maiusc.
+
 ## 1.10.0 · 12 novembre 2026
 
 Elenchi più comodi, il menu riordinato attorno al sito attivo e un calendario uguale in ogni browser.
