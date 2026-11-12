@@ -3,11 +3,11 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.9.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.10.0**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
-- [Panoramica](#panoramica)
+- [Introduzione](#introduzione)
 - [Primo avvio e accesso](#accesso)
 - [L'interfaccia](#interfaccia)
 - [Ruoli e permessi](#ruoli)
@@ -15,7 +15,7 @@
 - [Varchi](#varchi)
 - [Gruppi di accesso](#gruppi)
 - [Utenti, tessere e PIN](#utenti)
-- [Dashboard](#dashboard)
+- [Panoramica](#dashboard)
 - [Eventi e storico](#eventi)
 - [Telecamere](#telecamere)
 - [Operazioni in background](#operazioni)
@@ -33,7 +33,7 @@ HikAccess Pro Web è la console per gestire il controllo accessi Hikvision di un
 > [!TIP]
 > **Come orientarsi.** L'indice a lato porta al capitolo desiderato; la casella **Cerca nella guida** evidenzia tutte le occorrenze di una parola (<kbd>Invio</kbd> passa alla successiva). Nelle schede della console le icone ⓘ spiegano il singolo campo e rimandano al punto giusto di questa guida. <kbd>F1</kbd> apre la guida da qualsiasi pagina; **Stampa / PDF** la salva su carta o in un file.
 
-## <a id="panoramica"></a>Panoramica
+## <a id="introduzione"></a>Introduzione
 
 La console è composta da due parti:
 
@@ -76,22 +76,25 @@ Un amministratore può reimpostarla da **Operatori**. Se a non ricordare la pass
 
 ### <a id="interfaccia-menu"></a>Menu laterale e barra superiore
 
-- Il **menu laterale** ha in alto **Monitoraggio** ( Dashboard, Eventi e storico) e **Gestione** ( Varchi, Telecamere, Gruppi, Utenti e tessere, Siti). Il gruppo Gestione si chiude con un clic sul titolo ⌄: il browser ricorda la scelta, e il gruppo si riapre da solo quando arrivi su una sua pagina. Accanto a «Console web» c'è la **versione in uso**. Il titolo di ogni pagina riporta la stessa icona della sua voce di menu.
-- In fondo al menu: **Sistema** ⚙ (solo amministratori) apre la [pagina con le funzioni di amministrazione](#sistema); un pallino sull'icona segnala una nuova versione o una [licenza](#sistema-licenza) da guardare (rosso se non è valida). Poi **Guida utente** 📖, la riga **Monitoraggio varchi** (scansione automatica attiva e ultima lettura; clic per la Dashboard) e **Nascondi menu** , che riduce il menu alle sole icone (con il monogramma «HA»). Il browser ricorda la scelta, a parte per le finestre strette, dove il menu parte ridotto; su telefono il menu si apre con ☰.
-- Nella **barra superiore** trovi il nome dell'impianto e della pagina, il contatore delle [operazioni in corso](#operazioni), il **selettore del sito attivo**, il pulsante del **tema** (chiaro, scuro o automatico come il sistema) e il menu con il tuo nome (profilo, impostazioni, guida, uscita).
+- Il **menu laterale** ha in alto il gruppo del **sito attivo**, che ne porta il nome: Panoramica, Eventi e, solo per gli amministratori, Attività (il [registro attività](#sistema-registro), che riguarda tutti i siti). Sotto c'è **Gestione**: Utenti, Gruppi, Varchi e Telecamere. Il gruppo Gestione si chiude con un clic sul titolo ⌄: il browser ricorda la scelta, e il gruppo si riapre da solo quando arrivi su una sua pagina. Accanto a «Console web» c'è la **versione in uso**. Il titolo di ogni pagina riporta la stessa icona della sua voce di menu. I [siti](#siti) non sono nel menu: si aprono dal selettore del sito in alto (**Gestisci siti…**, **Elenco siti** per chi non è amministratore) e dalla pagina Sistema.
+- In fondo al menu c'è **Nascondi menu** , che riduce il menu alle sole icone (con il monogramma «HA»). Il browser ricorda la scelta, a parte per le finestre strette, dove il menu parte ridotto; su telefono il menu si apre con ☰ e ha in fondo anche **Sistema** e **Guida utente**.
+- Nella **barra superiore** trovi a sinistra il **selettore del sito attivo** e il nome della pagina; al centro lo stato del **Monitoraggio varchi** (scansione automatica attiva e ora dell'ultima lettura; un clic porta alla Panoramica); a destra il contatore delle [operazioni in corso](#operazioni), le icone **Sistema** ⚙ (solo amministratori: apre la [pagina con le funzioni di amministrazione](#sistema); un pallino sull'icona segnala una nuova versione o una [licenza](#sistema-licenza) da guardare, rosso se non è valida) e **Guida utente** 📖, il pulsante del **tema** (chiaro, scuro o automatico come il sistema) e il menu con il tuo nome (profilo, impostazioni, guida, uscita).
 
 ### <a id="interfaccia-sito"></a>Il sito attivo
 
-Il **selettore del sito attivo** è in alto a sinistra, prima del nome della pagina: Dashboard, Varchi, Gruppi, Telecamere, Eventi e Utenti mostrano solo quel sito, perché ogni sito ha i suoi varchi, i suoi gruppi e le sue persone (una persona si può condividere con altri siti, vedi [Persone e siti](#utenti-siti)). Al cambio di sito il selettore pulsa e un avviso ricorda in quale sito stai lavorando, con la sua descrizione e i suoi numeri. Il sito scelto viene ricordato dal browser.
+Il **selettore del sito attivo** è in alto a sinistra, prima del nome della pagina: Panoramica, Varchi, Gruppi, Telecamere, Eventi e Utenti mostrano solo quel sito, perché ogni sito ha i suoi varchi, i suoi gruppi e le sue persone (una persona si può condividere con altri siti, vedi [Persone e siti](#utenti-siti)). Al cambio di sito il selettore pulsa e un avviso ricorda in quale sito stai lavorando, con la sua descrizione e i suoi numeri. Il sito scelto viene ricordato dal browser.
 
 ### <a id="interfaccia-tabelle"></a>Tabelle, schede e menu
 
-- Clic sull'intestazione di una colonna per **ordinare**; le caselle e i pulsanti sopra la tabella **filtrano**.
-- Regola unica in tutta la console: **un clic** su una riga, su un riquadro della dashboard o su un passaggio apre la scheda corrispondente (in sola consultazione per chi non può modificare); il **tasto destro** o il pulsante ⋯ aprono il menu delle azioni. Il piè di pagina di ogni tabella lo ricorda.
+- Clic sull'intestazione di una colonna per **ordinare**. Sopra la tabella, la **ricerca** filtra mentre scrivi; i filtri a tendina (gruppo, varco, tipo di evento, categoria) stanno nella finestra che si apre con l'imbuto : il numero sull'icona dice quanti sono attivi e sotto la barra compaiono le loro etichette, con la × per toglierli uno alla volta o **Togli tutti**. Le scelte rapide (Tutti, Online, Offline…) e il periodo restano nella barra; **Filtri…** è anche nel menu del tasto destro delle righe.
+- **Elenco o Schede**: in alto a destra della tabella scegli la vista. In **Schede** ogni voce è descritta per intero, comprese le colonne che nell'elenco si nascondono sugli schermi stretti, e si ordina con l'icona . Il browser ricorda la vista scelta per ogni elenco; sul telefono gli elenchi sono sempre a schede.
+- In basso a sinistra c'è il **numero delle righe** («3 di 7 utenti» quando la ricerca o un filtro ne nascondono alcune) con il tempo impiegato dal caricamento . L'elenco che chiude la pagina arriva fino in fondo alla finestra e scorre al suo interno, con la riga dei titoli sempre in vista; gli elenchi lunghi si disegnano 200 righe alla volta e le successive arrivano scorrendo, o con **Mostra altre**.
+- Regola unica in tutta la console: **un clic** su una riga, su un riquadro della Panoramica o su un passaggio apre la scheda corrispondente (in sola consultazione per chi non può modificare); il **tasto destro** o il pulsante ⋯ aprono il menu delle azioni. Il piè di pagina di ogni tabella lo ricorda.
 - Le schede di modifica si aprono in un **pannello laterale**; <kbd>Esc</kbd>, **Annulla** o un clic fuori le chiudono senza salvare. Se hai cambiato qualcosa, la console chiede prima conferma (**Chiudi senza salvare** oppure **Continua a modificare**), anche quando cambi pagina con il menu, con <kbd>F1</kbd> o con il tasto Indietro del browser.
-- **Selezione multipla** (pagine Utenti e Varchi, per amministratori e operatori): la casella all'inizio della riga la seleziona, quella nell'intestazione seleziona tutte le righe visualizzate; tenendo premuto <kbd>Maiusc</kbd> si seleziona l'intervallo dall'ultima casella toccata. Con almeno una riga scelta compare sopra la tabella la barra delle **operazioni sulle righe selezionate**, con il loro numero e **Deseleziona**. La selezione vale per le righe visualizzate: quelle tolte da un filtro o dalla ricerca escono dalla selezione, così un'operazione non tocca mai righe che non vedi.
+- **Selezione multipla** (pagine Utenti e Varchi, per amministratori e operatori): l'icona **Scegli più righe** , la prima in alto a sinistra della tabella, mostra le caselle. La casella all'inizio della riga la seleziona, quella nell'intestazione seleziona tutte le righe dell'elenco; tenendo premuto <kbd>Maiusc</kbd> si seleziona l'intervallo dall'ultima casella toccata. Con almeno una riga scelta compare sopra la tabella la barra delle **operazioni sulle righe selezionate**, con il loro numero e **Deseleziona**; le stesse operazioni sono nel menu del tasto destro su una delle righe scelte. Premendo di nuovo l'icona le caselle spariscono e la selezione si toglie. La selezione vale per le righe dell'elenco: quelle tolte da un filtro o dalla ricerca ne escono, così un'operazione non tocca mai righe che non vedi.
 - Le conferme e gli esiti compaiono come **notifiche** in alto a destra; gli errori restano più a lungo. Alcune notifiche hanno un pulsante (**Vedi log**, **Dettagli**) per aprire il resoconto completo.
 - I testi di esito, dettaglio e diagnostica (per esempio l'esito di **Sincronizza orario** varco per varco) hanno in alto a destra il pulsante ⧉ per copiarli negli appunti.
+- I **campi data** hanno a destra l'icona : un clic nel campo o sull'icona apre il **calendario**, con il lunedì in testa, oggi cerchiato, le domeniche e le [festività](#gruppi-festivita) dell'impianto in rosso e, sotto il mese, il giorno per esteso con il nome della festa. Un clic sul titolo passa ai mesi e poi agli anni; **Oggi** riporta alla data di oggi. Nei campi con data e ora (la validità di una persona) accanto al mese c'è l'elenco delle ore, ogni mezz'ora. La data si può sempre scrivere a mano, e il calendario la segue.
 - I campi contrassegnati da \* sono obbligatori.
 
 ### <a id="interfaccia-scorciatoie"></a>Scorciatoie da tastiera
@@ -105,6 +108,9 @@ Il **selettore del sito attivo** è in alto a sinistra, prima del nome della pag
 | <kbd>Tab</kbd> | Passa al comando successivo; con una finestra o una scheda aperta resta al suo interno. |
 | <kbd>Invio</kbd> o <kbd>Spazio</kbd> su un'intestazione | Ordina la tabella per quella colonna (le intestazioni si raggiungono con <kbd>Tab</kbd>). |
 | <kbd>Maiusc</kbd> + clic su una casella | Seleziona o deseleziona tutte le righe tra l'ultima casella toccata e questa. |
+| <kbd>Invio</kbd> su una riga | Apre la scheda, come il clic (le righe si raggiungono con <kbd>Tab</kbd>); <kbd>↑</kbd> <kbd>↓</kbd> passano alla riga sopra o sotto, il tasto Menu (o <kbd>Maiusc</kbd>+<kbd>F10</kbd>) apre il menu della riga. |
+| <kbd>↑</kbd> <kbd>↓</kbd> <kbd>Pag↑</kbd> <kbd>Pag↓</kbd> <kbd>Inizio</kbd> <kbd>Fine</kbd> | Scorrono l'elenco che occupa la pagina, quando il cursore non è in un campo. |
+| <kbd>Alt</kbd>+<kbd>↓</kbd> o <kbd>F4</kbd> in un campo data | Apre il calendario e ci porta il cursore: le frecce cambiano giorno, <kbd>Pag↑</kbd> e <kbd>Pag↓</kbd> il mese (con <kbd>Maiusc</kbd> l'anno), <kbd>Inizio</kbd> e <kbd>Fine</kbd> vanno a lunedì e domenica, <kbd>Invio</kbd> sceglie, <kbd>Esc</kbd> chiude. |
 
 ## <a id="ruoli"></a>Ruoli e permessi
 
@@ -112,7 +118,7 @@ Ogni account ha uno dei tre ruoli. Assegna a ciascuno il minimo necessario: la p
 
 | Funzione | Amministratore | Operatore | Sola lettura |
 | --- | :---: | :---: | :---: |
-| Dashboard, stato dei varchi, storico eventi | ✓ | ✓ | ✓ |
+| Panoramica, stato dei varchi, storico eventi | ✓ | ✓ | ✓ |
 | Video delle telecamere e immagini degli eventi | ✓ | ✓ | ✓ |
 | Elenchi di varchi, gruppi e utenti | ✓ | ✓ | solo consultazione, senza PIN |
 | Comandi porta (apri, chiudi, sblocco e blocco permanente), orologio, diagnostica | ✓ | ✓ | — |
@@ -129,18 +135,18 @@ Deve restare sempre almeno un amministratore abilitato: la console impedisce di 
 
 ## <a id="siti"></a>Siti
 
-Pagina **Siti** (modifiche riservate agli amministratori). Un sito è una sede con i propri varchi, gruppi, telecamere e persone: un sito nuovo nasce vuoto e quello che fai in un sito resta lì. Chi lavora in più sedi si **condivide** tra i siti (la matricola resta unica in tutto l'impianto, vedi [Persone e siti](#utenti-siti)).
+Pagina **Siti** (modifiche riservate agli amministratori): si apre dal selettore del sito in alto, con **Gestisci siti…** (**Elenco siti** per chi non è amministratore), o dalla pagina [Sistema](#sistema). Un sito è una sede con i propri varchi, gruppi, telecamere e persone: un sito nuovo nasce vuoto e quello che fai in un sito resta lì. Chi lavora in più sedi si **condivide** tra i siti (la matricola resta unica in tutto l'impianto, vedi [Persone e siti](#utenti-siti)).
 
 - **Nuovo sito**: nome e descrizione (la descrizione compare nell'avviso al cambio di sito). Alla creazione la console propone di renderlo attivo per aggiungere subito varchi e gruppi. La versione gratuita gestisce un solo sito; i siti oltre la [licenza](#sistema-licenza) sono segnati **Oltre la licenza** e i loro varchi sono sospesi.
 - **Rendi attivo**: cambia il sito attivo (equivale al selettore in alto a sinistra); un avviso conferma nome e descrizione del sito in cui stai lavorando.
 - **Elimina sito**: possibile solo se il sito non ha varchi, gruppi, telecamere né persone presenti solo lì, e mai per l'ultimo sito rimasto. Le persone condivise con altri siti perdono soltanto questo sito.
 
 > [!TIP]
-> Con un solo impianto basta il sito predefinito. Crea più siti quando le sedi hanno varchi, regole e persone distinte: ogni sito ha i suoi gruppi, le sue persone e la sua dashboard, e condividi solo chi deve entrare in più sedi.
+> Con un solo impianto basta il sito predefinito. Crea più siti quando le sedi hanno varchi, regole e persone distinte: ogni sito ha i suoi gruppi, le sue persone e la sua Panoramica, e condividi solo chi deve entrare in più sedi.
 
 ## <a id="varchi"></a>Varchi
 
-Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, arrivo degli eventi, dispositivo, tempo di risposta e ultimo contatto. La colonna **Dispositivo** mostra il modello, ricavato dal seriale Hikvision (per esempio DS-K2602T), con il firmware sotto; il seriale completo compare passando con il mouse e si può cercare. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito. Con le caselle all'inizio delle righe si eseguono alcune operazioni su più varchi insieme (vedi [Operazioni su più varchi](#varchi-multipli)).
+Pagina **Varchi**: tutti i terminali e le porte dei controller del sito attivo, con stato, canale di comunicazione, arrivo degli eventi, dispositivo, tempo di risposta e ultimo contatto. La colonna **Dispositivo** mostra il modello, ricavato dal seriale Hikvision (per esempio DS-K2602T), con il firmware sotto; il seriale completo compare passando con il mouse e si può cercare. I comandi sono nel menu del tasto destro; **Scansiona tutti** interroga subito tutti i varchi del sito. Con **Scegli più righe** si eseguono alcune operazioni su più varchi insieme (vedi [Operazioni su più varchi](#varchi-multipli)).
 
 ### <a id="varchi-aggiungere"></a>Aggiungere un varco
 
@@ -185,11 +191,11 @@ La console tratta le porte dello stesso controller come un unico dispositivo: og
 - **In verifica**: il varco non è ancora stato interrogato (appena aggiunto o server appena avviato).
 - **Sospeso**: il varco supera i varchi consentiti dalla [licenza](#sistema-licenza). Resta configurato, ma non viene monitorato, non riceve comandi né utenti e non legge tessere; sopra l'elenco un avviso indica quanti sono.
 
-Lo stato viene aggiornato dalla **scansione automatica** del server (intervallo impostabile in [Impostazioni](#sistema-impostazioni), predefinito ogni 10 secondi) e a richiesta con **Scansiona tutti** o con **Aggiorna adesso** nella dashboard. La scansione legge anche i nuovi eventi.
+Lo stato viene aggiornato dalla **scansione automatica** del server (intervallo impostabile in [Impostazioni](#sistema-impostazioni), predefinito ogni 10 secondi) e a richiesta con **Scansiona tutti** o con **Aggiorna adesso** nella Panoramica. La scansione legge anche i nuovi eventi.
 
 ### <a id="varchi-tempo-reale"></a>Eventi in tempo reale
 
-Oltre alla scansione, il server tiene aperto con ogni controller un **collegamento in tempo reale** (HTTP: flusso di notifiche del dispositivo; SDK: armamento, come in iVMS-4200): il controller vi invia ogni passaggio appena avviene, che arriva in archivio, nella dashboard e nella **Cattura da varco** entro un secondo. La colonna **Eventi** della pagina Varchi ne mostra lo stato e nei riquadri della dashboard il simbolo indica i varchi collegati:
+Oltre alla scansione, il server tiene aperto con ogni controller un **collegamento in tempo reale** (HTTP: flusso di notifiche del dispositivo; SDK: armamento, come in iVMS-4200): il controller vi invia ogni passaggio appena avviene, che arriva in archivio, nella Panoramica e nella **Cattura da varco** entro un secondo. La colonna **Eventi** della pagina Varchi ne mostra lo stato e nei riquadri della Panoramica il simbolo indica i varchi collegati:
 
 | Stato | Significato |
 | --- | --- |
@@ -205,7 +211,7 @@ Se un controller, con il collegamento aperto, smette di rispondere alle altre ri
 
 ### <a id="varchi-comandi"></a>Comandi porta
 
-Disponibili ad amministratori e operatori dal menu del varco (pagina Varchi, dashboard ed eventi):
+Disponibili ad amministratori e operatori dal menu del varco (pagina Varchi, Panoramica ed eventi):
 
 | Comando | Effetto |
 | --- | --- |
@@ -245,7 +251,7 @@ I dispositivi Hikvision bloccano per un certo tempo (di solito 30 minuti) un acc
 
 ### <a id="varchi-multipli"></a>Operazioni su più varchi
 
-Seleziona i varchi con le caselle all'inizio delle righe (amministratori e operatori); nella barra sopra la tabella:
+Premi **Scegli più righe** e seleziona i varchi con le caselle all'inizio delle righe (amministratori e operatori); nella barra sopra la tabella:
 
 - **Invia utenti**: scrive **tutti gli utenti** dell'anagrafica sui controller selezionati, ciascuno con i suoi permessi attuali (concesso dove autorizzato, tolto dove no). Prima completa le [revoche in sospeso](#utenti-revoche) di quei controller. È il modo giusto dopo la **sostituzione o il ripristino** di un controller, senza riscrivere tutto l'impianto come il deploy atomico.
 - **Ricevi utenti**: legge persone e tessere dai controller selezionati e le unisce all'anagrafica (vedi [Ricevere gli utenti](#utenti-ricevere)); un controller con più porte selezionate viene letto una volta sola.
@@ -259,7 +265,7 @@ Dal menu del varco (amministratori): **Modifica parametri varco**, **Nuovo varco
 
 ## <a id="gruppi"></a>Gruppi di accesso
 
-Pagina **Gruppi di accesso**. Un gruppo è un **modello** di varchi autorizzati del sito attivo, ad esempio "Tutti i varchi", "Solo uffici", "Magazzino e carico". Serve a non dover spuntare i varchi uno per uno per ogni persona.
+Pagina **Gruppi**. Un gruppo è un **modello** di varchi autorizzati del sito attivo, ad esempio "Tutti i varchi", "Solo uffici", "Magazzino e carico". Serve a non dover spuntare i varchi uno per uno per ogni persona.
 
 - **Creare un gruppo**: nome, descrizione e spunta dei varchi del sito.
 - **Assegnarlo a un utente**: nella scheda utente, scegliendo un gruppo nel campo **Gruppo** i varchi spuntati diventano quelli del gruppo (l'avviso che compare ha il pulsante **Annulla** per tornare alle spunte di prima); puoi poi aggiungere o togliere varchi per quella persona. Scegliendo **Nessun gruppo** le spunte restano come sono. Il pulsante **Da gruppo** ricarica in qualsiasi momento i varchi del modello. Per assegnare un gruppo a molte persone insieme usa la [selezione multipla](#utenti-multipli) nella pagina Utenti.
@@ -304,7 +310,7 @@ Nella scheda di un gruppo con **Giorni e fasce orarie**, la riga **Festività** 
 
 ## <a id="utenti"></a>Utenti, tessere e PIN
 
-Pagina **Utenti e tessere**: le persone del sito attivo, comprese quelle condivise da altri siti (per le persone di un'altra sede cambia sito attivo, vedi [Persone e siti](#utenti-siti)). La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica). Con le caselle all'inizio delle righe si opera su più persone insieme (vedi [Operazioni su più utenti](#utenti-multipli)).
+Pagina **Utenti**: le persone del sito attivo, comprese quelle condivise da altri siti (per le persone di un'altra sede cambia sito attivo, vedi [Persone e siti](#utenti-siti)). La colonna **Varchi sito** indica su quanti varchi del sito attivo la persona è autorizzata; i filtri sopra la tabella mostrano tutti, solo gli autorizzati sul sito, chi non ha varchi o i disabilitati. La ricerca lavora su nome, matricola e numeri di tessera. Per trovare il titolare di una tessera che hai in mano usa [Identifica badge](#utenti-identifica). Con **Scegli più righe** si opera su più persone insieme (vedi [Operazioni su più utenti](#utenti-multipli)).
 
 La scheda di una persona si apre sempre con i dati attuali del server, anche se l'elenco è stato caricato da un po'. Se nel frattempo un altro operatore (o una ricezione dai varchi) modifica la stessa persona, al salvataggio la console avvisa che la scheda «è stata modificata dopo che l'hai aperta» e propone **Riapri con i dati attuali**: così una scheda vecchia non toglie tessere o varchi aggiunti da altri. Annota prima le modifiche che vuoi rifare.
 
@@ -387,7 +393,7 @@ Con gli [eventi in tempo reale](#varchi-tempo-reale) attivi il numero compare no
 
 ### <a id="utenti-multipli"></a>Operazioni su più utenti
 
-Seleziona le persone con le caselle all'inizio delle righe (con i filtri e la ricerca puoi prima restringere l'elenco, poi usare la casella nell'intestazione per prenderle tutte). Nella barra sopra la tabella:
+Premi **Scegli più righe** e seleziona le persone con le caselle all'inizio delle righe (con i filtri e la ricerca puoi prima restringere l'elenco, poi usare la casella nell'intestazione per prenderle tutte). Nella barra sopra la tabella:
 
 - **Invia ai varchi**: **Tutti i varchi interessati** scrive ogni persona dove è autorizzata, in tutti i siti, e la toglie dagli altri varchi del sito attivo; **Solo alcuni varchi** la scrive soltanto sui controller dei varchi che spunti (per esempio un controller appena sostituito). Una sola operazione, annullabile, con il log per persona e controller.
 - **Assegna gruppo**: assegna un gruppo del sito (o **Nessun gruppo**); con **Applica i varchi del gruppo** i varchi del gruppo sostituiscono quelli del sito di ciascuna persona, con **Invia subito ai varchi** le persone vengono inviate con le fasce orarie del gruppo.
@@ -396,7 +402,7 @@ Seleziona le persone con le caselle all'inizio delle righe (con i filtri e la ri
 
 ### <a id="utenti-revoche"></a>Revoche in sospeso
 
-Quando togli una tessera, disabiliti o elimini una persona mentre un controller non risponde (spento, rete interrotta), quel controller continuerebbe ad accettare le tessere. La console annota la revoca **in sospeso** e la ritenta da sola ogni minuto e prima di ogni invio di utenti a quel controller, finché non riesce. Finché ce ne sono, in cima alla dashboard e alla pagina Utenti compare l'avviso **Revoche in sospeso**:
+Quando togli una tessera, disabiliti o elimini una persona mentre un controller non risponde (spento, rete interrotta), quel controller continuerebbe ad accettare le tessere. La console annota la revoca **in sospeso** e la ritenta da sola ogni minuto e prima di ogni invio di utenti a quel controller, finché non riesce. Finché ce ne sono, in cima alla Panoramica e alla pagina Utenti compare l'avviso **Revoche in sospeso**:
 
 - **Dettagli**: persona, tessere da togliere, controller, da quando e quanti tentativi, con l'ultimo errore;
 - **Riprova ora** (amministratori e operatori): ritenta subito, con il log dell'esito.
@@ -413,9 +419,9 @@ Dal menu del tasto destro sulla riga:
 - **Copia numero badge** / **Copia matricola** negli appunti.
 - **Elimina utente da anagrafica e varchi**: cancella la persona dalla console e da **tutti i varchi di tutti i siti**; le sue tessere smettono di aprire. L'operazione mostra l'esito per ogni varco.
 
-## <a id="dashboard"></a>Dashboard
+## <a id="dashboard"></a>Panoramica
 
-La **Dashboard** è il quadro d'insieme del sito attivo:
+La **Panoramica** è il quadro d'insieme del sito attivo:
 
 - **Indicatori**: varchi totali e online, utenti registrati e autorizzati sul sito, transiti di oggi (con il confronto di ieri) e accessi negati. I **transiti** sono le sole verifiche di persone (accessi concessi e negati): sincronizzazioni dell'ora, aperture da pulsante, porta aperta/chiusa, anomalie e allarmi non contano e, se presenti, sono indicati a parte come "altri eventi". Un clic su un indicatore apre il dettaglio: **Varchi** (i soli varchi offline, se qualcuno non risponde), **Utenti e tessere**, i **transiti di oggi** oppure i soli **accessi negati di oggi**.
 - **Stato varchi**: un riquadro per varco con stato, indirizzo, canale (con se gli eventi arrivano in tempo reale), tempo di risposta ed eventuale errore; clic sul riquadro per la scheda del varco, pulsante **Apri** e menu ⋯ con tutti i comandi, compreso **Stato porta**.
@@ -429,7 +435,7 @@ La pagina si **aggiorna da sola** con l'intervallo scelto in alto a destra (da 3
 
 ## <a id="eventi"></a>Eventi e storico
 
-Pagina **Eventi e storico**: tutti i passaggi, i tentativi negati e gli allarmi dei varchi del sito attivo, archiviati nel database della console.
+Pagina **Eventi**: tutti i passaggi, i tentativi negati e gli allarmi dei varchi del sito attivo, archiviati nel database della console.
 
 ### <a id="eventi-raccolta"></a>Come vengono raccolti
 
@@ -437,7 +443,7 @@ Con gli [eventi in tempo reale](#varchi-tempo-reale) ogni passaggio arriva in ar
 
 Ogni evento del controller ha un **numero progressivo**: se dopo una correzione all'indietro dell'orologio del dispositivo, o nella notte in cui finisce l'ora legale, alcuni eventi risultano registrati con un orario precedente all'ultimo letto, il salto nella numerazione li rivela e la console li va a cercare nelle due ore precedenti.
 
-**Nome e matricola**. I controller "a tessere" collegati con l'SDK (per esempio il Totem DS-K2602) registrano solo il numero della tessera: nome e matricola li aggiunge la console, cercando la tessera tra gli utenti dell'anagrafica (anche se il lettore omette gli zeri iniziali). Lo stesso vale per una tessera non ancora inviata a quel varco: l'evento "accesso negato" mostra comunque di chi è. Se una tessera viene assegnata a un utente dopo il passaggio, gli eventi già archiviati senza nome lo prendono entro la scansione successiva. Il nome mandato dai controller "a persone" resta quello registrato sul dispositivo.
+**Nome e matricola**. I controller "a tessere" collegati con l'SDK (per esempio il DS-K2602) registrano solo il numero della tessera: nome e matricola li aggiunge la console, cercando la tessera tra gli utenti dell'anagrafica (anche se il lettore omette gli zeri iniziali). Lo stesso vale per una tessera non ancora inviata a quel varco: l'evento "accesso negato" mostra comunque di chi è. Se una tessera viene assegnata a un utente dopo il passaggio, gli eventi già archiviati senza nome lo prendono entro la scansione successiva. Il nome mandato dai controller "a persone" resta quello registrato sul dispositivo.
 
 ### <a id="eventi-consultare"></a>Consultare e filtrare
 
@@ -483,7 +489,7 @@ Come per i varchi, se la telecamera rifiuta le credenziali il server smette di r
 
 ### <a id="telecamere-menu"></a>Menu della telecamera
 
-Nella scheda **Elenco**, il tasto destro o ⋯ su una riga apre il menu, con lo stesso ordine di quello dei varchi: in testa il nome e il modello.
+Nella scheda **Elenco**, il tasto destro o ⋯ su una riga apre il menu, con lo stesso ordine di quello dei varchi: in testa il nome e il modello. Lo stesso menu si apre dai riquadri della scheda **Dal vivo**, con il tasto destro o con ⋯ sotto il video.
 
 - **Apri il video**: il video dal vivo in una finestra grande.
 - **Verifica foto e video** (amministratori): la stessa prova della scheda, con i dati salvati; aggiorna modello, seriale e firmware.
@@ -496,7 +502,7 @@ I varchi associati non vengono copiati: ogni telecamera fotografa i passaggi che
 
 ### <a id="telecamere-video"></a>Video dal vivo
 
-La scheda **Dal vivo** mostra un riquadro per telecamera; un clic lo ingrandisce, e da lì si sceglie tra **Leggero** (flusso secondario) e **Alta qualità** (flusso principale) e si passa a schermo intero. Il video di un varco si apre anche dal pulsante con la telecamera nella Dashboard.
+La scheda **Dal vivo** mostra un riquadro per telecamera; un clic lo ingrandisce, e da lì si sceglie tra **Leggero** (flusso secondario) e **Alta qualità** (flusso principale) e si passa a schermo intero. Sotto ogni video, apre la scheda della telecamera (i dettagli, per chi non è amministratore), ingrandisce e ⋯ apre il [menu della telecamera](#telecamere-menu), senza passare dall'Elenco. Il video di un varco si apre anche dal pulsante con la telecamera nella Panoramica.
 
 - Il server riceve il video via RTSP e lo passa al browser così com'è, senza ricodificarlo: consuma pochissimo e la telecamera vede un solo collegamento, anche con più operatori. Il video non viene registrato: attraversa il server solo mentre qualcuno lo guarda, e la visione finisce nel [registro attività](#sistema-registro).
 - Servono le porte RTSP (554) e HTTP (80) della telecamera raggiungibili **dal server**; il browser parla solo con la console, quindi il video funziona anche da fuori, con un proxy che lascia passare i WebSocket.
@@ -510,7 +516,7 @@ Nella scheda della telecamera scegli i **varchi associati** e quali eventi fotog
 
 - Con gli [eventi in tempo reale](#varchi-tempo-reale) la foto parte appena il controller segnala il passaggio, quando la persona è ancora davanti alla telecamera.
 - Con la sola scansione periodica l'evento arriva in ritardo: se nella pagina Varchi la colonna Eventi dice **Solo scansione**, la foto mostra la scena di qualche secondo dopo. Il ritardo è scritto sotto l'immagine e, oltre 30 secondi, la foto non viene scattata perché non mostrerebbe più chi è passato.
-- Le anteprime compaiono nello storico [Eventi](#eventi-consultare) e in **Attività in tempo reale** della Dashboard, con il bordo verde per gli accessi concessi e rosso per quelli negati. Un clic apre l'immagine grande, con chi, dove, quando e il pulsante per scaricarla.
+- Le anteprime compaiono nello storico [Eventi](#eventi-consultare) e in **Attività in tempo reale** della Panoramica, con il bordo verde per gli accessi concessi e rosso per quelli negati. Un clic apre l'immagine grande, con chi, dove, quando e il pulsante per scaricarla.
 - La stessa foto accompagna l'avviso su [Telegram](#notifiche) degli operatori che hanno scelto di riceverla con l'evento.
 
 Una telecamera di altra marca senza indirizzo delle foto mostra il video, ma non può fotografare gli eventi.
@@ -603,7 +609,7 @@ Oltre all'esportazione, includi nei backup del server l'intera cartella dati (ve
 
 ## <a id="sistema"></a>Sistema
 
-La voce **Sistema** ⚙ in fondo al menu (solo amministratori) apre una pagina a schede: **Impostazioni**, [**Conservazione immagini**](#telecamere-privacy), **Operatori**, **Licenza**, **Backup e deploy**, **Chiavi API** e **Registro attività**. In cima, quando serve, gli avvisi: nuova versione disponibile, licenza non valida o in scadenza, varchi sospesi. Sulle pagine di amministrazione la voce Sistema resta evidenziata.
+L'icona **Sistema** ⚙ in alto a destra (solo amministratori; sul telefono è in fondo al menu) apre una pagina a schede: **Impostazioni**, [**Siti**](#siti), [**Conservazione immagini**](#telecamere-privacy), **Operatori**, **Licenza**, **Backup e deploy**, **Chiavi API** e **Registro attività**. In cima, quando serve, gli avvisi: nuova versione disponibile, licenza non valida o in scadenza, varchi sospesi. Sulle pagine di amministrazione l'icona Sistema resta evidenziata e davanti al titolo c'è la freccia **Torna a Sistema**.
 
 ### <a id="sistema-operatori"></a>Operatori
 
@@ -670,7 +676,7 @@ e in `secrets.yaml` la riga `hikaccess_api: "Bearer hap_…"` con la chiave. Dop
 
 **Oltre i limiti.** Senza la licenza adatta non si aggiungono siti o varchi oltre quelli consentiti e non si creano chiavi API: la console lo segnala con il collegamento **Vai alla pagina Licenza**. Se i varchi configurati sono più di quelli consentiti (licenza scaduta o rimossa, ripristino di un backup più grande), restano in uso i primi in ordine di ID dei primi siti e gli altri diventano **sospesi**: restano in elenco, ma non vengono monitorati, non ricevono comandi né utenti e non si leggono tessere da lì. Per sicurezza la revoca delle tessere tolte e l'eliminazione degli utenti raggiungono anche i varchi sospesi. Allo stesso modo le telecamere oltre il limite restano in elenco ma sospese, senza video né foto. Le licenze emesse prima delle telecamere ne comprendono una, come la versione gratuita.
 
-Alla scadenza la console torna da sola ai limiti della versione gratuita, senza perdere configurazione ed eventi; il pallino sulla voce Sistema e la pagina Sistema avvisano gli amministratori negli ultimi 30 giorni. Attivazioni, chiavi rifiutate e rimozioni finiscono nel [registro attività](#sistema-registro) (categoria **Licenza**).
+Alla scadenza la console torna da sola ai limiti della versione gratuita, senza perdere configurazione ed eventi; il pallino sull'icona Sistema e la pagina Sistema avvisano gli amministratori negli ultimi 30 giorni. Attivazioni, chiavi rifiutate e rimozioni finiscono nel [registro attività](#sistema-registro) (categoria **Licenza**).
 
 > [!NOTE]
 > **Trasferire la licenza** su un altro server, o dopo aver reinstallato Windows: dalla pagina Licenza del server nuovo invia una richiesta e scrivi nelle note che si tratta di un trasferimento. La chiave nuova sarà emessa per il nuovo codice macchina.
@@ -705,7 +711,7 @@ Quando la console è pubblicata su Internet tramite un **reverse proxy** (il rou
 
 ### <a id="sistema-registro"></a>Registro attività
 
-**Registro attività**: chi ha fatto cosa, quando, da quale indirizzo e con quale esito: accessi alla console (riusciti e falliti), comandi porta, modifiche a utenti, gruppi, varchi e siti, ripristini, deploy, cambi di impostazioni e operatori, aggiornamenti del programma e nuove versioni disponibili. Si filtra per periodo, categoria e testo libero e si esporta in CSV. La conservazione si imposta in Impostazioni.
+**Registro attività** (la voce **Attività** del menu, solo per gli amministratori; anche dalla pagina Sistema). Riguarda **tutti i siti**, non solo quello attivo: chi ha fatto cosa, quando, da quale indirizzo e con quale esito: accessi alla console (riusciti e falliti), comandi porta, modifiche a utenti, gruppi, varchi e siti, ripristini, deploy, cambi di impostazioni e operatori, aggiornamenti del programma e nuove versioni disponibili. Si filtra per periodo, categoria e testo libero e si esporta in CSV. La conservazione si imposta in Impostazioni.
 
 I comandi arrivati con una [chiave API](#sistema-chiavi-api) hanno al posto dell'operatore il nome della chiave («API · Home Assistant»): cercandolo si vedono tutti i comandi di quell'integrazione. La categoria **Chiavi API** raccoglie creazioni, modifiche ed eliminazioni delle chiavi e le richieste con chiavi errate, scadute o disattivate. La categoria **Licenza** raccoglie attivazioni, chiavi di attivazione rifiutate (con il motivo) e rimozioni della licenza.
 
@@ -808,7 +814,7 @@ L'esito dell'ultimo aggiornamento resta in Impostazioni; il log del setup è nel
 
 Una volta al giorno il server chiede a GitHub qual è l'ultima versione pubblicata di HikAccess Pro Web e la confronta con quella installata. Quando ne esce una nuova, gli **amministratori** vedono:
 
-- un **pallino** sulla voce **Sistema** del menu e un avviso in cima alla pagina Sistema, finché la versione nuova non viene installata;
+- un **pallino** sull'icona **Sistema** in alto a destra e un avviso in cima alla pagina Sistema, finché la versione nuova non viene installata;
 - un avviso al primo accesso, una volta per versione e per browser, con il collegamento **Vedi le novità**;
 - nel riquadro **Aggiornamento del programma**, la versione nuova con la data di pubblicazione, le **novità** e i pulsanti **Scarica e installa**, **Scarica il setup** e **Pagina della versione** (gli ultimi due aprono GitHub in un'altra scheda).
 
@@ -910,7 +916,7 @@ Nella scheda della persona controlla: utente abilitato, validità non scaduta, t
 <details>
 <summary><b>Una tessera rimossa apre ancora</b></summary>
 
-La revoca avviene al salvataggio della scheda. Se il controller in quel momento non rispondeva, la revoca è [in sospeso](#utenti-revoche): l'avviso in dashboard o nella pagina Utenti indica quale controller; controlla che sia raggiungibile e premi **Riprova ora**.
+La revoca avviene al salvataggio della scheda. Se il controller in quel momento non rispondeva, la revoca è [in sospeso](#utenti-revoche): l'avviso nella Panoramica o nella pagina Utenti indica quale controller; controlla che sia raggiungibile e premi **Riprova ora**.
 
 </details>
 

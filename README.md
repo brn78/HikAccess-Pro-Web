@@ -32,7 +32,7 @@ dal tablet o dal telefono, con account personali e ruoli.
 Funziona anche su reti isolate, senza Internet e senza abbonamenti cloud: configurazione ed eventi restano sul tuo server.
 
 <p align="center">
-  <img src="docs/immagini/dashboard.png" alt="Dashboard con stato dei varchi, attività in tempo reale e transiti del giorno" width="100%">
+  <img src="docs/immagini/dashboard.png" alt="Panoramica del sito con stato dei varchi, attività in tempo reale e transiti del giorno" width="100%">
 </p>
 
 ## ✨ Funzionalità
@@ -63,7 +63,7 @@ ritentate da sole sui controller spenti). Invio, gruppo, abilitazione ed elimina
 
 **📊 Monitoraggio in tempo reale**<br>
 I controller inviano ogni passaggio appena avviene e il server legge comunque i loro registri senza saltare eventi,
-anche con la console chiusa: dashboard, accessi negati, storico degli eventi con ricerca ed esportazione CSV.
+anche con la console chiusa: panoramica del sito, accessi negati, storico degli eventi con ricerca ed esportazione CSV.
 
 **🎥 Telecamere**<br>
 Telecamere Hikvision o di altra marca con RTSP: video dal vivo nel browser, senza plugin e senza ricodifica, e una foto
@@ -90,6 +90,11 @@ scadenza per ogni chiave. *Con licenza.*
 Pubblicazione tramite un proxy HTTPS, per esempio KeenDNS dei router Keenetic, con il riconoscimento dei proxy
 attendibili.
 
+**🧭 Elenchi e calendario**<br>
+In ogni elenco ricerca, filtri raccolti in una finestra, vista a **elenco o a schede**, selezione di più righe e
+conteggio sempre in vista; il menu porta il nome del sito attivo. I campi data aprono un calendario uguale in ogni
+browser, con domeniche e festività in evidenza.
+
 **⚙️ Pensato per il server**<br>
 Servizio di Windows con avvio automatico e icona di stato, backup e ripristino, invio di tutti gli utenti a tutti i
 varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **Scarica e installa**.
@@ -114,7 +119,7 @@ varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **S
 <td align="center"><img src="docs/immagini/festivita.png" alt="Calendario delle festività"><br><b>Festività</b>: nazionali, santo patrono e chiusure</td>
 </tr>
 <tr>
-<td align="center"><img src="docs/immagini/dashboard-chiaro.png" alt="Dashboard con il tema chiaro"><br><b>Tema chiaro o scuro</b>, anche automatico</td>
+<td align="center"><img src="docs/immagini/dashboard-chiaro.png" alt="Panoramica con il tema chiaro"><br><b>Tema chiaro o scuro</b>, anche automatico</td>
 <td align="center"><img src="docs/immagini/sistema.png" alt="Pagina Sistema"><br><b>Sistema</b>: impostazioni, operatori, licenza e backup</td>
 </tr>
 <tr>
@@ -123,7 +128,7 @@ varchi, avviso quando esce una nuova versione e aggiornamento in un clic con **S
 </tr>
 <tr>
 <td align="center"><img src="docs/immagini/guida.png" alt="Guida utente nella console"><br><b>Guida integrata</b>: <kbd>F1</kbd> da qualsiasi pagina</td>
-<td align="center"><img src="docs/immagini/mobile.png" alt="Dashboard sul telefono" width="46%"><br><b>Anche dal telefono</b></td>
+<td align="center"><img src="docs/immagini/mobile.png" alt="Panoramica sul telefono" width="46%"><br><b>Anche dal telefono</b></td>
 </tr>
 </table>
 
@@ -293,7 +298,7 @@ oppure eseguirlo sul server. Dati, account e licenza restano.
 <summary><b>Come faccio a sapere che è uscita una nuova versione?</b></summary>
 <br>
 Dalla versione 1.4.0 lo dice la console: una volta al giorno il server chiede a GitHub qual è l'ultima versione
-pubblicata e, se è più recente di quella installata, gli amministratori vedono un pallino sulla voce
+pubblicata e, se è più recente di quella installata, gli amministratori vedono un pallino sull'icona
 <b>Sistema</b> e, nel riquadro dell'aggiornamento, le novità e il pulsante <b>Scarica e installa</b>. Nulla si
 installa da solo e non viene inviato alcun dato dell'impianto; l'avviso si può disattivare dalle impostazioni.
 </details>

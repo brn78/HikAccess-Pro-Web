@@ -3,6 +3,34 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.10.0 · 12 novembre 2026
+
+Elenchi più comodi, il menu riordinato attorno al sito attivo e un calendario uguale in ogni browser.
+
+- **Elenchi**: la ricerca è sempre il primo campo e i filtri a tendina (gruppo, varco, tipo di evento, categoria)
+  stanno nella finestra che si apre con l'imbuto, con il numero dei filtri attivi e le loro etichette sotto la barra,
+  da togliere con un clic. In alto a destra scegli la vista **Elenco** o **Schede**, che il browser ricorda per ogni
+  elenco; nelle schede ogni voce è descritta per intero. In basso a sinistra trovi il numero delle righe («3 di 7
+  utenti») e il tempo del caricamento. L'elenco arriva fino in fondo alla finestra con i titoli delle colonne sempre in
+  vista, e quelli lunghi si disegnano 200 righe alla volta. Le righe si usano anche da tastiera: Tab, frecce e Invio.
+- **Scegli più righe**: nelle pagine *Utenti* e *Varchi* le caselle compaiono con l'icona in alto a sinistra
+  dell'elenco; le operazioni sulle righe scelte sono anche nel menu del tasto destro.
+- **Menu**: il primo gruppo porta il nome del sito attivo, con **Panoramica** (la pagina che si chiamava Dashboard),
+  **Eventi** e, per gli amministratori, **Attività** (il registro attività, che riguarda tutti i siti). Sotto c'è
+  **Gestione**: Utenti, Gruppi, Varchi e Telecamere. I **Siti** si aprono dal selettore del sito in alto e dalla pagina
+  *Sistema*.
+- **Barra in alto**: lo stato del monitoraggio è al centro; **Sistema** e **Guida utente** sono icone in alto a destra,
+  accanto al tema. Le pagine di amministrazione hanno davanti al titolo la freccia per tornare a *Sistema*.
+- **Calendario**: i campi data aprono il calendario della console al posto di quello del browser, con il lunedì in
+  testa, le domeniche e le festività dell'impianto in rosso e il nome della festa sotto il mese. Nei campi con data e
+  ora c'è accanto l'elenco delle ore. Da tastiera si apre con Alt+↓ o F4.
+- **Telecamere dal vivo**: sotto ogni video ci sono la matita per aprire la scheda della telecamera e il suo menu, anche
+  con il tasto destro, senza passare dall'elenco.
+- **Ricerca** anche negli elenchi di *Telecamere*, *Operatori* e *Siti*.
+
+**Da sapere.** Gli indirizzi delle pagine non cambiano, quindi collegamenti e segnalibri continuano a funzionare. Sul
+telefono *Sistema* e *Guida utente* restano voci in fondo al menu.
+
 ## 1.9.0 · 8 novembre 2026
 
 Ogni sito ha le sue persone, il sito attivo è sempre sott'occhio e gli avvisi Telegram arrivano con la foto.
@@ -206,7 +234,7 @@ quindi segnala pure ciò che non va.
 
 ## 1.6.2 · 7 ottobre 2026
 
-- **Nome e matricola negli eventi** dei controller che registrano solo la tessera, come il Totem DS-K2602 collegato
+- **Nome e matricola negli eventi** dei controller che registrano solo la tessera, come il DS-K2602 collegato
   con l'SDK: la console li prende dall'anagrafica, anche per gli eventi già archiviati. Vale anche per una tessera non
   ancora inviata al varco ("accesso negato") e per una tessera assegnata a un utente dopo il passaggio.
 - *Diagnostica*: allarme porta aperta "disattivato" invece di "dopo mai"; riga degli eventi in tempo reale più chiara.
@@ -257,7 +285,7 @@ quindi segnala pure ciò che non va.
 
 ## 1.5.1 · 6 ottobre 2026
 
-- Fasce orarie sui controller collegati con l'SDK Hikvision (porta 8000, es. Totem DS-K2602): corretta la scrittura
+- Fasce orarie sui controller collegati con l'SDK Hikvision (porta 8000, es. DS-K2602): corretta la scrittura
   del modello orario, che la 1.5.0 non riusciva a completare; se il firmware non supporta i comandi classici si usano
   quelli più recenti.
 
