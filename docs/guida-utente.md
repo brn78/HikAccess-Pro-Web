@@ -3,7 +3,7 @@
 [← Torna alla presentazione](../README.md) · [Scarica il setup](https://github.com/brn78/HikAccess-Pro-Web/releases/latest)
 
 > [!NOTE]
-> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.10.1**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
+> È la stessa guida che si apre nella console con <kbd>F1</kbd> (menu **Guida utente**), aggiornata alla versione **1.10.2**. Nella console le icone <b>(i)</b> accanto ai campi rimandano direttamente al paragrafo giusto.
 
 ## Indice
 
@@ -248,8 +248,12 @@ Le configurazioni avanzate che si fanno direttamente sul terminale (modalità di
 
 I dispositivi Hikvision bloccano per un certo tempo (di solito 30 minuti) un account che sbaglia la password più volte di seguito. Per questo, quando un varco rifiuta le credenziali, il server **sospende i tentativi** su quel varco invece di insistere a ogni scansione, e lo segnala come Offline con il motivo "credenziali rifiutate".
 
-1. Apri la scheda del varco, inserisci la password corretta e salva: i tentativi riprendono.
-2. Se la password era giusta ma il dispositivo era già bloccato, attendi lo sblocco (il messaggio indica il tempo, quando il dispositivo lo comunica) e poi usa **Diagnostica e test connessione**.
+Capita però che un dispositivo rifiuti per un momento credenziali giuste. Per questo la console **riprova da sola**, poche volte e a distanza: dopo un minuto e, se la password aveva già funzionato, ancora dopo circa mezz'ora (il tempo del blocco del dispositivo); il motivo accanto allo stato indica l'ora del prossimo tentativo. Se il rifiuto si ripete, o se il dispositivo dichiara che restano pochi tentativi prima del blocco, la console si ferma e aspetta te.
+
+1. Se la password è cambiata sul dispositivo: apri la scheda del varco, inserisci quella corretta e salva; i tentativi riprendono.
+2. Se la password è giusta: usa **Diagnostica e test connessione** per riprovare subito. Se il dispositivo era bloccato, attendi prima lo sblocco (il messaggio indica il tempo, quando il dispositivo lo comunica).
+
+Se il dispositivo rifiuta solo il collegamento degli eventi in tempo reale, il varco resta in uso: nella colonna del tempo reale compare **Solo scansione**, gli eventi arrivano con la scansione periodica e la console riprova il collegamento più tardi (subito, se usi la Diagnostica).
 
 ### <a id="varchi-multipli"></a>Operazioni su più varchi
 

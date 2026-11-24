@@ -3,6 +3,24 @@
 Il setup delle ultime versioni è nella pagina [Releases](https://github.com/brn78/HikAccess-Pro-Web/releases).
 Per aggiornare: *Sistema → Impostazioni → Aggiornamento del programma*, **Scarica e installa** (dalla 1.7.0) oppure caricando il setup; dati, account e licenza restano.
 
+## 1.10.2 · 24 novembre 2026
+
+Un varco che rifiuta per un momento le credenziali non resta più fermo ad aspettare la Diagnostica.
+
+- **Credenziali rifiutate, la console riprova da sola**: prima bastava una sola risposta «credenziali rifiutate» perché
+  il varco restasse Offline fino alla Diagnostica o al riavvio del servizio, anche con la password giusta. Ora la
+  console riprova dopo un minuto e, se la password aveva già funzionato, ancora dopo circa mezz'ora; accanto allo stato
+  compare l'ora del prossimo tentativo. Se il rifiuto si ripete, o se il dispositivo dichiara che restano pochi
+  tentativi prima del blocco, si ferma come prima, per non far bloccare l'utente sul dispositivo.
+- **Una richiesta alla volta per controller**: la console non manda più due richieste insieme allo stesso controller
+  (stato letto dalla scansione, eventi in tempo reale, stato porta, comandi). Un controller che tiene una sola sessione
+  alla volta poteva rifiutarne una pur con la password giusta.
+- **Eventi in tempo reale rifiutati**: se il dispositivo rifiuta solo il collegamento degli eventi in tempo reale, il
+  varco resta in uso con *Solo scansione*: gli eventi arrivano con la scansione periodica e il collegamento si riprova
+  più tardi, oppure subito con *Diagnostica e test connessione*.
+- **Nel registro eventi di Windows** (Applicazione, origine HikAccessWeb) trovi ogni rifiuto delle credenziali e ogni
+  ripresa, con l'indirizzo del dispositivo e la richiesta rifiutata.
+
 ## 1.10.1 · 12 novembre 2026
 
 Piccole comodità di tutti i giorni: la matricola si propone da sola, le schede si allargano e gli elenchi si leggono meglio.
